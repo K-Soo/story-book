@@ -1,0 +1,31 @@
+import React from "react";
+import styled from "styled-components";
+interface IBookDetailPanel {
+  title: string;
+  desc?: string;
+}
+
+export default function BookDetailPanel({ title, desc }: IBookDetailPanel) {
+  return (
+    <S.BookDetailPanel>
+      {title && <h2 className="title">{title}</h2>}
+      <div className="description">{desc}</div>
+    </S.BookDetailPanel>
+  );
+}
+
+const S = {
+  BookDetailPanel: styled.div`
+    padding: 40px 0;
+    white-space: pre-wrap;
+    .title {
+      font-size: 16px;
+      color: #000;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 14px;
+    }
+  `,
+};

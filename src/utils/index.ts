@@ -1,0 +1,1 @@
+export { social } from 'src/utils/social';
