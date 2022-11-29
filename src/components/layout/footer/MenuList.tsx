@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-// import { Search, User, Book, Home } from 'src/icons/svg';
+import { Search, User, Book, Home } from 'src/icons/svg';
 import { useAppDispatch } from '@store';
 import { setToggleSearchForm } from '@slice/searchSlice';
 
