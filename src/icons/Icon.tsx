@@ -1,35 +1,38 @@
 import React from 'react';
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 import * as svg from './svg';
 
 export type IconType = keyof typeof svg;
 
 export type IconProps = {
-  name: IconType
-  className?: string
+  name: IconType;
+  className?: string;
   TosIcon?: boolean;
   onClick?: any;
   style?: React.CSSProperties | undefined;
-}
-
-function Icon({ name, className, style, onClick }: IconProps) {
-  return (
-    React.createElement(svg[name], {
-      className,
-      style,
-      onClick,
-    })
-  )
 };
 
+function Icon({ name, className, style, onClick }: IconProps) {
+  return React.createElement(svg[name], {
+    className,
+    style,
+    onClick,
+  });
+}
+
 export default styled(Icon)`
+  /* pointer-events: none; */
+  color: #bdbdbd;
+  width: 35px;
+  height: 35px;
+  border: 1px solid red;
   cursor: pointer;
-  pointer-events: none;
-  color: #BDBDBD;
-  ${props => props.TosIcon && css`
-    color: #BDBDBD;
+  ${props =>
+    props.TosIcon &&
+    css`
+      color: #bdbdbd;
       &:hover {
         background: #2a2b2d;
       }
-  `}
+    `}
 `;

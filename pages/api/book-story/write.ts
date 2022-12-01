@@ -16,6 +16,7 @@ const schema = Joi.object({
 });
 
 export default privateHandler.post(async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('req.body: ', req.body);
   const { error } = schema.validate(req.body);
   if (error) {
     throwError({ status: 422, message: error.message });

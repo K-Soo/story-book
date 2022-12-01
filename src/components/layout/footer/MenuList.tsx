@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Search, User, Book, Home } from 'src/icons/svg';
 import { useAppDispatch } from '@store';
 import { setToggleSearchForm } from '@slice/searchSlice';
+import SvgIcon from 'src/icons/SvgIcon';
 
 interface IMenuList {
   className: string;
@@ -18,21 +19,22 @@ export default React.memo(function MenuList({ className }: IMenuList) {
         <li className='list__item'>
           <Link href='/' passHref>
             <a>
-              {/* <Home /> */}
+              <Home />
+              {/* <SvgIcon /> */}
               <span className='list__item--label'>홈</span>
             </a>
           </Link>
         </li>
 
         <li className='list__item' onClick={() => dispatch(setToggleSearchForm(true))}>
-          {/* <Search /> */}
+          <Search />
           <span className='list__item--label'>검색</span>
         </li>
 
         <li className='list__item'>
           <Link href='/book-story' passHref replace>
             <a>
-              {/* <Book /> */}
+              <Book />
               <span className='list__item--label'>북스토리</span>
             </a>
           </Link>

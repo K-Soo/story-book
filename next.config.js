@@ -1,10 +1,22 @@
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
+  },
   compiler: {
     styledComponents: true,
-    // removeConsole: process.env.NODE_ENV === 'production',
+    // reactRemoveProperties: true, //data 속성 삭제
+    // removeConsole: process.env.NODE_ENV === 'production', 콘솔 삭제
   },
   // experimental: {
   //   modularizeImports: {
@@ -14,7 +26,7 @@ const nextConfig = {
   //   },
   // },
   images: {
-    domains: ["via.placeholder.com", "k.kakaocdn.net", "shopping-phinf.pstatic.net"],
+    domains: ['via.placeholder.com', 'k.kakaocdn.net', 'shopping-phinf.pstatic.net'],
   },
 };
 

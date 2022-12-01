@@ -9,10 +9,9 @@ export default function WriteTitleBox() {
 
   return (
     <S.WriteTitleBox>
-      <input type='text' name='title' placeholder='제목을 입력해주세요.' value={form.title} onChange={e => dispatch(setForm(e))} />
+      <input className='title-input' type='text' name='title' placeholder='제목을 입력해주세요' maxLength={30} value={form.title} onChange={e => dispatch(setForm(e))} />
       <div>
-        <span>20</span>
-        <span>30</span>
+        <span>{form.title.length}/30</span>
       </div>
     </S.WriteTitleBox>
   );
@@ -25,5 +24,9 @@ const S = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    .title-input {
+      width: 100%;
+    }
   `,
 };

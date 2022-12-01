@@ -7,7 +7,9 @@ import { Get } from '@api';
 import { useAppDispatch, useAppSelector } from '@store';
 import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import InfiniteScroll from 'react-infinite-scroller';
-import BookCard from '@components/common/BookCard';
+import PostCard from '@components/common/PostCard';
+import { IPostCardTypes } from '@types';
+import FilterBox from '@components/common/FilterBox';
 
 interface IBookStoryContainer {}
 
@@ -18,28 +20,30 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
     url: Get.getBookStoryList,
     requestBody: { keyword: router.query.keyword as any },
     queryKey: [router.query.keyword as string],
-    option: {
-      enabled: !!router.query.keyword,
-    },
+    option: {},
   };
 
-  // const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError, refetch } = useInfiniteScroll(requestData);
-  // console.log('북스토리 리스트  API : ', data);
-
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const response = await Get.getBookStoryList({ page: 1 });
-        console.log('%cresponse: ', 'color:Red', response);
-      } catch (error) {
-        console.log('error: ', error);
-      }
-    })();
-  }, []);
+  const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError, refetch } = useInfiniteScroll(requestData);
+  console.log('북스토리 리스트  API : ', data);
 
   return (
     <>
-      <BookStory />
+      {isSuccess && data && (
+        <BookStory>
+          <FilterBox />
+          <InfiniteScroll
+            loadMore={() => {
+              fetchNextPage();
+            }}
+            hasMore={hasNextPage}
+            threshold={250}
+          >
+            {data.pages.map(pageData => {
+              return pageData.items.map((item: IPostCardTypes, index: number) => <PostCard key={item.createAt} item={item} />);
+            })}
+          </InfiniteScroll>
+        </BookStory>
+      )}
     </>
   );
 }

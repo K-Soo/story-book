@@ -11,7 +11,6 @@ interface TUseInfiniteScroll {
 export default function useInfiniteScroll({ url, requestBody, queryKey, option }: TUseInfiniteScroll) {
   const fetchUrl = async (pageParams: number) => {
     const res = await url({ ...requestBody, page: pageParams });
-    console.log('res: ', res);
     return res.result;
   };
 

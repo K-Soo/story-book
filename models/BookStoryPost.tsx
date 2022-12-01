@@ -1,12 +1,7 @@
-import { Schema, model, models, Types } from 'mongoose';
+import { Schema, model, models, Types, Model } from 'mongoose';
 import mongoose from 'mongoose';
-import createModel from '../lib/createModel';
 
-interface IPpaginator {
-  paginate(): void;
-}
-
-interface IBookStoryPostSchema extends Document {
+interface IBookStoryPostDocument extends Document {
   title: string;
   content: string;
   author: Types.ObjectId;
@@ -15,7 +10,12 @@ interface IBookStoryPostSchema extends Document {
   createdAt: Date;
 }
 
-const BookStoryPostSchema: Schema<IBookStoryPostSchema> = new Schema(
+// static
+interface IBookStoryModel extends Model<IBookStoryPostDocument> {
+  findByUsername: (username: string) => Promise<IBookStoryPostDocument>;
+}
+
+const BookStoryPostSchema: Schema<IBookStoryPostDocument> = new Schema(
   {
     title: {
       type: String,
@@ -38,12 +38,10 @@ const BookStoryPostSchema: Schema<IBookStoryPostSchema> = new Schema(
   },
 );
 
-BookStoryPostSchema.method('fullName', function fullName() {
-  return this.title + ' ' + this.title;
-});
+BookStoryPostSchema.statics.findByPost = function (username: string) {
+  return this.findOne({ username });
+};
 
-const BookStoryPost = models.BookStoryPost || model<IBookStoryPostSchema>('BookStoryPost', BookStoryPostSchema);
-
-// export default createModel<IBookStoryPostDocument, mongoose.PaginateModel<IBookStoryPostDocument>>('BookStoryPost', BookStoryPostSchema);
+const BookStoryPost = models.BookStoryPost || model<IBookStoryPostDocument>('BookStoryPost', BookStoryPostSchema);
 
 export default BookStoryPost;

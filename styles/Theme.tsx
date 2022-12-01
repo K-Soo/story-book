@@ -11,7 +11,7 @@ const colors = {
   green: '#008000',
   red: '#f44336',
   pink: '#ff5277',
-  backGround: '#F2F2F2',
+  backGround: '#F8F9FA',
   base: '#D9B9A3',
 };
 

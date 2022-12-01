@@ -6,9 +6,13 @@ import db from 'lib/db';
 import clientPromise from 'lib/clientPromise';
 import User from 'models/User';
 
-interface NewSession extends Session {
-  id?: number;
+export interface ICustomSession {
+  user?: {
+    id?: number;
+  };
 }
+
+export type TSessionTypes = Session & ICustomSession;
 
 export const authOptions: NextAuthOptions = {
   // adapter: MongoDBAdapter(dbConnect),
@@ -41,19 +45,23 @@ export const authOptions: NextAuthOptions = {
     // },
     async session({ session, user, token }) {
       // console.log('session: ', session);
-      const newSession: NewSession = session;
+      const newSession: TSessionTypes = session;
 
       //소셜가입이라 이메일 정보가없다면
       if (!session?.user?.email) {
         const exist = await User.findOne({ name: session?.user?.name });
         // console.log('소셜 가입 : ', exist);
-        newSession.id = exist.id;
+        if (newSession?.user) {
+          newSession.user.id = exist.id;
+        }
       }
       //일반 회원이라면
       if (session?.user?.email) {
         const exist = await User.findOne({ email: user?.email });
         // console.log('일반 가입 : ', exist);
-        newSession.id = exist.id;
+        if (newSession?.user) {
+          newSession.user.id = exist.id;
+        }
       }
       return newSession;
     },

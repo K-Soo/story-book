@@ -37,5 +37,5 @@ export default function BookStoryWrite({ onSubmit, onClickSearchBook, step }: IB
 }
 
 const S = {
-  BookStoryWrite: styled.div``,
+  BookStoryWrite: styled.section``,
 };

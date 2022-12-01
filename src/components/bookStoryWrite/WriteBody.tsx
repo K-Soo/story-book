@@ -5,7 +5,7 @@ export default function WriteBody() {
   return (
     <S.WriteBody>
       <div className='write-box'>
-        <textarea name='' id=''></textarea>
+        <textarea cols={5} rows={3} wrap='on' />
       </div>
     </S.WriteBody>
   );
@@ -20,6 +20,7 @@ const S = {
       textarea {
         width: 100%;
         height: 100%;
+        word-break: break-all;
       }
     }
   `,

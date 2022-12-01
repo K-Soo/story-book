@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nextConnect, { Middleware } from 'next-connect';
 import { throwError } from 'lib';
-import { authOptions } from 'pages/api/auth/[...nextauth]';
+import { authOptions, ICustomSession, TSessionTypes } from 'pages/api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
+import { getSession } from 'next-auth/react';
+import { getProviders } from 'next-auth/react';
 
 export const privateHandler = nextConnect<NextApiRequest, NextApiResponse>({
   onError(error, _req, res) {
@@ -15,13 +17,12 @@ export const privateHandler = nextConnect<NextApiRequest, NextApiResponse>({
     res.status(405).end(`Method ${req.method} Not Allowed`);
   },
 }).use(async (req, res, next) => {
-  const session = await unstable_getServerSession(req, res, authOptions);
-  console.log('session: ', session);
+  const session: TSessionTypes | null = await unstable_getServerSession(req, res, authOptions);
   if (!session) {
     throwError({ status: 401 });
   }
   if (session) {
-    // req.body._id = session?.id as string;
+    req.body._id = session.user?.id;
   }
   next();
 });

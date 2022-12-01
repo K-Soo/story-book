@@ -21,6 +21,10 @@ const customJestConfig = {
   moduleNameMapper: {
     // '@/(.*)$': '<rootDir>/src/$1',
     '^@components/(.*)$': '<rootDir>/src/components/$1',
+    // '^.+\\.svg$': '<rootDir>/svgTransformer.js',
+    // '^.+\\.svg$': '<rootDir>/src/icons/svg',
+    // '^.+\\.svg$': 'jest-svg-transformer',
+    '^.+\\.svg$': '<rootDir>/svgTransformer.js',
   },
 };
 
