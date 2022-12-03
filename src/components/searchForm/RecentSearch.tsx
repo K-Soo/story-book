@@ -39,12 +39,13 @@ const SearchLabel = styled.div`
 
 const S = {
   RecentSearch: styled.div`
-    margin-top: 10px;
-    border: 1px solid red;
+    margin: 10px 0;
+    padding: 15px 0;
     background-color: ${props => props.theme.colors.white};
     .title {
       margin-bottom: 10px;
       font-weight: 600;
+      color: #222;
     }
     .scroll-container {
       display: flex;

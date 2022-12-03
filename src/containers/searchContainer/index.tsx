@@ -6,7 +6,7 @@ import { Get } from '@api';
 import InfiniteScroll from 'react-infinite-scroller';
 import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import BookCard from '@components/common/BookCard';
-import Input from '@components/common/Input';
+import SearchInput from '@components/common/SearchInput';
 import RecentSearch from '@components/searchForm/RecentSearch';
 import Search from '@components/search';
 import CardSkeleton from '@components/common/Skeleton';
@@ -15,7 +15,6 @@ export default function SearchContainer() {
   const router = useRouter();
   const { keyword } = useAppSelector(getSearchState);
   const dispatch = useAppDispatch();
-  const [text, setText] = React.useState('');
 
   const requestData = {
     url: Get.getSearchKeyword,
@@ -42,7 +41,7 @@ export default function SearchContainer() {
   return (
     <Search>
       <form onSubmit={handleSubmitForm}>
-        <input type='text' onChange={e => dispatch(setKeyword(e.target.value))} value={keyword} />
+        <SearchInput />
       </form>
       <RecentSearch />
       {isLoading && <CardSkeleton />}

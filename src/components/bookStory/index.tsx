@@ -19,5 +19,7 @@ export default function BookStory({ children }: IBookStory) {
 }
 
 const S = {
-  BookStory: styled.div``,
+  BookStory: styled.div`
+    padding: 0 10px;
+  `,
 };

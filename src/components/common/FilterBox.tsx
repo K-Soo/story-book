@@ -19,8 +19,8 @@ export default function FilterBox() {
 const S = {
   FilterBox: styled.div`
     height: 40px;
-    border: 1px solid red;
     display: flex;
     align-items: center;
+    background-color: #fff;
   `,
 };

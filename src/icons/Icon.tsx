@@ -25,7 +25,6 @@ export default styled(Icon)`
   color: #bdbdbd;
   width: 35px;
   height: 35px;
-  border: 1px solid red;
   cursor: pointer;
   ${props =>
     props.TosIcon &&

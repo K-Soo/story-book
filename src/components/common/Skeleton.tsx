@@ -49,7 +49,6 @@ const CardSkeleton = () => {
 };
 
 const Wrapper = styled.ul`
-  margin-top: 20px;
   background-color: #fff;
 `;
 

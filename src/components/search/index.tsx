@@ -18,6 +18,7 @@ export default function Search({ children }: ISearch) {
 const S = {
   Search: styled.div`
     /* border: 1px solid red; */
+    padding: 15px 10px 0 10px;
     .item {
       width: 100%;
     }

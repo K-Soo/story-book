@@ -13,7 +13,7 @@ instance.interceptors.request.use(
   },
   error => {
     return Promise.reject(error);
-  },
+  }
 );
 
 instance.interceptors.response.use(
@@ -22,7 +22,7 @@ instance.interceptors.response.use(
   },
   error => {
     return Promise.reject(error);
-  },
+  }
 );
 
 const responseBody = (response: AxiosResponse) => response.data;
@@ -42,7 +42,11 @@ export const Get = {
     console.log('isbn: ', isbn);
     return requests.get(`/api/books?isbn=${isbn}`);
   },
+
+  // 북스토리 리스트
   getBookStoryList: ({ page }: { page: number }): Promise<any> => requests.get(`/api/book-story?page=${page}`),
+  // 북스토리 상세 글
+  getBookStoryDetail: ({ id }: { id: string }): Promise<any> => requests.get(`/api/book-story/posts/${id}`),
 };
 
 export const Post = {

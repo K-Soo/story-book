@@ -10,6 +10,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import PostCard from '@components/common/PostCard';
 import { IPostCardTypes } from '@types';
 import FilterBox from '@components/common/FilterBox';
+import Skeleton from '@components/common/Skeleton';
 
 interface IBookStoryContainer {}
 
@@ -29,9 +30,10 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
 
   return (
     <>
+      <FilterBox />
+      {isLoading && <Skeleton />}
       {isSuccess && data && (
         <BookStory>
-          <FilterBox />
           <InfiniteScroll
             loadMore={() => {
               fetchNextPage();
