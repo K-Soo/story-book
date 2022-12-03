@@ -7,8 +7,10 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 const store = () =>
   configureStore({
     reducer: rootReducer as Reducer<IState, AnyAction>,
-    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
-    devTools: process.env.NODE_ENV !== 'production',
+    // middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
+    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
+    // devTools: process.env.NODE_ENV !== 'production',
+    devTools: true,
   });
 
 export type AppStore = ReturnType<typeof store>;
@@ -20,5 +22,6 @@ export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default createWrapper(store, {
-  debug: process.env.NODE_ENV !== 'production',
+  // debug: process.env.NODE_ENV !== 'production',
+  debug: true,
 });

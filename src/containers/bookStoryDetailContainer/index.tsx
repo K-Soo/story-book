@@ -6,6 +6,7 @@ import usePublicQuery from '@hooks/usePublicQuery';
 import { queryKeys } from '@constants';
 import { useAppDispatch } from '@store';
 import { setData } from '@slice/bookStoryPostSlice';
+import Skeleton from '@components/common/Skeleton';
 
 export default function BookStoryDetailContainer() {
   const router = useRouter();
@@ -45,5 +46,10 @@ export default function BookStoryDetailContainer() {
     return <div>isError</div>;
   }
 
-  return <>{isSuccess && <BookStoryDetail data={data.result} />}</>;
+  return (
+    <>
+      {/* <Skeleton.detail /> */}
+      {isSuccess && <BookStoryDetail data={data.result} />}
+    </>
+  );
 }

@@ -31,7 +31,7 @@ const SkeletonItem = styled.div`
   }
 `;
 
-const CardSkeleton = () => {
+const list = () => {
   return (
     <Wrapper>
       {new Array(6).fill('').map((_, i) => (
@@ -44,6 +44,24 @@ const CardSkeleton = () => {
           </Bottom>
         </Card>
       ))}
+    </Wrapper>
+  );
+};
+
+const detail = () => {
+  return (
+    <Wrapper>
+      <Title />
+      <PieceBlock>
+        <Piece />
+        <Piece />
+      </PieceBlock>
+      <Content />
+      <Content />
+      <Bottom>
+        <Circle />
+        <Title />
+      </Bottom>
     </Wrapper>
   );
 };
@@ -62,10 +80,21 @@ const Card = styled.li`
 const Title = styled(SkeletonItem)`
   margin-bottom: 10px;
 `;
+const PieceBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+`;
+
+const Piece = styled(SkeletonItem)`
+  display: inline-block;
+  height: 30px;
+  width: 60px;
+`;
 
 const Content = styled(SkeletonItem)`
   height: 130px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
 const Bottom = styled.div`
@@ -82,4 +111,6 @@ const Circle = styled(SkeletonItem)`
   overflow: hidden;
 `;
 
-export default CardSkeleton;
+const Skeleton = { list, detail };
+
+export default Skeleton;
