@@ -29,6 +29,7 @@ export const privateHandler = nextConnect<NextApiRequest, NextApiResponse>({
 
 export const publicHandler = nextConnect<NextApiRequest, NextApiResponse>({
   onError(error, _req, res) {
+    console.log('error: ', error);
     console.log('onError: message', error.message);
     console.log('onError: status ', error.status);
     if (error.status === 500) {

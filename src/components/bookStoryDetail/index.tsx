@@ -7,16 +7,21 @@ import WriteTitleBox from '@components/bookStoryWrite/WriteTitleBox';
 import WriteBody from '@components/bookStoryWrite/WriteBody';
 import SearchBooks from '@components/bookStoryWrite/SearchBooks';
 import Button from '@components/common/Button';
+import PostConfig from '@components/bookStoryDetail/PostConfig';
+import ProfileSummary from '@components/bookStoryDetail/ProfileSummary';
+import { IPostCardTypes } from '@types';
 
-interface IBookStoryDetail {}
+interface IBookStoryDetail {
+  data: IPostCardTypes;
+}
 
-export default function BookStoryDetail({}: IBookStoryDetail) {
+export default function BookStoryDetail({ data }: IBookStoryDetail) {
   return (
     <S.BookStoryDetail>
-      <HorizontalLine height='1px' />
-      <WriteTitleBox />
-      <HorizontalLine height='1px' />
-      <WriteBody />
+      <WriteTitleBox readonly />
+      <PostConfig />
+      <ProfileSummary summaryInfo={{ createdAt: data.createdAt, name: data.author.name }} />
+      <WriteBody readonly />
     </S.BookStoryDetail>
   );
 }

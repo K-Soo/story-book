@@ -28,6 +28,8 @@ export default function BookStoryWrite({ onSubmit, onClickSearchBook, step }: IB
           <WriteTitleBox />
           <HorizontalLine height='1px' />
           <WriteBody />
+          <WriteBody />
+          <WriteBody />
           <Button type='submit' label='출간하기' margin='30px 0' />
         </form>
       )}

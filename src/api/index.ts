@@ -46,7 +46,7 @@ export const Get = {
   // 북스토리 리스트
   getBookStoryList: ({ page }: { page: number }): Promise<any> => requests.get(`/api/book-story?page=${page}`),
   // 북스토리 상세 글
-  getBookStoryDetail: ({ id }: { id: string }): Promise<any> => requests.get(`/api/book-story/posts/${id}`),
+  getBookStoryPostDetail: ({ id }: { id: string }): Promise<any> => requests.get(`/api/book-story/posts/${id}`),
 };
 
 export const Post = {

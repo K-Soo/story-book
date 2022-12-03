@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type TDocumentId = {
   _id: string;
 };
@@ -18,10 +16,10 @@ export interface IBookDetailInfo {
 
 export type TAuthor = {
   _id: TDocumentId;
-  email: string | null;
-  emailVerified: null;
-  image?: string;
   name: string;
+  image: string;
+  email: string | null;
+  emailVerified: string | null;
 };
 
 export interface IPostCardTypes {
@@ -29,7 +27,7 @@ export interface IPostCardTypes {
   author: TAuthor;
   comments: string[];
   content: string;
-  createAt: string;
+  createdAt: string;
   title: string;
   updateAt: string;
   views: number;

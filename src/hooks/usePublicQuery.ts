@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from 'react-query';
 
 const OPTION = {
   suspense: false,
@@ -12,17 +12,12 @@ const OPTION = {
 };
 
 export default function usePublicQuery(key: string[], urlFc: any, options: any, requestData: any) {
-
   const fetcher = async () => {
     const data = await urlFc(requestData);
     return data;
   };
 
-  const { data, isLoading, isSuccess, isError, refetch, isFetching } = useQuery(
-    key,
-    fetcher,
-    options ?? OPTION
-  );
+  const { data, isLoading, isSuccess, isError, refetch, isFetching } = useQuery(key, fetcher, options ?? OPTION);
 
   return {
     data,
@@ -30,6 +25,6 @@ export default function usePublicQuery(key: string[], urlFc: any, options: any, 
     isSuccess,
     isError,
     refetch,
-    isFetching
+    isFetching,
   };
 }

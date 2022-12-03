@@ -9,9 +9,5 @@ const Home = () => {
 export default Home;
 
 Home.getLayout = (page: React.ReactElement) => {
-  return (
-    <Layout>
-      <>{page}</>
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };

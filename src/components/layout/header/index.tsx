@@ -3,23 +3,19 @@ import styled from 'styled-components';
 import Toolbar from '@components/layout/header/Toolbar';
 
 interface IHeader {
-  className: string;
+  children?: React.ReactNode;
 }
 
-export default function Header({ className }: IHeader) {
-  return (
-    <S.Header className={className}>
-      <Toolbar />
-    </S.Header>
-  );
+export default function Header({ children }: IHeader) {
+  return <S.Header>{children}</S.Header>;
 }
 
 const S = {
   Header: styled.header`
     z-index: 1;
+    height: 45px;
     position: sticky;
     top: 0;
     background-color: #fff;
-    padding: 5px 10px 0 10px;
   `,
 };
