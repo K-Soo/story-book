@@ -9,16 +9,16 @@ import { publicHandler } from 'lib/createHandler';
 import Joi from 'joi';
 import { throwError } from 'lib';
 import mongoose from 'mongoose';
+import db from 'lib/db';
 
 export default publicHandler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query) {
     throwError({ status: 404 });
   }
   const query = Array.isArray(req.query) ? req.query[0] : req.query;
-  console.log('query: ', query);
-
   const _id = mongoose.Types.ObjectId.createFromHexString(query.idx);
 
+  await db.connect();
   const bookStoryPost = await BookStoryPost.findById(_id).populate('author');
 
   res.status(200).json({ status: 200, result: bookStoryPost });

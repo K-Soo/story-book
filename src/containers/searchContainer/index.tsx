@@ -9,7 +9,7 @@ import BookCard from '@components/common/BookCard';
 import SearchInput from '@components/common/SearchInput';
 import RecentSearch from '@components/searchForm/RecentSearch';
 import Search from '@components/search';
-import CardSkeleton from '@components/common/Skeleton';
+import Skeleton from '@components/common/Skeleton';
 
 export default function SearchContainer() {
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function SearchContainer() {
         <SearchInput />
       </form>
       <RecentSearch />
-      {isLoading && <CardSkeleton />}
+      {isLoading && <Skeleton.list />}
 
       {isSuccess && (
         <InfiniteScroll threshold={500} loadMore={fetchNextPage as any} hasMore={hasNextPage}>

@@ -31,7 +31,7 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
   return (
     <>
       <FilterBox />
-      {isLoading && <Skeleton />}
+      {isLoading && <Skeleton.list />}
       {isSuccess && data && (
         <BookStory>
           <InfiniteScroll
@@ -43,7 +43,7 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
           >
             {data.pages.map(pageData => {
               return pageData.items.map((item: IPostCardTypes, index: number) => (
-                <PostCard key={item.createAt} item={item} />
+                <PostCard key={item.createdAt} item={item} />
               ));
             })}
           </InfiniteScroll>
