@@ -1,14 +1,21 @@
 import React from 'react';
-import Search from '@components/search';
 import { useRouter } from 'next/router';
-import { Get } from '@api';
 import { useAppDispatch, useAppSelector } from '@store';
-import useInfiniteScroll from '@hooks/useInfiniteScroll';
+import { getSearchState, setKeyword, setToggleSearchForm } from '@slice/searchSlice';
+import { Get } from '@api';
 import InfiniteScroll from 'react-infinite-scroller';
+import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import BookCard from '@components/common/BookCard';
+import Input from '@components/common/Input';
+import RecentSearch from '@components/searchForm/RecentSearch';
+import Search from '@components/search';
+import CardSkeleton from '@components/common/Skeleton';
 
 export default function SearchContainer() {
   const router = useRouter();
+  const { keyword } = useAppSelector(getSearchState);
+  const dispatch = useAppDispatch();
+  const [text, setText] = React.useState('');
 
   const requestData = {
     url: Get.getSearchKeyword,
@@ -19,10 +26,27 @@ export default function SearchContainer() {
     },
   };
 
-  const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError, refetch } = useInfiniteScroll(requestData);
+  const handleSubmitForm = React.useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (keyword.trim() === '') return;
+      dispatch(setToggleSearchForm(false));
+      router.push(`/search?keyword=${keyword}`);
+    },
+    [dispatch, keyword, router]
+  );
+
+  const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError, refetch } =
+    useInfiniteScroll(requestData);
 
   return (
     <Search>
+      <form onSubmit={handleSubmitForm}>
+        <input type='text' onChange={e => dispatch(setKeyword(e.target.value))} value={keyword} />
+      </form>
+      <RecentSearch />
+      {isLoading && <CardSkeleton />}
+
       {isSuccess && (
         <InfiniteScroll threshold={500} loadMore={fetchNextPage as any} hasMore={hasNextPage}>
           {data &&

@@ -2,14 +2,17 @@ import React from 'react';
 import { IPostCardTypes } from '@types';
 import styled from 'styled-components';
 import HorizontalLine from '@components/common/HorizontalLine';
+import { useRouter } from 'next/router';
 
 export interface IPostCard {
   item: IPostCardTypes;
 }
 
 export default function PostCard({ item }: IPostCard) {
+  const router = useRouter();
+
   return (
-    <S.PostCard>
+    <S.PostCard onClick={() => router.push(`/book-story/${item._id}`)}>
       <div className='image-wrapper'></div>
       <div className='desc-wrapper'>
         <h2>{item.title}</h2>

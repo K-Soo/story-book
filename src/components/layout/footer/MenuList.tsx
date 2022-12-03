@@ -2,16 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Search, User, Book, Home } from 'src/icons/svg';
-import { useAppDispatch } from '@store';
-import { setToggleSearchForm } from '@slice/searchSlice';
 import SvgIcon from 'src/icons/SvgIcon';
+import { useRouter } from 'next/router';
 
 interface IMenuList {
   className: string;
 }
 
 export default React.memo(function MenuList({ className }: IMenuList) {
-  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   return (
     <S.MenuList className={className}>
@@ -26,7 +25,7 @@ export default React.memo(function MenuList({ className }: IMenuList) {
           </Link>
         </li>
 
-        <li className='list__item' onClick={() => dispatch(setToggleSearchForm(true))}>
+        <li className='list__item' onClick={() => router.push('/search')}>
           <Search />
           <span className='list__item--label'>검색</span>
         </li>

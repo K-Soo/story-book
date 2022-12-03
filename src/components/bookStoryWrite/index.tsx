@@ -24,7 +24,7 @@ export default function BookStoryWrite({ onSubmit, onClickSearchBook, step }: IB
           <WriteGuide />
           <HorizontalLine height='1px' />
           <AddBook onClickSearchBook={onClickSearchBook} />
-          <HorizontalLine height='1px' />
+          <HorizontalLine height='2px' />
           <WriteTitleBox />
           <HorizontalLine height='1px' />
           <WriteBody />

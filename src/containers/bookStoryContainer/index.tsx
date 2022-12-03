@@ -23,7 +23,8 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
     option: {},
   };
 
-  const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError, refetch } = useInfiniteScroll(requestData);
+  const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError, refetch } =
+    useInfiniteScroll(requestData);
   console.log('북스토리 리스트  API : ', data);
 
   return (
@@ -39,7 +40,9 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
             threshold={250}
           >
             {data.pages.map(pageData => {
-              return pageData.items.map((item: IPostCardTypes, index: number) => <PostCard key={item.createAt} item={item} />);
+              return pageData.items.map((item: IPostCardTypes, index: number) => (
+                <PostCard key={item.createAt} item={item} />
+              ));
             })}
           </InfiniteScroll>
         </BookStory>

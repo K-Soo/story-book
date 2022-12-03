@@ -21,16 +21,16 @@ export default function Main({ children }: IMain) {
 
 const S = {
   Main: styled.div<{ pathname: string; isShowFooter: boolean }>`
-    /* padding: 0 10px; */
-    /* padding-bottom: 60px; */
-    margin-bottom: ${props => (props.isShowFooter ? '60px' : '0')};
-    min-height: ${props => (props.isShowFooter ? 'calc(100vh - 105px)' : 'calc(100vh - 45px)')};
     ${props =>
       (props.pathname === path.SIGN_IN.path || props.pathname === path.SIGN_UP.path) &&
       css`
         min-height: 100vh;
         padding: 0px;
       `};
+    /* border: 1px solid #000; */
+    margin-bottom: ${props => (props.isShowFooter ? '60px' : '0')};
+    min-height: ${props => (props.isShowFooter ? 'calc(100vh - 60px - 45px)' : 'calc(100vh - 45px)')};
+    /* min-height: calc(100vh - 45px); */
     overflow: hidden;
     width: 100%;
     height: 100%;

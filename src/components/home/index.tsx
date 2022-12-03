@@ -7,9 +7,9 @@ interface IHome {}
 export default function Home({}: IHome) {
   return (
     <S.Home>
-      {/* <MainSlider /> */}
-      {/* <MainSlider /> */}
-      {/* <MainSlider /> */}
+      <MainSlider />
+      <MainSlider />
+      <MainSlider />
     </S.Home>
   );
 }

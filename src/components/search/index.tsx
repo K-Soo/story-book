@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 interface ISearch {
   children: React.ReactNode;
@@ -8,16 +8,16 @@ interface ISearch {
 export default function Search({ children }: ISearch) {
   return (
     <S.Search>
-      <div className="title-box">
-        <h1>검색결과</h1>
-      </div>
-      <div className="item">{children}</div>
+      {React.Children.toArray(children)[0]}
+      {React.Children.toArray(children)[1]}
+      <div className='item'>{React.Children.toArray(children)[2]}</div>
     </S.Search>
   );
 }
 
 const S = {
   Search: styled.div`
+    /* border: 1px solid red; */
     .item {
       width: 100%;
     }
