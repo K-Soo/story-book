@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/K-Soo/story-book/compare/v0.1.3...v0.1.4) (2022-12-03)
+
+
+### Features
+
+* **components/skelecon:** 스켈레톤UI 상세페이지 ([6d9d2f9](https://github.com/K-Soo/story-book/commit/6d9d2f9bf8659c66978461d229fcea6446f3fbb3))
+* **pages/404.tsx:** 404페이지 퍼블리싱 ([c35e87e](https://github.com/K-Soo/story-book/commit/c35e87e437bcc8da41959c44b387d431201a928c))
+
 ### [0.1.3](https://github.com/K-Soo/story-book/compare/v0.1.2...v0.1.3) (2022-12-03)
 
 
