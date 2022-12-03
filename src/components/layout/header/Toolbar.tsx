@@ -18,7 +18,9 @@ export default function Toolbar() {
       {!loading && (
         <ul className='list'>
           <li className='list__item'>
-            <div className='list__item--go-back'>{router.pathname !== '/' && <i>{/* <ArrowLeft onClick={() => router.back()} /> */}</i>}</div>
+            <div className='list__item--go-back'>
+              {router.pathname !== '/' && <i>{/* <ArrowLeft onClick={() => router.back()} /> */}</i>}
+            </div>
           </li>
           <li className='list__item'>
             <div className='list__item--banner'>
@@ -59,7 +61,7 @@ export default function Toolbar() {
 
 const S = {
   Toolbar: styled.div`
-    height: 40px;
+    height: 100%;
     .list {
       display: flex;
       justify-content: space-between;

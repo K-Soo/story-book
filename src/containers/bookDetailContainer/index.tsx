@@ -39,7 +39,12 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
     select: selectFc,
   };
 
-  const { data, isSuccess, isLoading } = usePublicQuery([queryKeys.BOOK_DETAIL, router.query.id as string], Get.getBookDetail, OPTION, router.query.id as string);
+  const { data, isSuccess, isLoading } = usePublicQuery(
+    [queryKeys.BOOK_DETAIL, router.query.id as string],
+    Get.getBookDetail,
+    OPTION,
+    router.query.id as string
+  );
 
   console.log('도서상세 API : ', data);
 

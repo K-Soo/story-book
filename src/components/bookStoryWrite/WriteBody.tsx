@@ -1,12 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAppSelector } from '@store';
+import { getBookStoryPostState } from '@slice/bookStoryPostSlice';
+interface TWriteBody {
+  readonly?: boolean | undefined;
+}
 
-export default function WriteBody() {
+export default function WriteBody({ readonly }: TWriteBody) {
+  // prettier-ignore
+  const { form: { content } } = useAppSelector(getBookStoryPostState);
+
   return (
     <S.WriteBody>
-      <div className='write-box'>
-        <textarea cols={5} rows={3} wrap='on' />
-      </div>
+      {readonly && <div dangerouslySetInnerHTML={{ __html: content }} />}
+      {!readonly && (
+        <div className='write-box'>
+          <textarea cols={5} rows={3} wrap='on' />
+        </div>
+      )}
     </S.WriteBody>
   );
 }

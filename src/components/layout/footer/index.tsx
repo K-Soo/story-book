@@ -2,18 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import MenuList from '@components/layout/footer/MenuList';
 import WriteButton from '@components/layout/footer/WriteButton';
+import WriteBottomSheet from '@components/layout/footer/WriteBottomSheet';
 
-interface IFooter {
-  className: string;
-  handleClickWriteButton: () => void;
-  isOpenModal: boolean;
-  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface IFooter {}
 
-export default function Footer({ className, handleClickWriteButton }: IFooter) {
+export default function Footer() {
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const handleClickWriteButton = React.useCallback(() => setIsOpenModal(prev => !prev), []);
+
   return (
     <>
-      <S.Footer className={className}>
+      {isOpenModal && <WriteBottomSheet isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />}
+      <S.Footer>
         <MenuList className='menu-list' />
         <div className='write'>
           <WriteButton className='write__button' handleClickWriteButton={handleClickWriteButton} />

@@ -10,6 +10,12 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+  /* 모바일 수평 스크롤 금지 */
+  html, body {
+  	max-width: 100%;
+  	overflow-x: hidden;
+    font-size: 14px;
+  }
   input, textarea { 
     all: unset;
     /* -moz-user-select: auto; */
@@ -26,18 +32,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     cursor: pointer;
   }
- html{
-  /* margin: 0 auto; */
-  /* padding: 0; */
- }
  body{
-   font-size: 14px;
-   color: #182431BE;
-   width: 100%;
-   font-size: 14px;
+   /* color: #182431BE; */
+   /* width: 100%; */
+    /* overflow-y: hidden; */
    /* overflow:hidden; */
-  /* margin: 0 auto; */
-  /* padding: 0; */
  }
  :root {
   --rsbs-backdrop-bg: rgba(0, 0, 0, 0.3);

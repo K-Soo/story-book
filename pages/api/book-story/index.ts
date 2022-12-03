@@ -16,7 +16,6 @@ export default publicHandler.get(async (req: NextApiRequest, res: NextApiRespons
   const limit = 10;
   await db.connect();
   const totalDoc = await BookStoryPost.countDocuments({});
-
   const items = await BookStoryPost.find()
     .sort({ createdAt: -1 })
     .skip(limit * (page - 1))
