@@ -65,6 +65,9 @@ export const bookStoryPostSlice = createSlice({
     setBookDetailInfo: (state, action) => {
       state.bookInfo = action.payload;
     },
+    setRemoveBookDetail: state => {
+      state.bookInfo = undefined;
+    },
   },
   extraReducers: builder => {
     builder.addCase(asyncGetFetchPost.pending, state => {
@@ -86,7 +89,7 @@ export const bookStoryPostSlice = createSlice({
 
 export const getBookStoryPostState = (state: { bookStoryPost: IBookStoryPostState }) => state.bookStoryPost;
 
-export const { setForm, setData, setBookDetailInfo } = bookStoryPostSlice.actions;
+export const { setForm, setData, setBookDetailInfo, setRemoveBookDetail } = bookStoryPostSlice.actions;
 export { asyncGetFetchPost };
 
 export default bookStoryPostSlice.reducer;
