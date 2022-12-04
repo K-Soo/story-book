@@ -20,7 +20,12 @@ export default function SearchForm({ handleSubmitForm }: ISearchForm) {
         <i className='close-box__icon'>{/* <Close onClick={() => dispatch(setToggleSearchForm(false))} /> */}</i>
       </div>
       <form onSubmit={handleSubmitForm}>
-        <Input label='어떤 도서를 찾으시나요?' onChange={e => dispatch(setKeyword(e.target.value))} focusing value={keyword} />
+        <Input
+          label='어떤 도서를 찾으시나요?'
+          onChange={e => dispatch(setKeyword(e.target.value))}
+          focusing
+          value={keyword}
+        />
       </form>
       <RecentSearch />
     </S.SearchForm>
@@ -33,7 +38,7 @@ const S = {
     border: 1px solid #999;
     background-color: #fff;
     border-radius: 10px;
-    max-width: 640px;
+    max-width: 500px;
     width: 90%;
     height: 80%;
     padding: 10px;

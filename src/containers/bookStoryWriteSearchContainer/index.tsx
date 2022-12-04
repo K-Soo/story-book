@@ -34,11 +34,11 @@ export default function BookStoryWriteSearchContainer() {
     router.replace(`/book-story/write/search?keyword=${text}`);
   };
 
+  // prettier-ignore
   const handleClickTargetBook = React.useCallback((data: BookDetailInfo) => {
     dispatch(setBookDetailInfo(data));
     router.back();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  },[dispatch, router]);
 
   console.log('검색결과 API : ', data);
 

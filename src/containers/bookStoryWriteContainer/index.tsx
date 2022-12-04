@@ -5,8 +5,7 @@ import { useAppSelector } from '@store';
 import { useRouter } from 'next/router';
 
 export default function BookStoryWriteContainer() {
-  const [step, setStep] = React.useState<'DEFAULT_FORM' | 'SEARCH_FORM'>('DEFAULT_FORM');
-  const { form } = useAppSelector(state => state.bookStoryPost);
+  const { form, bookInfo } = useAppSelector(state => state.bookStoryPost);
   const router = useRouter();
 
   const onClickSearchBook = React.useCallback(() => {
@@ -29,5 +28,5 @@ export default function BookStoryWriteContainer() {
     }
   };
 
-  return <BookStoryWrite onSubmit={onSubmit} onClickSearchBook={onClickSearchBook} step={step} />;
+  return <BookStoryWrite onSubmit={onSubmit} onClickSearchBook={onClickSearchBook} />;
 }

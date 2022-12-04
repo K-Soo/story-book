@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function WriteGuide() {
+export default React.memo(function WriteGuide() {
   return (
     <S.WriteGuide>
       <div>
@@ -9,7 +9,7 @@ export default function WriteGuide() {
       </div>
     </S.WriteGuide>
   );
-}
+});
 
 const S = {
   WriteGuide: styled.div`

@@ -1,22 +1,18 @@
 import React from 'react';
-import { useAppDispatch } from '@store';
-import { setVisibilityFooter } from '@slice/layoutSlice';
 import styled from 'styled-components';
 import WriteGuide from '@components/bookStoryWrite/WriteGuide';
 import AddBook from '@components/bookStoryWrite/AddBook';
 import HorizontalLine from '@components/common/HorizontalLine';
 import WriteTitleBox from '@components/bookStoryWrite/WriteTitleBox';
 import WriteBody from '@components/bookStoryWrite/WriteBody';
-import SearchBooks from '@components/bookStoryWrite/SearchBooks';
 import Button from '@components/common/Button';
 
 interface IBookStoryWrite {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
   onClickSearchBook: () => void;
-  step: 'DEFAULT_FORM' | 'SEARCH_FORM';
 }
 
-export default function BookStoryWrite({ onSubmit, onClickSearchBook, step }: IBookStoryWrite) {
+export default function BookStoryWrite({ onSubmit, onClickSearchBook }: IBookStoryWrite) {
   return (
     <S.BookStoryWrite>
       <form onSubmit={onSubmit}>
@@ -31,7 +27,6 @@ export default function BookStoryWrite({ onSubmit, onClickSearchBook, step }: IB
         <WriteBody />
         <Button type='submit' label='출간하기' margin='30px 0' />
       </form>
-      {/* {step === 'SEARCH_FORM' && <SearchBooks />} */}
     </S.BookStoryWrite>
   );
 }

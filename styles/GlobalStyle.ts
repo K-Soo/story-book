@@ -44,7 +44,7 @@ const GlobalStyle = createGlobalStyle`
 }
 [data-rsbs-overlay] {
   background-color: #fff;
-  max-width: 640px;
+  max-width: 500px;
   margin: 0 auto;
   height: var(--rsbs-overlay-h);
   transform: translate3d(0, var(--rsbs-overlay-translate-y), 0);

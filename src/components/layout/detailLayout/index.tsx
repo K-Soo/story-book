@@ -23,7 +23,7 @@ export default function DetailLayout({ children }: IDetailLayout) {
 const S = {
   DetailLayout: styled.div`
     min-width: 320px;
-    max-width: 640px;
+    max-width: 500px;
     width: 100%;
     margin: 0 auto;
     border: 1px solid red;
