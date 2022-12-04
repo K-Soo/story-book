@@ -7,8 +7,7 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 const store = () =>
   configureStore({
     reducer: rootReducer as Reducer,
-    // middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
-    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
+    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
     // devTools: process.env.NODE_ENV !== 'production',
     devTools: true,
   });
@@ -18,7 +17,7 @@ export type AppState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore['dispatch'];
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
 
-export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<IState> = useSelector;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default createWrapper(store, {

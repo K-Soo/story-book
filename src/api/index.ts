@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { IBookStoryPostDetailResponse } from '@types';
+import { IBookStoryPostDetailResponse, INaverBookSearchResponse } from '@types';
 
 const config: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -36,7 +36,7 @@ const requests = {
 };
 
 export const Get = {
-  getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<any> => {
+  getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<INaverBookSearchResponse> => {
     return requests.get(`/api/search?keyword=${keyword}&page=${page}`);
   },
   getBookDetail: (isbn: string): Promise<any> => {

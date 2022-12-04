@@ -69,6 +69,16 @@ const detail = () => {
   );
 };
 
+const oneLineList = () => {
+  return (
+    <Wrapper>
+      {new Array(20).fill('').map((_, i) => (
+        <Title key={i} />
+      ))}
+    </Wrapper>
+  );
+};
+
 const Wrapper = styled.ul`
   background-color: #fff;
   padding: 0 10px;
@@ -120,6 +130,6 @@ const Circle = styled.div`
   overflow: hidden;
 `;
 
-const Skeleton = { list, detail };
+const Skeleton = { list, detail, oneLineList };
 
 export default Skeleton;
