@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/K-Soo/story-book/compare/v0.1.6...v0.1.7) (2022-12-04)
+
+
+### Features
+
+* **bookstorywritesearchcontainer.tsx:** 도서 정보 불러오기 API 연동 및 데이터 바인딩 ([70cf61b](https://github.com/K-Soo/story-book/commit/70cf61bd8070130dfe74a1d0eeabbfbd1db8d3ac))
+
 ### [0.1.6](https://github.com/K-Soo/story-book/compare/v0.1.5...v0.1.6) (2022-12-04)
 
 ### [0.1.5](https://github.com/K-Soo/story-book/compare/v0.1.4...v0.1.5) (2022-12-04)
