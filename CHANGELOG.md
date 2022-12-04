@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/K-Soo/story-book/compare/v0.1.4...v0.1.5) (2022-12-04)
+
+
+### Features
+
+* **bookstorypostslice.ts:** bookStorySlice Thunk API 통신 로직 ([ba9ace3](https://github.com/K-Soo/story-book/commit/ba9ace3f3df4ecc9c026a78f9d89772ae56ef49e))
+
 ### [0.1.4](https://github.com/K-Soo/story-book/compare/v0.1.3...v0.1.4) (2022-12-03)
 
 
