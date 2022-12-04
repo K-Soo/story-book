@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, Draft, PayloadAction } from '@reduxjs/toolkit';
 import { Get } from '@api';
-import { useRouter } from 'next/router';
-import { nanoid } from '@reduxjs/toolkit';
+import { BookDetailInfo } from '@types';
 export interface IBookStoryPostState {
   status: 'IDLE' | 'LOADING' | 'SUCCESS' | 'ERROR';
   currentRequestId: undefined | string;
@@ -11,6 +10,7 @@ export interface IBookStoryPostState {
     content: string;
     bookInfo: string;
   };
+  bookInfo: BookDetailInfo | undefined;
 }
 
 const initialState: IBookStoryPostState = {
@@ -21,6 +21,7 @@ const initialState: IBookStoryPostState = {
     content: '',
     bookInfo: '',
   },
+  bookInfo: undefined,
 };
 
 const asyncGetFetchPost = createAsyncThunk(
@@ -29,8 +30,6 @@ const asyncGetFetchPost = createAsyncThunk(
     // prettier-ignore
     // (같은 요청이 진행 중일 경우 취소, loading state 포함)
     const { bookStoryPost: { status,currentRequestId } } = getState() as { bookStoryPost: IBookStoryPostState };
-    console.log('currentRequestId: ', currentRequestId);
-    console.log('requestId: ', requestId);
     if (status === 'IDLE' || requestId === currentRequestId) {
       return;
     }
@@ -41,7 +40,7 @@ const asyncGetFetchPost = createAsyncThunk(
   {
     // 비동기 로직 실행 전에 취소하거나, 실행 도중에 취소할 수 있다.
     condition: (_, { getState, extra }) => {
-      const { bookStoryPost } = getState() as { bookStoryPost: IBookStoryPostState };
+      // const { bookStoryPost } = getState() as { bookStoryPost: IBookStoryPostState };
       // if (bookStoryPost.status === 'SUCCESS') {
       //   return false;
       // }
@@ -62,6 +61,9 @@ export const bookStoryPostSlice = createSlice({
     },
     setData: (state, action) => {
       state.form[action.payload.name] = action.payload.value;
+    },
+    setBookDetailInfo: (state, action) => {
+      state.bookInfo = action.payload;
     },
   },
   extraReducers: builder => {
@@ -84,7 +86,7 @@ export const bookStoryPostSlice = createSlice({
 
 export const getBookStoryPostState = (state: { bookStoryPost: IBookStoryPostState }) => state.bookStoryPost;
 
-export const { setForm, setData } = bookStoryPostSlice.actions;
+export const { setForm, setData, setBookDetailInfo } = bookStoryPostSlice.actions;
 export { asyncGetFetchPost };
 
 export default bookStoryPostSlice.reducer;

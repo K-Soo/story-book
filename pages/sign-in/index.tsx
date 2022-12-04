@@ -24,3 +24,7 @@ export default function SignInPage() {
 
   return <AuthContainer />;
 }
+
+SignInPage.getLayout = (page: React.ReactElement) => {
+  return <>{page}</>;
+};

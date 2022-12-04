@@ -14,6 +14,18 @@ export interface IBookDetailInfo {
   discount: string;
 }
 
+export type BookDetailInfo = {
+  author: string;
+  description: string;
+  discount: string;
+  image: string;
+  isbn: string;
+  link: string;
+  pubdate: string;
+  publisher: string;
+  title: string;
+};
+
 export type TAuthor = {
   _id: TDocumentId;
   name: string;
@@ -35,6 +47,14 @@ export interface IPostCardTypes {
 export interface IBookStoryPostDetailResponse {
   result: IPostCardTypes;
   status: number;
+}
+
+export interface INaverBookSearchResponse {
+  items: BookDetailInfo[];
+  lastBuildDate: string;
+  display: number;
+  start: number;
+  total: number;
 }
 
 // export interface IPostCardTypes extends Omit<IBookStoryPostDetailResponse, 'status'> {}

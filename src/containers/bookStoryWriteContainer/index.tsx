@@ -1,26 +1,19 @@
 import React from 'react';
 import BookStoryWrite from '@components/bookStoryWrite';
 import { Post } from '@api';
-import { useSession } from 'next-auth/react';
-import { getBookStoryPostState } from '@slice/bookStoryPostSlice';
-import { useAppDispatch, useAppSelector } from '@store';
-import { setVisibilityFooter } from '@slice/layoutSlice';
+import { useAppSelector } from '@store';
+import { useRouter } from 'next/router';
 
 export default function BookStoryWriteContainer() {
-  const [step, setStep] = React.useState(0);
-  const { form } = useAppSelector(getBookStoryPostState);
-  const dispatch = useAppDispatch();
+  const [step, setStep] = React.useState<'DEFAULT_FORM' | 'SEARCH_FORM'>('DEFAULT_FORM');
+  const { form } = useAppSelector(state => state.bookStoryPost);
+  const router = useRouter();
 
-  React.useEffect(() => {
-    if (step === 1) {
-      dispatch(setVisibilityFooter(false));
-    } else {
-      dispatch(setVisibilityFooter(true));
-    }
-  }, [dispatch, step]);
+  const onClickSearchBook = React.useCallback(() => {
+    router.push('/book-story/write/search');
+  }, [router]);
 
-  const onClickSearchBook = React.useCallback(() => setStep(1), []);
-
+  // TODO : API 통신 로직 작성
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const requestData = {

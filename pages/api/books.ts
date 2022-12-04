@@ -17,13 +17,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('keyword is required');
     }
     try {
-      const response = await axios.get(`https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${isbn}&display=1&start=1`, configurations);
+      const response = await axios.get(
+        `https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${isbn}&display=1&start=1`,
+        configurations
+      );
       if (response.status !== 200) {
         throw new Error('');
       }
       const xmTojson = xml2json(response.data);
       res.status(200).json({ code: 200, result: JSON.parse(xmTojson) });
     } catch (error) {
+      // TODO :: 에러 처리
       console.log('error: ', error);
     }
   }

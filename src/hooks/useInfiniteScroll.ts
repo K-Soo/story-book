@@ -1,8 +1,8 @@
-import { useInfiniteQuery, useQuery } from 'react-query';
+import { useInfiniteQuery } from 'react-query';
 import axios from 'axios';
 
 interface TUseInfiniteScroll {
-  url: any;
+  url: (...args: any[]) => Promise<any>;
   requestBody: any;
   queryKey: string[];
   option?: object;
@@ -11,6 +11,7 @@ interface TUseInfiniteScroll {
 export default function useInfiniteScroll({ url, requestBody, queryKey, option }: TUseInfiniteScroll) {
   const fetchUrl = async (pageParams: number) => {
     const res = await url({ ...requestBody, page: pageParams });
+    console.log('res: ', res);
     return res.result;
   };
 
@@ -18,12 +19,16 @@ export default function useInfiniteScroll({ url, requestBody, queryKey, option }
     ...option,
   };
 
-  const { data, fetchNextPage, isSuccess, hasNextPage, isLoading, isFetching, isError, refetch } = useInfiniteQuery(queryKey, ({ pageParam = 1 }) => fetchUrl(pageParam), {
-    ...OPTIONS,
-    getNextPageParam: (lastPage: any, all) => {
-      return lastPage.start < lastPage.total ? lastPage.start + 1 : undefined;
-    },
-  });
+  const { data, fetchNextPage, isSuccess, hasNextPage, isLoading, isFetching, isError, refetch } = useInfiniteQuery(
+    queryKey,
+    ({ pageParam = 1 }) => fetchUrl(pageParam),
+    {
+      ...OPTIONS,
+      getNextPageParam: (lastPage: any, all) => {
+        return lastPage.start < lastPage.total ? lastPage.start + 1 : undefined;
+      },
+    }
+  );
 
   return {
     data,

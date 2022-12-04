@@ -13,27 +13,25 @@ import Button from '@components/common/Button';
 interface IBookStoryWrite {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
   onClickSearchBook: () => void;
-  step: number;
+  step: 'DEFAULT_FORM' | 'SEARCH_FORM';
 }
 
 export default function BookStoryWrite({ onSubmit, onClickSearchBook, step }: IBookStoryWrite) {
   return (
     <S.BookStoryWrite>
-      {step === 0 && (
-        <form onSubmit={onSubmit}>
-          <WriteGuide />
-          <HorizontalLine height='1px' />
-          <AddBook onClickSearchBook={onClickSearchBook} />
-          <HorizontalLine height='2px' />
-          <WriteTitleBox />
-          <HorizontalLine height='1px' />
-          <WriteBody />
-          <WriteBody />
-          <WriteBody />
-          <Button type='submit' label='출간하기' margin='30px 0' />
-        </form>
-      )}
-      {step === 1 && <SearchBooks />}
+      <form onSubmit={onSubmit}>
+        <WriteGuide />
+        <HorizontalLine height='1px' />
+        <AddBook onClickSearchBook={onClickSearchBook} />
+        <HorizontalLine height='2px' />
+        <WriteTitleBox />
+        <HorizontalLine height='1px' />
+        <WriteBody />
+        <WriteBody />
+        <WriteBody />
+        <Button type='submit' label='출간하기' margin='30px 0' />
+      </form>
+      {/* {step === 'SEARCH_FORM' && <SearchBooks />} */}
     </S.BookStoryWrite>
   );
 }

@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '@store';
-import { getSearchState, setKeyword, setToggleSearchForm } from '@slice/searchSlice';
 
-export default function SearchInput() {
-  const { keyword } = useAppSelector(getSearchState);
-  const dispatch = useAppDispatch();
+// TODO : refactor
+interface ISearchInput {
+  value: string;
+  maxLength?: number;
+  disabled?: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
+export default function SearchInput({ value, onChange, maxLength, disabled }: ISearchInput) {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
@@ -20,9 +23,11 @@ export default function SearchInput() {
       <input
         className='search-input'
         placeholder='검색어를 입력해주세요'
-        value={keyword}
-        onChange={e => dispatch(setKeyword(e.target.value))}
+        value={value}
+        onChange={onChange}
         ref={inputRef}
+        maxLength={maxLength}
+        disabled={disabled}
       />
       <span>X</span>
     </S.SearchInput>
