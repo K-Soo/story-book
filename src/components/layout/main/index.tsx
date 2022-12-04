@@ -20,7 +20,7 @@ export default function Main({ children }: IMain) {
 }
 
 const S = {
-  Main: styled.div<{ pathname: string; isShowFooter: boolean }>`
+  Main: styled.main<{ pathname: string; isShowFooter: boolean }>`
     ${props =>
       (props.pathname === path.SIGN_IN.path || props.pathname === path.SIGN_UP.path) &&
       css`

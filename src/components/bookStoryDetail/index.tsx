@@ -10,22 +10,23 @@ import Button from '@components/common/Button';
 import PostConfig from '@components/bookStoryDetail/PostConfig';
 import ProfileSummary from '@components/bookStoryDetail/ProfileSummary';
 import { IPostCardTypes } from '@types';
+import { useSession } from 'next-auth/react';
 
-interface IBookStoryDetail {
-  data: IPostCardTypes;
-}
+export default function BookStoryDetail() {
+  const { data: session, status } = useSession();
 
-export default function BookStoryDetail({ data }: IBookStoryDetail) {
   return (
     <S.BookStoryDetail>
       <WriteTitleBox readonly />
-      <PostConfig />
-      <ProfileSummary summaryInfo={{ createdAt: data.createdAt, name: data.author.name }} />
+      {session && <PostConfig />}
+      <ProfileSummary />
       <WriteBody readonly />
     </S.BookStoryDetail>
   );
 }
 
 const S = {
-  BookStoryDetail: styled.div``,
+  BookStoryDetail: styled.section`
+    background-color: #fff;
+  `,
 };
