@@ -1,13 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const SkeletonItem = styled.div`
+const SkeletonItem = css`
   width: 100%;
   height: 30px;
   background-color: #f2f2f2;
   position: relative;
   overflow: hidden;
   border-radius: 4px;
-
   @keyframes skeleton-gradient {
     0% {
       background-color: rgba(165, 165, 165, 0.1);
@@ -53,11 +52,15 @@ const detail = () => {
     <Wrapper>
       <Title />
       <PieceBlock>
-        <Piece />
+        <div>
+          <Piece />
+          <Piece margin='0 0 0 10px' />
+          <Piece margin='0 0 0 10px' />
+        </div>
         <Piece />
       </PieceBlock>
-      <Content />
-      <Content />
+      <Content height='280px' />
+      <Content height='300px' />
       <Bottom>
         <Circle />
         <Title />
@@ -68,6 +71,7 @@ const detail = () => {
 
 const Wrapper = styled.ul`
   background-color: #fff;
+  padding: 0 10px;
 `;
 
 const Card = styled.li`
@@ -77,7 +81,8 @@ const Card = styled.li`
   border-radius: 10px;
 `;
 
-const Title = styled(SkeletonItem)`
+const Title = styled.div`
+  ${SkeletonItem}
   margin-bottom: 10px;
 `;
 const PieceBlock = styled.div`
@@ -86,14 +91,17 @@ const PieceBlock = styled.div`
   margin-bottom: 15px;
 `;
 
-const Piece = styled(SkeletonItem)`
+const Piece = styled.div<{ margin?: string }>`
+  ${SkeletonItem}
   display: inline-block;
   height: 30px;
   width: 60px;
+  margin: ${props => (props.margin ? props.margin : '0')};
 `;
 
-const Content = styled(SkeletonItem)`
-  height: 130px;
+const Content = styled.div<{ height?: string }>`
+  ${SkeletonItem};
+  height: ${props => (props.height ? props.height : '130px')};
   margin-bottom: 15px;
 `;
 
@@ -102,7 +110,8 @@ const Bottom = styled.div`
   gap: 12px;
 `;
 
-const Circle = styled(SkeletonItem)`
+const Circle = styled.div`
+  ${SkeletonItem};
   width: 35px;
   height: 30px;
   border-radius: 50%;

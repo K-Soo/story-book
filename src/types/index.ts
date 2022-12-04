@@ -21,7 +21,6 @@ export type TAuthor = {
   email: string | null;
   emailVerified: string | null;
 };
-
 export interface IPostCardTypes {
   _id: TDocumentId;
   author: TAuthor;
@@ -31,4 +30,11 @@ export interface IPostCardTypes {
   title: string;
   updateAt: string;
   views: number;
+  status: number;
 }
+export interface IBookStoryPostDetailResponse {
+  result: IPostCardTypes;
+  status: number;
+}
+
+// export interface IPostCardTypes extends Omit<IBookStoryPostDetailResponse, 'status'> {}

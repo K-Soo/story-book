@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import { IBookStoryPostDetailResponse } from '@types';
 
 const config: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -46,7 +47,8 @@ export const Get = {
   // 북스토리 리스트
   getBookStoryList: ({ page }: { page: number }): Promise<any> => requests.get(`/api/book-story?page=${page}`),
   // 북스토리 상세 글
-  getBookStoryPostDetail: ({ id }: { id: string }): Promise<any> => requests.get(`/api/book-story/posts/${id}`),
+  getBookStoryPostDetail: ({ id }: { id: string }): Promise<IBookStoryPostDetailResponse> =>
+    requests.get(`/api/book-story/posts/${id}`),
 };
 
 export const Post = {

@@ -34,8 +34,8 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLa
     <React.Fragment>
       <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"/>
+        {/* <link rel="manifest" href="/manifest.json" /> */}
         {/* <link rel="shortcut icon" href="/favicon.png" key="shortcutIcon" /> */}
-        <link rel="manifest" href="/manifest.json" />
       </Head>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>

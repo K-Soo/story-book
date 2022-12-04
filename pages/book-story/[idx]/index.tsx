@@ -9,6 +9,6 @@ export default function BookStoryDetailPage(props: NextPage) {
   return <BookStoryDetailContainer />;
 }
 
-BookStoryDetailPage.getLayout = (page: React.ReactElement) => {
-  return <DetailLayout>{page}</DetailLayout>;
-};
+// BookStoryDetailPage.getLayout = (page: React.ReactElement) => {
+//   return <DetailLayout>{page}</DetailLayout>;
+// };
