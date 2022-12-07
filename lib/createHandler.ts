@@ -28,7 +28,7 @@ export const privateHandler = nextConnect<NextApiRequest, NextApiResponse>({
 });
 
 export const publicHandler = nextConnect<NextApiRequest, NextApiResponse>({
-  onError(error, _req, res) {
+  onError(error, req, res) {
     console.log('error: ', error);
     console.log('onError: message', error.message);
     console.log('onError: status ', error.status);
@@ -38,11 +38,12 @@ export const publicHandler = nextConnect<NextApiRequest, NextApiResponse>({
     if (error.status) {
       res.status(error.status).json({ message: error.message, status: error.status });
     }
-    res.status(500).json({ message: error.message, status: 500 });
+    res.status(500).json({ message: error.message + req.url, status: 500 });
   },
   onNoMatch(req, res) {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   },
 }).use(async (req, res, next) => {
+  console.log('req: ', req.url);
   next();
 });
