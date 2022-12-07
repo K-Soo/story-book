@@ -17,6 +17,7 @@ export default publicHandler.get(async (req: NextApiRequest, res: NextApiRespons
   }
   await db.connect();
   const query = Array.isArray(req.query) ? req.query[0] : req.query;
+  console.log('query: ', query);
   const _id = mongoose.Types.ObjectId.createFromHexString(query.idx);
 
   const bookStoryPost = await BookStoryPost.findById(_id).populate('author');
