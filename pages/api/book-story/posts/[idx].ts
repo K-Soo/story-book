@@ -11,17 +11,40 @@ import { throwError } from 'lib';
 import mongoose from 'mongoose';
 import db from 'lib/db';
 
-export default publicHandler.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  if (!req.query) {
-    throwError({ status: 404 });
+// export default publicHandler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+//   if (!req.query) {
+//     throwError({ status: 404 });
+//   }
+
+//   await db.connect();
+//   const query = Array.isArray(req.query) ? req.query[0] : req.query;
+//   console.log('query: ', query);
+//   const _id = mongoose.Types.ObjectId.createFromHexString(query.idx);
+
+//   const bookStoryPost = await BookStoryPost.findById(_id).populate('author');
+//   await db.disconnect();
+
+//   res.status(200).json({ status: 200, result: bookStoryPost, url: req.url });
+// });
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    try {
+      if (!req.query) {
+        throwError({ status: 404 });
+      }
+      await db.connect();
+      const query = Array.isArray(req.query) ? req.query[0] : req.query;
+      console.log('query: ', query);
+      const _id = mongoose.Types.ObjectId.createFromHexString(query.idx);
+
+      const bookStoryPost = await BookStoryPost.findById(_id).populate('author');
+      await db.disconnect();
+
+      res.status(200).json({ status: 200, result: bookStoryPost, url: req.url });
+    } catch (error) {
+      // TODO :: 에러 처리
+      console.log('error: ', error);
+    }
   }
-  await db.connect();
-  const query = Array.isArray(req.query) ? req.query[0] : req.query;
-  console.log('query: ', query);
-  const _id = mongoose.Types.ObjectId.createFromHexString(query.idx);
-
-  const bookStoryPost = await BookStoryPost.findById(_id).populate('author');
-  await db.disconnect();
-
-  res.status(200).json({ status: 200, result: bookStoryPost, url: req.url });
-});
+}

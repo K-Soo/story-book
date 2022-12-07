@@ -43,7 +43,7 @@ export const publicHandler = nextConnect<NextApiRequest, NextApiResponse>({
   onNoMatch(req, res) {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   },
-}).use(async (req, res, next) => {
+}).use((req, res, next) => {
   console.log('req: ', req.url);
   next();
 });

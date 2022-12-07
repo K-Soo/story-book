@@ -12,6 +12,7 @@ interface IPageInfo {
 }
 
 export default publicHandler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('req.query: ', req.query);
   const page = Number(req.query.page || 1); // 값이 없다면 기본값으로 1 사용
   const limit = 10;
   await db.connect();
