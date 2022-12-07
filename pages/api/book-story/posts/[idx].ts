@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 import { unstable_getServerSession } from 'next-auth/next';
-import { authOptions } from '../../../auth/[...nextauth]';
+import { authOptions } from '../../auth/[...nextauth]';
 import axios from 'axios';
 import BookStoryPost from 'models/BookStoryPost';
 import { publicHandler } from 'lib/createHandler';
