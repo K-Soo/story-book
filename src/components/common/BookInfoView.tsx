@@ -18,7 +18,7 @@ export default function BookInfoView() {
       </div>
       <div className='info'>
         <h6 className='info__title'>{bookInfo?.title}</h6>
-        <p className='info__desc'>{bookInfo?.description}</p>
+        {/* <p className='info__desc'>{bookInfo?.description}</p> */}
       </div>
     </S.BookInfoView>
   );

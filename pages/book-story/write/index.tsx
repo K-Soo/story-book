@@ -1,10 +1,10 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import BookStoryWriteContainer from '@containers/bookStoryWriteContainer';
+import BookStoryWithPostContainer from '@containers/bookStoryWithPostContainer';
 import DetailLayout from '@components/layout/detailLayout';
 
-export default function WritePage(props: NextPage) {
-  return <BookStoryWriteContainer />;
+export default function WritePage() {
+  return <BookStoryWithPostContainer />;
 }
 
 WritePage.getLayout = (page: React.ReactElement) => {

@@ -49,6 +49,11 @@ export interface IBookStoryPostDetailResponse {
   status: number;
 }
 
+export type BookStoryFormValue = {
+  title: string;
+  content: string;
+};
+
 export interface INaverBookSearchResponse {
   items: BookDetailInfo[];
   lastBuildDate: string;

@@ -11,6 +11,7 @@ export interface IBookStoryPostState {
     bookInfo: string;
   };
   bookInfo: BookDetailInfo | undefined;
+  isOpenSearchForm: boolean;
 }
 
 const initialState: IBookStoryPostState = {
@@ -22,6 +23,7 @@ const initialState: IBookStoryPostState = {
     bookInfo: '',
   },
   bookInfo: undefined,
+  isOpenSearchForm: false,
 };
 
 const asyncGetFetchPost = createAsyncThunk(
@@ -35,6 +37,7 @@ const asyncGetFetchPost = createAsyncThunk(
     }
 
     const response = await Get.getBookStoryPostDetail({ id: idx });
+    console.log('북스토리 상세 API : ', response);
     return response.result;
   },
   {
@@ -68,6 +71,9 @@ export const bookStoryPostSlice = createSlice({
     setRemoveBookDetail: state => {
       state.bookInfo = undefined;
     },
+    setOpenBookSearchForm: (state, action) => {
+      state.isOpenSearchForm = action.payload;
+    },
   },
   extraReducers: builder => {
     builder.addCase(asyncGetFetchPost.pending, state => {
@@ -89,7 +95,8 @@ export const bookStoryPostSlice = createSlice({
 
 export const getBookStoryPostState = (state: { bookStoryPost: IBookStoryPostState }) => state.bookStoryPost;
 
-export const { setForm, setData, setBookDetailInfo, setRemoveBookDetail } = bookStoryPostSlice.actions;
+export const { setForm, setData, setBookDetailInfo, setRemoveBookDetail, setOpenBookSearchForm } =
+  bookStoryPostSlice.actions;
 export { asyncGetFetchPost };
 
 export default bookStoryPostSlice.reducer;

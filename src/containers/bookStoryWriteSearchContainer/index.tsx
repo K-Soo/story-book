@@ -3,7 +3,7 @@ import { Get } from '@api';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from '@store';
 import { BookDetailInfo } from '@types';
-import { setBookDetailInfo } from '@slice/bookStoryPostSlice';
+import { setBookDetailInfo, setOpenBookSearchForm } from '@slice/bookStoryPostSlice';
 import Skeleton from '@components/common/Skeleton';
 import SearchInput from '@components/common/SearchInput';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -31,14 +31,14 @@ export default function BookStoryWriteSearchContainer() {
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text.trim() === '') return;
-    router.replace(`/book-story/write/search?keyword=${text}`);
+    router.push({ pathname: '/book-story/write', query: { keyword: text } });
   };
 
   // prettier-ignore
   const handleClickTargetBook = React.useCallback((data: BookDetailInfo) => {
     dispatch(setBookDetailInfo(data));
-    router.back();
-  },[dispatch, router]);
+    dispatch(setOpenBookSearchForm(false));
+  },[dispatch]);
 
   console.log('검색결과 API : ', data);
 

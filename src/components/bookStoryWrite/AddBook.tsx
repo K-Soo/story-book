@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '@components/common/Button';
 import { IBookDetailInfo } from '@types';
-import { useAppSelector } from '@store';
+import { useAppSelector, useAppDispatch } from '@store';
 import BookInfoView from '@components/common/BookInfoView';
-interface IAddBook {
-  onClickSearchBook: () => void;
-}
+import { setOpenBookSearchForm } from '@slice/bookStoryPostSlice';
 
-export default function AddBook({ onClickSearchBook }: IAddBook) {
+export default function AddBook() {
   const { bookInfo } = useAppSelector(state => state.bookStoryPost);
+  const dispatch = useAppDispatch();
 
   return (
     <S.AddBook>
@@ -17,7 +16,7 @@ export default function AddBook({ onClickSearchBook }: IAddBook) {
       {!bookInfo && (
         <div className='wrapper'>
           <p className='wrapper--text'>도서 정보를 추가해주세요.</p>
-          <Button label='도서 정보 추가하기' onClick={onClickSearchBook} />
+          <Button label='도서 정보 추가하기' onClick={() => dispatch(setOpenBookSearchForm(true))} />
         </div>
       )}
     </S.AddBook>
