@@ -19,7 +19,6 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
 
   const requestData = {
     url: Get.getBookStoryList,
-    requestBody: { keyword: router.query.keyword as any },
     queryKey: [router.query.keyword as string],
     option: {},
   };

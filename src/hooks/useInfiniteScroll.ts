@@ -3,7 +3,7 @@ import axios from 'axios';
 
 interface TUseInfiniteScroll {
   url: (...args: any[]) => Promise<any>;
-  requestBody: any;
+  requestBody?: any;
   queryKey: string[];
   option?: object;
 }

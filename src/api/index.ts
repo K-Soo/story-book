@@ -39,11 +39,7 @@ export const Get = {
   getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<INaverBookSearchResponse> => {
     return requests.get(`/api/search?keyword=${keyword}&page=${page}`);
   },
-  getBookDetail: (isbn: string): Promise<any> => {
-    console.log('isbn: ', isbn);
-    return requests.get(`/api/books?isbn=${isbn}`);
-  },
-
+  getBookDetail: (isbn: string): Promise<any> => requests.get(`/api/books?isbn=${isbn}`),
   // 북스토리 리스트
   getBookStoryList: ({ page }: { page: number }): Promise<any> => requests.get(`/api/book-story?page=${page}`),
   // 북스토리 상세 글
