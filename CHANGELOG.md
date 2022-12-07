@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.10](https://github.com/K-Soo/story-book/compare/v0.1.9...v0.1.10) (2022-12-07)
+
+
+### Bug Fixes
+
+* **bookinfoview.tsx:** 책 검색결과 삭제 로직 ([3399659](https://github.com/K-Soo/story-book/commit/3399659327128d767384def95027d7a05e40e4c0))
+* **bookstorycontainer.tsx:** 북스토리 리스트 API 요청값 수정 ([591bc06](https://github.com/K-Soo/story-book/commit/591bc06c9a2e44d55ce54219afead31a3313aec2))
+* **bookstorywrite.tsx:** 파일 구조 변경 ([acec654](https://github.com/K-Soo/story-book/commit/acec654cd48bbdc37ea01ecb640e776f007139f2))
+
 ### [0.1.9](https://github.com/K-Soo/story-book/compare/v0.1.8...v0.1.9) (2022-12-04)
 
 ### [0.1.8](https://github.com/K-Soo/story-book/compare/v0.1.7...v0.1.8) (2022-12-04)
