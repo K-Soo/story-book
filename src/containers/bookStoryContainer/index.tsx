@@ -11,6 +11,7 @@ import PostCard from '@components/common/PostCard';
 import { IPostCardTypes } from '@types';
 import FilterBox from '@components/common/FilterBox';
 import Skeleton from '@components/common/Skeleton';
+import { queryKeys } from '@constants';
 
 interface IBookStoryContainer {}
 
@@ -19,7 +20,7 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
 
   const requestData = {
     url: Get.getBookStoryList,
-    queryKey: [router.query.keyword as string],
+    queryKey: [queryKeys.BOOK_STORY_LIST],
     option: {},
   };
 
