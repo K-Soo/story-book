@@ -15,11 +15,12 @@ export default publicHandler.get(async (req: NextApiRequest, res: NextApiRespons
   if (!req.query) {
     throwError({ status: 404 });
   }
+  await db.connect();
   const query = Array.isArray(req.query) ? req.query[0] : req.query;
   const _id = mongoose.Types.ObjectId.createFromHexString(query.idx);
 
-  await db.connect();
   const bookStoryPost = await BookStoryPost.findById(_id).populate('author');
+  await db.disconnect();
 
   res.status(200).json({ status: 200, result: bookStoryPost });
 });
