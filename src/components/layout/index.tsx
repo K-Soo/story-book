@@ -32,7 +32,7 @@ export default function Layout({ children }: ILayout) {
 const S = {
   Layout: styled.div<{ pathname: string }>`
     min-width: 320px;
-    max-width: 640px;
+    max-width: 500px;
     width: 100%;
     margin: 0 auto;
     /* border: 1px solid green; */

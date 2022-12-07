@@ -5,9 +5,9 @@ interface IHorizontalLine {
   height?: string;
 }
 
-export default function HorizontalLine({ height }: IHorizontalLine) {
+export default React.memo(function HorizontalLine({ height }: IHorizontalLine) {
   return <S.HorizontalLine height={height} />;
-}
+});
 
 const S = {
   HorizontalLine: styled.div<{ height?: string }>`

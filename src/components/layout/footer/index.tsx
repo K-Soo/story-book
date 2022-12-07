@@ -31,7 +31,7 @@ const S = {
     height: 60px;
     width: 100%;
     display: flex;
-    max-width: 640px;
+    max-width: 500px;
     color: #8a8c8f;
     padding: 0 15px;
     border: 1px solid #dee5e7;

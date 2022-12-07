@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAppSelector } from '@store';
 import { getBookStoryPostState } from '@slice/bookStoryPostSlice';
+import { BookStoryFormValue } from '@types';
+import { useFormContext } from 'react-hook-form';
+
 interface TWriteBody {
   readonly?: boolean | undefined;
 }
@@ -9,13 +12,19 @@ interface TWriteBody {
 export default function WriteBody({ readonly }: TWriteBody) {
   // prettier-ignore
   const { form: { content } } = useAppSelector(getBookStoryPostState);
+  const {
+    watch,
+    register,
+    formState: { errors },
+  } = useFormContext<BookStoryFormValue>();
+  console.log('watch: ', watch('content'));
 
   return (
     <S.WriteBody>
       {readonly && <div dangerouslySetInnerHTML={{ __html: content }} />}
       {!readonly && (
         <div className='write-box'>
-          <textarea cols={5} rows={3} wrap='on' />
+          <textarea cols={5} rows={3} wrap='on' {...register('content')} placeholder='10글자 이상입력해주세요' />
         </div>
       )}
     </S.WriteBody>

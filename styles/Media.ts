@@ -1,8 +1,11 @@
 import { css } from 'styled-components';
 
-interface MediaQueryProps {
+export type MediaQueryProps = {
   [key: string]: number;
-}
+  mobile: number;
+  tablet: number;
+};
+
 const breakpoints: MediaQueryProps = {
   mobile: 480,
   tablet: 768,
