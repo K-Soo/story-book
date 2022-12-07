@@ -27,5 +27,6 @@ export default function BookStoryDetail() {
 const S = {
   BookStoryDetail: styled.section`
     background-color: #fff;
+    border: 1px solid red;
   `,
 };

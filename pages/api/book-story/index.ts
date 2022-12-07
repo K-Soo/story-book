@@ -53,6 +53,6 @@ export default publicHandler.get(async (req: NextApiRequest, res: NextApiRespons
     },
     status: 200,
   };
-
+  await db.disconnect();
   res.status(200).json(responseData);
 });
