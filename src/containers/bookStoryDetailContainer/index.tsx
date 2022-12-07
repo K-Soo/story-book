@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@store';
 import { asyncGetFetchPost } from '@slice/bookStoryPostSlice';
 import { useForm, FormProvider, useFormContext, SubmitHandler, Resolver } from 'react-hook-form';
 import Skeleton from '@components/common/Skeleton';
-
+import { Get } from '@api';
 import { BookStoryFormValue } from '@types';
 
 export default function BookStoryDetailContainer() {
@@ -15,6 +15,19 @@ export default function BookStoryDetailContainer() {
   console.log('form: ', form);
 
   const methods = useForm<BookStoryFormValue>();
+
+  React.useEffect(() => {
+    if (router.query.idx) {
+      (async () => {
+        try {
+          const res = await Get.getBookStoryPostDetail({ id: router.query.idx as string });
+          console.log('책상세 API TEST : ', res);
+        } catch (error) {
+          console.log('router.query.idx: ', error);
+        }
+      })();
+    }
+  }, [router.query.idx]);
 
   React.useEffect(() => {
     if (router.query.idx) {
