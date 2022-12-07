@@ -22,5 +22,5 @@ export default publicHandler.get(async (req: NextApiRequest, res: NextApiRespons
   const bookStoryPost = await BookStoryPost.findById(_id).populate('author');
   await db.disconnect();
 
-  res.status(200).json({ status: 200, result: bookStoryPost });
+  res.status(200).json({ status: 200, result: bookStoryPost, url: req.url });
 });
