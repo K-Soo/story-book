@@ -25,15 +25,15 @@ export default function SearchContainer() {
     },
   };
 
-  const handleSubmitForm = React.useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (keyword.trim() === '') return;
-      dispatch(setToggleSearchForm(false));
-      router.push(`/search?keyword=${keyword}`);
-    },
-    [dispatch, keyword, router]
-  );
+  //prettier-ignore
+  const handleSubmitForm = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (keyword.trim() === '') return;
+    dispatch(setToggleSearchForm(false));
+    router.push(`/search?keyword=${keyword}`);
+  },[dispatch, keyword, router]);
+
+  const handleClickRecentKeyword = () => {};
 
   const onChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setKeyword(e.target.value));

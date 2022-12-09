@@ -1,10 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import nextConnect, { Middleware } from 'next-connect';
+import nextConnect, { Middleware, Options } from 'next-connect';
 import { throwError } from 'lib';
 import { authOptions, ICustomSession, TSessionTypes } from 'pages/api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
-import { getSession } from 'next-auth/react';
-import { getProviders } from 'next-auth/react';
 
 export const privateHandler = nextConnect<NextApiRequest, NextApiResponse>({
   onError(error, _req, res) {
@@ -44,6 +42,5 @@ export const publicHandler = nextConnect<NextApiRequest, NextApiResponse>({
     res.status(405).end(`Method ${req.method} Not Allowed`);
   },
 }).use((req, res, next) => {
-  console.log('req: ', req.url);
   next();
 });

@@ -1,23 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import BookStoryWriteContainer from '@containers/bookStoryWriteContainer';
-import BookStoryWriteSearchContainer from '@containers/bookStoryWriteSearchContainer';
-import { useAppSelector } from '@store';
+import { setInitialState } from '@slice/bookStoryPostSlice';
+import { useAppSelector, useAppDispatch } from '@store';
 
 interface IBookStoryWithPostContainer {}
 
 export default function BookStoryWithPostContainer({}: IBookStoryWithPostContainer) {
-  const [step, setStep] = React.useState(0);
-  const { isOpenSearchForm } = useAppSelector(state => state.bookStoryPost);
+  const dispatch = useAppDispatch();
 
-  return (
-    <S.BookStoryWithPostContainer>
-      {!isOpenSearchForm && <BookStoryWriteContainer />}
-      {isOpenSearchForm && <BookStoryWriteSearchContainer />}
-    </S.BookStoryWithPostContainer>
-  );
+  React.useEffect(() => {
+    dispatch(setInitialState());
+  }, []);
+
+  return <BookStoryWriteContainer />;
 }
-
-const S = {
-  BookStoryWithPostContainer: styled.div``,
-};

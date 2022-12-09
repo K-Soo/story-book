@@ -13,6 +13,17 @@ export interface IBookStoryPostState {
   bookInfo: BookDetailInfo | undefined;
   isOpenSearchForm: boolean;
 }
+const defaultState: IBookStoryPostState = {
+  status: 'IDLE',
+  currentRequestId: undefined,
+  form: {
+    title: '',
+    content: '',
+    bookInfo: '',
+  },
+  bookInfo: undefined,
+  isOpenSearchForm: false,
+};
 
 const initialState: IBookStoryPostState = {
   status: 'IDLE',
@@ -58,6 +69,10 @@ export const bookStoryPostSlice = createSlice({
   name: 'bookStoryPost',
   initialState,
   reducers: {
+    setInitialState: state => {
+      console.log('state: ', state);
+      state = defaultState;
+    },
     setForm: (state, action) => {
       const { target } = action.payload;
       state.form[target.name] = target.value;
@@ -95,7 +110,7 @@ export const bookStoryPostSlice = createSlice({
 
 export const getBookStoryPostState = (state: { bookStoryPost: IBookStoryPostState }) => state.bookStoryPost;
 
-export const { setForm, setData, setBookDetailInfo, setRemoveBookDetail, setOpenBookSearchForm } =
+export const { setForm, setData, setBookDetailInfo, setRemoveBookDetail, setOpenBookSearchForm, setInitialState } =
   bookStoryPostSlice.actions;
 export { asyncGetFetchPost };
 

@@ -51,6 +51,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@hookform/devtools": "^4.3.0",
     "@svgr/webpack": "^6.5.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

@@ -11,11 +11,12 @@ import { BookStoryFormValue } from '@types';
 
 interface IStep2Post {
   children: React.ReactNode;
+  className: string;
 }
 
-export default function Step2Post({ children }: IStep2Post) {
+export default function Step2Post({ className, children }: IStep2Post) {
   return (
-    <S.Step2Post>
+    <S.Step2Post className={className}>
       <HorizontalLine height='1px' />
       <HorizontalLine height='2px' />
       <WriteTitleBox />

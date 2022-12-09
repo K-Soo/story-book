@@ -10,6 +10,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import BookCardOneLine from '@components/common/BookCardOneLine';
 import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import BookStoryWriteSearch from '@components/bookStoryWriteSearch';
+import EmptyText from '@components/common/EmptyText';
 
 export default function BookStoryWriteSearchContainer() {
   const [text, setText] = React.useState('');
@@ -31,13 +32,14 @@ export default function BookStoryWriteSearchContainer() {
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text.trim() === '') return;
-    router.push({ pathname: '/book-story/write', query: { keyword: text } });
+    router.replace({ pathname: '/book-story/write/search', query: { keyword: text } });
   };
 
   // prettier-ignore
   const handleClickTargetBook = React.useCallback((data: BookDetailInfo) => {
     dispatch(setBookDetailInfo(data));
-    dispatch(setOpenBookSearchForm(false));
+    router.back();
+    // dispatch(setOpenBookSearchForm(false));
   },[dispatch]);
 
   console.log('검색결과 API : ', data);
@@ -48,6 +50,7 @@ export default function BookStoryWriteSearchContainer() {
         <SearchInput value={text} maxLength={30} onChange={e => setText(e.target.value)} disabled={isLoading} />
       </form>
       {isLoading && <Skeleton.oneLineList />}
+      {isSuccess && data?.pages[0]?.total === 0 && <EmptyText text='검색 결과가 없습니다' />}
       {isSuccess && data && (
         <InfiniteScroll
           loadMore={() => {

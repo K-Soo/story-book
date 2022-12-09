@@ -21,6 +21,10 @@ export default function TitleHeader({}: ITitleHeader) {
 
 const S = {
   TitleHeader: styled.div`
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     h1 {
       font-size: 16px;
       font-weight: 600;

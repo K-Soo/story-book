@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { BookStoryFormValue } from '@types';
 import useLoading from '@hooks/useLoading';
+import { DevTool } from '@hookform/devtools';
 
 //prettier-ignore
 const schema = yup.object({
@@ -16,11 +17,10 @@ const schema = yup.object({
 }).required();
 
 export default function BookStoryWriteContainer() {
-  const [step, setStep] = React.useState<'STEP1' | 'STEP2' | 'COMPLETE'>('STEP1');
+  const [step, setStep] = React.useState<'STEP1' | 'STEP2'>('STEP1');
   const [loading, setLoading] = React.useState(false);
   const { bookInfo } = useAppSelector(state => state.bookStoryPost);
   const router = useRouter();
-
   const methods = useForm<BookStoryFormValue>({
     resolver: yupResolver(schema),
     mode: 'onSubmit',
@@ -38,8 +38,6 @@ export default function BookStoryWriteContainer() {
   });
 
   const state = methods.formState;
-  console.log('methods: ', methods.watch('title'));
-  console.log('state: ', state);
 
   // TODO : API 통신 로직 작성
   const onSubmit: SubmitHandler<BookStoryFormValue> = async (data: BookStoryFormValue) => {
@@ -55,7 +53,7 @@ export default function BookStoryWriteContainer() {
       if (response.status !== 200) {
         throw new Error('');
       }
-      setStep('COMPLETE');
+      router.push('/book-story/write/complete');
     } catch (error) {
       console.log('error: ', error);
     } finally {
@@ -64,8 +62,11 @@ export default function BookStoryWriteContainer() {
   };
 
   return (
-    <FormProvider {...methods}>
-      <BookStoryWrite onSubmit={onSubmit} step={step} setStep={setStep} />;
-    </FormProvider>
+    <>
+      <FormProvider {...methods}>
+        <BookStoryWrite onSubmit={onSubmit} step={step} setStep={setStep} />
+      </FormProvider>
+      <DevTool control={methods.control} />
+    </>
   );
 }

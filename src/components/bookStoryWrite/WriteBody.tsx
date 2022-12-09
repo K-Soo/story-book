@@ -12,12 +12,7 @@ interface TWriteBody {
 export default function WriteBody({ readonly }: TWriteBody) {
   // prettier-ignore
   const { form: { content } } = useAppSelector(getBookStoryPostState);
-  const {
-    watch,
-    register,
-    formState: { errors },
-  } = useFormContext<BookStoryFormValue>();
-  console.log('watch: ', watch('content'));
+  const { register } = useFormContext<BookStoryFormValue>();
 
   return (
     <S.WriteBody>

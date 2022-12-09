@@ -12,11 +12,7 @@ interface IWriteTitleBox {
 
 export default function WriteTitleBox({ readonly }: IWriteTitleBox) {
   const { form } = useAppSelector(getBookStoryPostState);
-  const {
-    watch,
-    register,
-    formState: { errors },
-  } = useFormContext<BookStoryFormValue>();
+  const { watch, register } = useFormContext<BookStoryFormValue>();
   const { title } = watch();
 
   return (

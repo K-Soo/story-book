@@ -14,7 +14,6 @@ export default function DetailLayout({ children }: IDetailLayout) {
       <Header>
         <TitleHeader />
       </Header>
-      <HorizontalLine height='1px' />
       <main>{children}</main>
     </S.DetailLayout>
   );
@@ -24,9 +23,11 @@ const S = {
   DetailLayout: styled.div`
     min-width: 320px;
     max-width: 500px;
-    width: 100%;
     margin: 0 auto;
-    border: 1px solid red;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    main {
+      height: 100%;
+    }
   `,
 };
