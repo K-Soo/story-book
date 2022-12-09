@@ -9,6 +9,7 @@ import Step1Post from '@components/bookStoryWrite/Step1Post';
 import Step2Post from '@components/bookStoryWrite/Step2Post';
 import { useRouter } from 'next/router';
 import BottomFixedBox from '@components/common/BottomFixedBox';
+import StarRate from '@components/common/StarRate';
 
 interface IBookStoryWrite {
   onSubmit: SubmitHandler<BookStoryFormValue>;
@@ -26,6 +27,8 @@ export default function BookStoryWrite({ onSubmit, step, setStep }: IBookStoryWr
     <S.BookStoryWrite>
       <form onSubmit={handleSubmit(onSubmit)} className='form-container'>
         <WriteGuide />
+        <StarRate />
+
         {step === 'STEP1' && (
           <Step1Post className='post-step'>
             <BottomFixedBox>
