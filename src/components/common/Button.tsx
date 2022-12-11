@@ -51,6 +51,7 @@ const S = {
     cursor: ${props => (!props.disabled ? 'pointer' : 'default')};
     height: 40px;
     border-radius: 5px;
+    font-weight: 600;
     &:hover {
       transition: all 0.3s;
     }

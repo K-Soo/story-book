@@ -7,7 +7,6 @@ import BookDetailView from '@components/bookStoryDetail/BookDetailView';
 import Button from '@components/common/Button';
 import PostConfig from '@components/bookStoryDetail/PostConfig';
 import ProfileSummary from '@components/bookStoryDetail/ProfileSummary';
-import Comment from '@components/bookStoryDetail/comment';
 import { IPostCardTypes, TDocumentId, BookDetailInfo } from '@types';
 import { useSession } from 'next-auth/react';
 import { TSessionTypes } from 'pages/api/auth/[...nextauth]';
@@ -16,6 +15,8 @@ import { setReadOnly } from '@slice/bookStoryPostSlice';
 import BottomFixedBox from '@components/common/BottomFixedBox';
 import AddBook from '@components/bookStoryWrite/AddBook';
 import BookInfoView from '@components/common/BookInfoView';
+import bookStoryDetailComment from '@components/bookStoryDetailComment';
+import BookStoryDetailCommentContainer from '@containers/bookStoryDetailCommentContainer';
 
 interface IResponseData extends IPostCardTypes {
   bookInfo: BookDetailInfo;
@@ -40,7 +41,7 @@ export default function BookStoryDetail({ data }: IBookStoryDetail) {
       {isReadOnly && (
         <>
           <HorizontalLine />
-          <Comment />
+          <BookStoryDetailCommentContainer />
         </>
       )}
       {!isReadOnly && (
