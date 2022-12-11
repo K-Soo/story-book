@@ -4,6 +4,6 @@ import { MediaQueryProps, Media } from './Media';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    [index: string]: any;
+    colors: ColorsTypes;
   }
 }

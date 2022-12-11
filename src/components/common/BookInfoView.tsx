@@ -2,9 +2,13 @@ import styled from 'styled-components';
 import { useAppSelector, useAppDispatch } from '@store';
 import Image from 'next/image';
 import { setRemoveBookDetail } from '@slice/bookStoryPostSlice';
+import { IPostCardTypes, BookDetailInfo } from '@types';
 
-export default function BookInfoView() {
-  const { bookInfo } = useAppSelector(state => state.bookStoryPost);
+interface IBookInfoView {
+  bookInfo: BookDetailInfo;
+}
+
+export default function BookInfoView({ bookInfo }: IBookInfoView) {
   const dispatch = useAppDispatch();
 
   // TODO : 휴지통 퍼블리싱

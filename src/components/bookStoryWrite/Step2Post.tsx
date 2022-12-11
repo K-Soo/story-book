@@ -8,6 +8,7 @@ import { useForm, SubmitHandler, useFormContext } from 'react-hook-form';
 import { Post } from '@api';
 import { useAppSelector } from '@store';
 import { BookStoryFormValue } from '@types';
+import StarRate from '@components/common/StarRate';
 
 interface IStep2Post {
   children: React.ReactNode;
@@ -17,16 +18,20 @@ interface IStep2Post {
 export default function Step2Post({ className, children }: IStep2Post) {
   return (
     <S.Step2Post className={className}>
-      <HorizontalLine height='1px' />
-      <HorizontalLine height='2px' />
       <WriteTitleBox />
-      <HorizontalLine height='1px' />
+      <HorizontalLine height='1px' margin='0 0 50px 0' />
       <WriteBody />
+      <HorizontalLine height='1px' margin='0 0 50px 0' />
+      <S.FormLabel>도서 별점</S.FormLabel>
+      <StarRate value={5} />
       {children}
     </S.Step2Post>
   );
 }
 
 const S = {
-  Step2Post: styled.div``,
+  Step2Post: styled.div`
+    margin-top: 30px;
+  `,
+  FormLabel: styled.label``,
 };

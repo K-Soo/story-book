@@ -52,6 +52,7 @@ export interface IBookStoryPostDetailResponse {
 export type BookStoryFormValue = {
   title: string;
   content: string;
+  rate: number;
 };
 
 export interface INaverBookSearchResponse {

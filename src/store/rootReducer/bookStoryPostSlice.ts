@@ -12,7 +12,9 @@ export interface IBookStoryPostState {
   };
   bookInfo: BookDetailInfo | undefined;
   isOpenSearchForm: boolean;
+  isReadOnly: boolean;
 }
+
 const defaultState: IBookStoryPostState = {
   status: 'IDLE',
   currentRequestId: undefined,
@@ -23,6 +25,7 @@ const defaultState: IBookStoryPostState = {
   },
   bookInfo: undefined,
   isOpenSearchForm: false,
+  isReadOnly: true,
 };
 
 const initialState: IBookStoryPostState = {
@@ -35,6 +38,7 @@ const initialState: IBookStoryPostState = {
   },
   bookInfo: undefined,
   isOpenSearchForm: false,
+  isReadOnly: true,
 };
 
 const asyncGetFetchPost = createAsyncThunk(
@@ -69,9 +73,8 @@ export const bookStoryPostSlice = createSlice({
   name: 'bookStoryPost',
   initialState,
   reducers: {
-    setInitialState: state => {
-      console.log('state: ', state);
-      state = defaultState;
+    setInitialState: () => {
+      return initialState;
     },
     setForm: (state, action) => {
       const { target } = action.payload;
@@ -79,6 +82,9 @@ export const bookStoryPostSlice = createSlice({
     },
     setData: (state, action) => {
       state.form[action.payload.name] = action.payload.value;
+    },
+    setReadOnly: (state, action) => {
+      state.isReadOnly = action.payload;
     },
     setBookDetailInfo: (state, action) => {
       state.bookInfo = action.payload;
@@ -110,8 +116,15 @@ export const bookStoryPostSlice = createSlice({
 
 export const getBookStoryPostState = (state: { bookStoryPost: IBookStoryPostState }) => state.bookStoryPost;
 
-export const { setForm, setData, setBookDetailInfo, setRemoveBookDetail, setOpenBookSearchForm, setInitialState } =
-  bookStoryPostSlice.actions;
+export const {
+  setForm,
+  setData,
+  setReadOnly,
+  setBookDetailInfo,
+  setRemoveBookDetail,
+  setOpenBookSearchForm,
+  setInitialState,
+} = bookStoryPostSlice.actions;
 export { asyncGetFetchPost };
 
 export default bookStoryPostSlice.reducer;

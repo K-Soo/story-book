@@ -9,7 +9,7 @@ import Step1Post from '@components/bookStoryWrite/Step1Post';
 import Step2Post from '@components/bookStoryWrite/Step2Post';
 import { useRouter } from 'next/router';
 import BottomFixedBox from '@components/common/BottomFixedBox';
-import StarRate from '@components/common/StarRate';
+import HorizontalLine from '@components/common/HorizontalLine';
 
 interface IBookStoryWrite {
   onSubmit: SubmitHandler<BookStoryFormValue>;
@@ -19,7 +19,7 @@ interface IBookStoryWrite {
 
 export default function BookStoryWrite({ onSubmit, step, setStep }: IBookStoryWrite) {
   //prettier-ignore
-  const { handleSubmit, formState: { isValid }} = useFormContext<BookStoryFormValue>();
+  const { handleSubmit, formState: { isValid,isSubmitting }} = useFormContext<BookStoryFormValue>();
   const { bookInfo } = useAppSelector(state => state.bookStoryPost);
   const router = useRouter();
 
@@ -27,8 +27,7 @@ export default function BookStoryWrite({ onSubmit, step, setStep }: IBookStoryWr
     <S.BookStoryWrite>
       <form onSubmit={handleSubmit(onSubmit)} className='form-container'>
         <WriteGuide />
-        <StarRate />
-
+        <HorizontalLine height='1px' />
         {step === 'STEP1' && (
           <Step1Post className='post-step'>
             <BottomFixedBox>
@@ -43,12 +42,14 @@ export default function BookStoryWrite({ onSubmit, step, setStep }: IBookStoryWr
           </Step1Post>
         )}
         {step === 'STEP2' && (
-          <Step2Post className='post-step'>
-            <BottomFixedBox>
-              <Button type='submit' margin='0 0 15px 0' label='출간하기' disabled={!isValid} />
-              <Button label='이전' onClick={() => setStep('STEP1')} />
-            </BottomFixedBox>
-          </Step2Post>
+          <>
+            <Step2Post className='post-step'>
+              <BottomFixedBox>
+                <Button type='submit' margin='0 0 15px 0' label='출간하기' disabled={!isValid || isSubmitting} />
+                <Button label='이전' onClick={() => setStep('STEP1')} />
+              </BottomFixedBox>
+            </Step2Post>
+          </>
         )}
       </form>
     </S.BookStoryWrite>

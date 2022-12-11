@@ -1,18 +1,26 @@
-import { Schema, model, models, Types, Model } from 'mongoose';
+import { Schema, model, models, Types, Model, PaginateModel } from 'mongoose';
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
-interface IBookStoryPostDocument extends Document {
+export interface IBookStoryPostDocument extends Document {
   title: string;
   content: string;
   author: Types.ObjectId;
   views: number;
+  rate: number;
   comments: [];
   createdAt: Date;
-}
-
-// static
-interface IBookStoryModel extends Model<IBookStoryPostDocument> {
-  findByUsername: (username: string) => Promise<IBookStoryPostDocument>;
+  bookInfo: {
+    author: string;
+    description: string;
+    discount: string;
+    image: string;
+    isbn: string;
+    link: string;
+    pubdate: string;
+    publisher: string;
+    title: string;
+  };
 }
 
 const BookStoryPostSchema: Schema<IBookStoryPostDocument> = new Schema(
@@ -26,6 +34,18 @@ const BookStoryPostSchema: Schema<IBookStoryPostDocument> = new Schema(
       required: true,
     },
     views: { type: Number, default: 0 },
+    rate: { type: Number, required: true },
+    bookInfo: {
+      author: { type: String, required: true },
+      description: { type: String, required: true },
+      discount: { type: String, required: true },
+      image: { type: String, required: true },
+      isbn: { type: String, required: true },
+      link: { type: String, required: true },
+      pubdate: { type: String, required: true },
+      publisher: { type: String, required: true },
+      title: { type: String, required: true },
+    },
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -35,13 +55,13 @@ const BookStoryPostSchema: Schema<IBookStoryPostDocument> = new Schema(
   {
     versionKey: false,
     timestamps: true,
-  },
+  }
 );
 
-BookStoryPostSchema.statics.findByPost = function (username: string) {
-  return this.findOne({ username });
-};
+BookStoryPostSchema.plugin(mongoosePaginate);
 
-const BookStoryPost = models.BookStoryPost || model<IBookStoryPostDocument>('BookStoryPost', BookStoryPostSchema);
+const BookStoryPost =
+  models.BookStoryPost ||
+  model<IBookStoryPostDocument, PaginateModel<IBookStoryPostDocument>>('BookStoryPost', BookStoryPostSchema);
 
 export default BookStoryPost;

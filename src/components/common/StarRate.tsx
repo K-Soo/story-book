@@ -1,25 +1,34 @@
+import React from 'react';
 import styled from 'styled-components';
 import Rate from 'rc-rate';
 import 'rc-rate/assets/index.css';
+import { BookStoryFormValue } from '@types';
+import { useFormContext, Controller } from 'react-hook-form';
+interface IStarRate {
+  value: number;
+  disabled?: boolean;
+  margin?: string;
+}
 
-interface IStarRate {}
+export default function StarRate({ value, disabled, margin }: IStarRate) {
+  const { control } = useFormContext<BookStoryFormValue>();
 
-export default function StarRate({}: IStarRate) {
   return (
-    <StyledRate
-      // defaultValue={rate}
-      // value={reviewRate}
-      allowClear={false}
-      // onChange={e => setReviewRate(e)}
-      // character={<i className="anticon anticon-star" />}
-    />
+    <S.StarRate margin={margin}>
+      <Controller
+        control={control}
+        name='rate'
+        render={({ field: { onChange, value } }) => {
+          return <StyledRate allowHalf value={value} disabled={disabled} onChange={onChange} />;
+        }}
+      />
+    </S.StarRate>
   );
 }
 
 const StyledRate = styled(Rate)`
   &.rc-rate {
-    font-size: 30px;
-    /* color: #000; */
+    font-size: 20px;
   }
   .rc-rate-star-half .rc-rate-star-first,
   .rc-rate-star-full .rc-rate-star-second {
@@ -34,5 +43,8 @@ const StyledRate = styled(Rate)`
 `;
 
 const S = {
-  StarRate: styled.div``,
+  StarRate: styled.div<{ margin?: string }>`
+    margin: ${props => props.margin && props.margin};
+    overflow: hidden;
+  `,
 };

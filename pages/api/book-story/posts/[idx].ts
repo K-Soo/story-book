@@ -9,7 +9,7 @@ import Joi from 'joi';
 import { throwError } from 'lib';
 import mongoose from 'mongoose';
 import db from 'lib/db';
-import nextConnect, { Middleware } from 'next-connect';
+import nextConnect from 'next-connect';
 
 export default nextConnect(options.public).get(async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query) {

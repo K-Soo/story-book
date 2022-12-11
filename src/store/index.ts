@@ -7,8 +7,8 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 const store = () =>
   configureStore({
     reducer: rootReducer as Reducer,
-    // middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
-    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
+    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }).concat(logger),
+    // middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
     // devTools: process.env.NODE_ENV !== 'production',
     devTools: true,
   });

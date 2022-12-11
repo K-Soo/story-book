@@ -8,7 +8,7 @@ import User from 'models/User';
 
 export interface ICustomSession {
   user?: {
-    id?: number;
+    id?: string;
   };
 }
 

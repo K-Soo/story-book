@@ -2,20 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default React.memo(function WriteGuide() {
-  const [isOpenText, setIsOpenText] = React.useState(false);
+  const [isOpenText, setIsOpenText] = React.useState(true);
 
   return (
     <S.WriteGuide>
       <div className='wrapper'>
-        <p>작성가이드</p>
+        <p className='wrapper__title'>작성 가이드</p>
         <p onClick={() => setIsOpenText(prev => !prev)}>^</p>
       </div>
       {isOpenText && (
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis reprehenderit neque quos incidunt quasi.
-          Harum saepe accusantium excepturi! Voluptate aliquam deserunt nulla voluptates temporibus, accusamus aut quas
-          quia error laboriosam iste atque, eum deleniti eaque? Id ipsam eligendi optio ducimus error dignissimos
-        </div>
+        <ul className='list'>
+          <li className='list__item'>등록하실 도서를 검색해서 등록 후 다음을 눌러주세요</li>
+          <li className='list__item'>도서 내용을 입력 후 출간하기 버튼을 눌러주세요.</li>
+        </ul>
       )}
     </S.WriteGuide>
   );
@@ -28,7 +27,17 @@ const S = {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 50px;
+      height: 40px;
+      &__title {
+        font-weight: 600;
+      }
+    }
+    .list {
+      padding-left: 10px;
+      &__item {
+        font-size: 12px;
+        padding-bottom: 10px;
+      }
     }
   `,
 };

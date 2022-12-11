@@ -6,11 +6,5 @@ import { useAppSelector, useAppDispatch } from '@store';
 interface IBookStoryWithPostContainer {}
 
 export default function BookStoryWithPostContainer({}: IBookStoryWithPostContainer) {
-  const dispatch = useAppDispatch();
-
-  React.useEffect(() => {
-    dispatch(setInitialState());
-  }, []);
-
   return <BookStoryWriteContainer />;
 }

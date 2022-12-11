@@ -14,7 +14,7 @@ export default function AddBook() {
 
   return (
     <S.AddBook>
-      {bookInfo && <BookInfoView />}
+      {bookInfo && <BookInfoView bookInfo={bookInfo} />}
       {!bookInfo && (
         <div className='wrapper'>
           <p className='wrapper--text'>도서 정보를 추가해주세요.</p>

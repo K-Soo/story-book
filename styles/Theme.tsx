@@ -15,6 +15,7 @@ const colors = {
   backGround: '#F8F9FA',
   base: '#D9B9A3',
   disabled: '#aaaaaa',
+  text1: '#868E96',
 };
 
 export type ColorsTypes = typeof colors;

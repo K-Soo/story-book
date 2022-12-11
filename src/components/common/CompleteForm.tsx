@@ -12,6 +12,7 @@ const DEFAULT_DESCRIPTION = '축하드립니다' as const;
 
 export default function CompleteForm({ title = DEFAULT_TITLE, description = DEFAULT_DESCRIPTION }: ICompleteForm) {
   const router = useRouter();
+  console.log('router: ', router);
   return (
     <S.CompleteForm>
       <div className='inner-form'>
@@ -20,6 +21,7 @@ export default function CompleteForm({ title = DEFAULT_TITLE, description = DEFA
           <p>{description}</p>
         </div>
         <Button label='홈으로' onClick={() => router.replace('/')} />
+        <Button label='작성글 확인하기' onClick={() => router.push(`/book-story/${router.query.postId}`)} />
       </div>
     </S.CompleteForm>
   );

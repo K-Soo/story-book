@@ -6,6 +6,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 
 export const privateHandler = nextConnect<NextApiRequest, NextApiResponse>({
   onError(error, _req, res) {
+    console.log('onError: ', error);
     if (error.status === 500) {
       res.status(error.status).end();
     }
@@ -27,9 +28,7 @@ export const privateHandler = nextConnect<NextApiRequest, NextApiResponse>({
 
 export const publicHandler = nextConnect<NextApiRequest, NextApiResponse>({
   onError(error, req, res) {
-    console.log('error: ', error);
-    console.log('onError: message', error.message);
-    console.log('onError: status ', error.status);
+    console.log('onError: ', error);
     if (error.status === 500) {
       res.status(error.status).end();
     }
