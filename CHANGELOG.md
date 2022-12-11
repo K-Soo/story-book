@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/K-Soo/story-book/compare/v0.1.10...v0.1.11) (2022-12-11)
+
+
+### Features
+
+* 글 작성완료 페이지 ([d7430c6](https://github.com/K-Soo/story-book/commit/d7430c66998c328d2da091330b06d5ba5dfd9b0d))
+* 책 상세 API ([8b5e8bc](https://github.com/K-Soo/story-book/commit/8b5e8bc60a4fabdccf89152177123b74396afa19))
+* **commentwrite.tsx:** 댓글 쓰기 영역 퍼블리싱 ([08f8045](https://github.com/K-Soo/story-book/commit/08f8045b013c2661167c162a4035b1f6579a94f5))
+* **loginonlycover.tsx:** 로그인 커버 ([ba84dcb](https://github.com/K-Soo/story-book/commit/ba84dcbfb1afd42ba563d682c52ef9b1facb0bf4))
+* **starrace.tsx:** 별점 컴포넌트 ([bda26aa](https://github.com/K-Soo/story-book/commit/bda26aa780d6590ad39bb116b272b92a7721efcd))
+
+
+### Bug Fixes
+
+* 미들웨어 API 라우터 변경 ([9d4e9dc](https://github.com/K-Soo/story-book/commit/9d4e9dc59a8e54e276e20f6b51d9e058726c2878))
+* 북스토리 리스트 쿼리키 ([aeef693](https://github.com/K-Soo/story-book/commit/aeef69324981885dac598a4e21936baa6e3a4250))
+* pages 엔드포인트 폴더구조변경 ([12c21a0](https://github.com/K-Soo/story-book/commit/12c21a0270b108e475b689ff5c9c651393906d46))
+* **pages/api:** 북스토리 db ([af0e407](https://github.com/K-Soo/story-book/commit/af0e407fb68611bb24ebe1b30bf05bc01bba78de))
+* posts ([02d044b](https://github.com/K-Soo/story-book/commit/02d044bd2bf8f79b57151c74845c24bf017db963))
+
 ### [0.1.10](https://github.com/K-Soo/story-book/compare/v0.1.9...v0.1.10) (2022-12-07)
 
 
