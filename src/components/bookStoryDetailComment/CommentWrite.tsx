@@ -2,12 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import ProfileImage from '@components/common/ProfileImage';
 import Button from '@components/common/Button';
+import LoginOnlyCover from '@components/common/LoginOnlyCover';
+import { useSession } from 'next-auth/react';
 
 interface ICommentWrite {}
 
 export default function CommentWrite({}: ICommentWrite) {
+  const { data: session } = useSession();
+
   return (
     <S.CommentWrite>
+      {!session && <LoginOnlyCover />}
       <ProfileImage />
       <div className='text-box'>
         <textarea className='text-box__area' />
@@ -22,9 +27,10 @@ export default function CommentWrite({}: ICommentWrite) {
 
 const S = {
   CommentWrite: styled.div`
-    margin: 30px 0;
+    position: relative;
     display: flex;
     justify-content: space-between;
+    margin: 30px 0;
     width: 100%;
     padding: 0 10px;
     .text-box {
