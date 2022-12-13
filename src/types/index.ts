@@ -63,4 +63,16 @@ export interface INaverBookSearchResponse {
   total: number;
 }
 
+export interface IPageInfo {
+  totalPage: number;
+  totalDoc: number;
+  prev: number | null;
+  next: number | null;
+}
+
+export interface IBookStoryCommentRequest {
+  postId: string;
+  content: string;
+}
+
 // export interface IPostCardTypes extends Omit<IBookStoryPostDetailResponse, 'status'> {}

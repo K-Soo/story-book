@@ -22,6 +22,7 @@ export default function BookStoryContainer({}: IBookStoryContainer) {
     url: Get.getBookStoryList,
     queryKey: [queryKeys.BOOK_STORY_LIST],
     option: {},
+    type: 'DEFAULT',
   };
 
   const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError, refetch } =

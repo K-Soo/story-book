@@ -37,7 +37,6 @@ const S = {
     height: 200px;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
     /* background-color: #fff; */
     cursor: pointer;
     .image-wrapper {

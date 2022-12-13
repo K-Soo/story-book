@@ -26,6 +26,7 @@ interface IBookStoryDetail {
 }
 
 export default function BookStoryDetail({ data }: IBookStoryDetail) {
+  console.log('data: ', data);
   const { data: session }: { data: TSessionTypes | null } = useSession();
   const getSession = session?.user?.id as unknown as TDocumentId;
   const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ export default function BookStoryDetail({ data }: IBookStoryDetail) {
       {isReadOnly && (
         <>
           <HorizontalLine />
-          <BookStoryDetailCommentContainer />
+          <BookStoryDetailCommentContainer postId={data._id} />
         </>
       )}
       {!isReadOnly && (

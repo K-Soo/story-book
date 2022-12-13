@@ -4,14 +4,14 @@ import { authOptions } from '../../auth/[...nextauth]';
 import axios from 'axios';
 import BookStoryPost from 'models/BookStoryPost';
 import { publicHandler } from 'lib/createHandler';
-import { options } from 'lib/nextConnect';
+import { middleware } from 'lib/nextConnect';
 import Joi from 'joi';
 import { throwError } from 'lib';
 import mongoose from 'mongoose';
 import db from 'lib/db';
 import nextConnect from 'next-connect';
 
-export default nextConnect(options.public).get(async (req: NextApiRequest, res: NextApiResponse) => {
+export default nextConnect(middleware.options).get(async (req: NextApiRequest, res: NextApiResponse) => {
   if (!req.query) {
     throwError({ status: 404 });
   }

@@ -4,17 +4,12 @@ import BookStoryPost, { IBookStoryPostDocument } from 'models/BookStoryPost';
 import { publicHandler } from 'lib/createHandler';
 import db from 'lib/db';
 import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
-
-interface IPageInfo {
-  totalPage: number;
-  totalDoc: number;
-  prev: number | null;
-  next: number | null;
-}
+import { IPageInfo } from '@types';
 
 export default publicHandler.get(async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('req.query.page: ', req.query.page);
   const page = Number(req.query.page || 1);
-  const limit = 10;
+  const limit = Number(req.query.limit || 10);
   await db.connect();
   const totalDoc = await BookStoryPost.countDocuments({});
 
@@ -37,6 +32,7 @@ export default publicHandler.get(async (req: NextApiRequest, res: NextApiRespons
     prev: null,
     next: null,
   };
+
   const endIndex = page * limit;
   const startIndex = (page - 1) * limit;
 
@@ -59,7 +55,6 @@ export default publicHandler.get(async (req: NextApiRequest, res: NextApiRespons
       items,
     },
     status: 200,
-    url: req.url,
   };
   await db.disconnect();
   res.status(200).json(responseData);
