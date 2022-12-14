@@ -25,6 +25,7 @@ export default function useInfiniteScroll({ url, requestBody, queryKey, option, 
     {
       ...OPTIONS,
       getNextPageParam: (lastPage: any) => {
+        console.log('lastPage: ', lastPage);
         if (type === 'DEFAULT') {
           return lastPage.pageInfo?.next || undefined;
         }

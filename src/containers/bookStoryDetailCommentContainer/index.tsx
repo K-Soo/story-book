@@ -8,7 +8,8 @@ import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import { queryKeys } from '@constants';
 import useLoading from '@hooks/useLoading';
 import InfiniteScroll from 'react-infinite-scroller';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface IBookStoryDetailCommentContainer {
   postId: TDocumentId;
 }
@@ -31,8 +32,13 @@ export default function BookStoryDetailCommentContainer({ postId }: IBookStoryDe
     try {
       const response = await Post.createCommentBookStory({ content: '@@@@@@@@@@', postId });
       console.log('댓글등록 API : ', response);
+      if (response.status === 200) {
+        toast.success('댓글 등록완료!');
+        refetch();
+      }
     } catch (error) {
       console.log('error: ', error);
+      toast.error('잠시 후 다시시도해주세요');
     } finally {
     }
   };

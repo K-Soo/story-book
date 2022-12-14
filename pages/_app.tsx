@@ -12,6 +12,8 @@ import { queryClient } from 'src/reactQuery/queryClient';
 import { Provider } from 'react-redux';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import type { AppProps } from 'next/app';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type NextPageWithLayout = NextPage & {
   getLayout: (page: React.ReactElement) => React.ReactNode;
@@ -43,6 +45,19 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLa
             <GlobalStyle />
             <Theme>
               {getLayout(<Component {...pageProps} />)}
+              <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                limit={1}
+                pauseOnHover
+                theme='light'
+              />
             </Theme>
           </SessionProvider>
         </Provider>

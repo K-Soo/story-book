@@ -71,7 +71,7 @@ export interface IPageInfo {
 }
 
 export interface IBookStoryCommentRequest {
-  postId: string;
+  postId: TDocumentId;
   content: string;
 }
 

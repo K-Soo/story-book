@@ -20,7 +20,7 @@ export default function CommentWrite({ fetchCreateComment }: ICommentWrite) {
       <ProfileImage />
       <div className='text-box'>
         <form onSubmit={fetchCreateComment}>
-          {/* <TextArea onChange={e => setText(e.target.value)} value={text} /> */}
+          <TextArea onChange={e => setText(e.target.value)} />
           <div className='text-box__button-wrapper'>
             <Button label='취소' margin='0 15px 0 0' />
             <Button type='submit' label='등록' />

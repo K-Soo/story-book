@@ -8,5 +8,6 @@ import ArrowLeft from './arrow-left.svg';
 import Kakao from './kakao.svg';
 import LayoutTable from './layoutTable.svg';
 import LayoutHorizontal from './layoutHorizontal.svg';
+import Check from './check.svg';
 
-export { Search, User, Book, Home, Close, Pen, ArrowLeft, Kakao, LayoutTable, LayoutHorizontal };
+export { Search, User, Book, Home, Close, Pen, ArrowLeft, Kakao, LayoutTable, LayoutHorizontal, Check };

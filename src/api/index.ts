@@ -52,7 +52,7 @@ export const Post = {
   // 북스토리 글 쓰기
   createWriteBookStory: (body: any): Promise<any> => requests.post('/api/book-story/write', body),
   // 북스토리 댓글 생성
-  createCommentBookStory: (body: any): Promise<IBookStoryCommentRequest> => requests.post('/api/book-story/comment', body),
+  createCommentBookStory: (body: IBookStoryCommentRequest): Promise<{status:number}> => requests.post('/api/book-story/comment', body),
 };
 
 export const Put = {
