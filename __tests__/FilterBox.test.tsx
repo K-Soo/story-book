@@ -1,6 +1,6 @@
-import FilterBox from '@components/common/FilterBox';
+import FilterBox from 'src/components/common/FilterBox';
 import { render } from '@testing-library/react';
-import LayoutTable from 'src/icons/svg/layoutTable.svg';
+// import LayoutTable from 'src/icons/svg/layoutTable.svg';
 
 describe('filter box', () => {
   test('should first', () => {

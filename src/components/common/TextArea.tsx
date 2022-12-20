@@ -5,9 +5,10 @@ interface ITextArea {
   readOnly?: boolean;
   defaultValue?: string;
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
+  value: string;
 }
 
-export default function TextArea({ readOnly, defaultValue, onChange }: ITextArea) {
+export default function TextArea({ readOnly, defaultValue, onChange, value }: ITextArea) {
   const textareaInput = React.useRef<HTMLTextAreaElement>(null);
 
   const handleResizeHeight = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -24,6 +25,7 @@ export default function TextArea({ readOnly, defaultValue, onChange }: ITextArea
       readOnly={readOnly}
       rows={1}
       defaultValue={defaultValue}
+      value={value}
       ref={textareaInput}
     />
   );

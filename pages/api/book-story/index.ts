@@ -7,7 +7,7 @@ import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore';
 import { IPageInfo } from '@types';
 
 export default publicHandler.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  console.log('req.query.page: ', req.query.page);
+  console.log('@@@@@@@@@@@@@@: ', req.query.page);
   const page = Number(req.query.page || 1);
   const limit = Number(req.query.limit || 10);
   await db.connect();

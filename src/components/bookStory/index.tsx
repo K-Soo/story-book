@@ -8,18 +8,11 @@ interface IBookStory {
 }
 
 export default function BookStory({ children }: IBookStory) {
-  return (
-    <S.BookStory>
-      {/* <Panel>
-        <Proverb />
-      </Panel> */}
-      {children}
-    </S.BookStory>
-  );
+  return <S.BookStory>{children}</S.BookStory>;
 }
 
 const S = {
   BookStory: styled.div`
-    padding: 0 10px;
+    padding: 10px 10px 0 10px;
   `,
 };

@@ -85,10 +85,8 @@ const Wrapper = styled.ul`
 `;
 
 const Card = styled.li`
-  border: 1px solid #aaa;
   padding: 10px;
   margin-bottom: 15px;
-  border-radius: 10px;
 `;
 
 const Title = styled.div`

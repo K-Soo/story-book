@@ -9,6 +9,7 @@ interface ITheme {
 const colors = {
   black: '#000000',
   white: '#FFFFFF',
+  blue1: '#D9F0FE',
   green: '#008000',
   red: '#f44336',
   pink: '#ff5277',

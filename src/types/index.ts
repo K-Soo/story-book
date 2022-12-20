@@ -43,6 +43,7 @@ export interface IPostCardTypes {
   updateAt: string;
   views: number;
   status: number;
+  bookInfo: BookDetailInfo;
 }
 export interface IBookStoryPostDetailResponse {
   result: IPostCardTypes;
