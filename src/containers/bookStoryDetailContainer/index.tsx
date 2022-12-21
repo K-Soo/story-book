@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '@store';
 import { asyncGetFetchPost, setInitialState } from '@slice/bookStoryPostSlice';
 import { useForm, FormProvider } from 'react-hook-form';
 import Skeleton from '@components/common/Skeleton';
-import { BookStoryFormValue } from '@types';
-import { Get } from '@api';
+import { BookStoryFormValue, TDocumentId } from '@types';
+import { Get, Post } from '@api';
 import { DevTool } from '@hookform/devtools';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -65,6 +65,17 @@ export default function BookStoryDetailContainer() {
   //   }
   // }, [dispatch, router.query.idx]);
 
+  const fetchPostLike = async (postId: TDocumentId) => {
+    try {
+      const response = await Post.createLikeBookStory({ postId });
+      console.log('좋아요 API : ', response);
+    } catch (error) {
+      console.log('error: ', error);
+    } finally {
+      console.log();
+    }
+  };
+
   React.useEffect(() => {
     if (isSuccess && data) {
       methods.reset({
@@ -87,7 +98,7 @@ export default function BookStoryDetailContainer() {
       {isSuccess && data && data.status === 200 && (
         <>
           <FormProvider {...methods}>
-            <BookStoryDetail data={data.result} />
+            <BookStoryDetail data={data.result} fetchPostLike={fetchPostLike} />
           </FormProvider>
         </>
       )}

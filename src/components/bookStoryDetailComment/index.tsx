@@ -4,12 +4,13 @@ import HorizontalLine from '@components/common/HorizontalLine';
 
 interface IBookStoryDetailComment {
   children: React.ReactNode;
+  totalDoc: number;
 }
 
-export default function BookStoryDetailComment({ children }: IBookStoryDetailComment) {
+export default function BookStoryDetailComment({ children, totalDoc }: IBookStoryDetailComment) {
   return (
     <S.BookStoryDetailComment>
-      <CommentCountSection />
+      <CommentCountSection totalDoc={totalDoc} />
       <HorizontalLine height='1px' />
       {children}
     </S.BookStoryDetailComment>

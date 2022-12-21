@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 export interface IBookStoryLike extends Document {
   postId: Types.ObjectId;
   userId: Types.ObjectId;
-  // commentId: Types.ObjectId;
+  commentId: Types.ObjectId;
 }
 
 const BookStoryLikeSchema: Schema<IBookStoryLike> = new Schema(
@@ -13,10 +13,6 @@ const BookStoryLikeSchema: Schema<IBookStoryLike> = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'BookStoryPost',
     },
-    // commentId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    // },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',

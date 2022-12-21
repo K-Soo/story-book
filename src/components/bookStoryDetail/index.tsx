@@ -7,7 +7,7 @@ import BookDetailView from '@components/bookStoryDetail/BookDetailView';
 import Button from '@components/common/Button';
 import PostConfig from '@components/bookStoryDetail/PostConfig';
 import ProfileSummary from '@components/bookStoryDetail/ProfileSummary';
-import { IPostCardTypes, TDocumentId, BookDetailInfo } from '@types';
+import { IPostCardTypes, TDocumentId, BookDetailInfo, TIsLikeTypes } from '@types';
 import { useSession } from 'next-auth/react';
 import { TSessionTypes } from 'pages/api/auth/[...nextauth]';
 import { useAppDispatch, useAppSelector } from '@store';
@@ -24,9 +24,11 @@ interface IResponseData extends IPostCardTypes {
 }
 interface IBookStoryDetail {
   data: IResponseData;
+  fetchPostLike: (postId: TDocumentId) => Promise<void>;
 }
 
-export default function BookStoryDetail({ data }: IBookStoryDetail) {
+export default function BookStoryDetail({ data, fetchPostLike }: IBookStoryDetail) {
+  console.log('data: ', data);
   const { data: session }: { data: TSessionTypes | null } = useSession();
   const getSession = session?.user?.id as unknown as TDocumentId;
   const dispatch = useAppDispatch();
@@ -35,26 +37,36 @@ export default function BookStoryDetail({ data }: IBookStoryDetail) {
   return (
     <S.BookStoryDetail>
       <WriteTitleBox />
-      {getSession && getSession === data?.author._id && <PostConfig />}
+      {getSession && getSession === data?.author._id && isReadOnly && <PostConfig />}
       <ProfileSummary summaryInfo={{ createdAt: data.createdAt, name: data.author.name }} />
-      {isReadOnly && <BookDetailView bookInfo={data.bookInfo} />}
       <WriteBody />
+      <HorizontalBar margin='0 0 20px 0' />
+      {isReadOnly && <BookDetailView bookInfo={data.bookInfo} />}
+
       {isReadOnly && (
         <>
           <HorizontalBar />
           <BookStoryDetailCommentContainer postId={data._id} />
         </>
       )}
+
       {!isReadOnly && (
         <BottomFixedBox>
           <Button label='수정 완료' margin='0 0 10px 0' />
           <Button label='수정 취소' onClick={() => dispatch(setReadOnly(true))} />
         </BottomFixedBox>
       )}
-      <BottomFixedBox>
-        <Icon name='Heart1' style={{ height: '20px' }} />
-        <Icon name='Heart2' style={{ height: '20px' }} />
-      </BottomFixedBox>
+      {isReadOnly && (
+        <BottomFixedBox>
+          {data.isLike === 'YES' && (
+            <Icon name='Heart1' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
+          )}
+          {data.isLike === 'NO' && (
+            <Icon name='Heart2' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
+          )}
+          <span>{data.likeCount}</span>
+        </BottomFixedBox>
+      )}
     </S.BookStoryDetail>
   );
 }

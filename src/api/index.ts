@@ -51,6 +51,8 @@ export const Post = {
   createUser: (body: any): Promise<any> => requests.post('/api/auth/sign-up', body),
   // 북스토리 글 쓰기
   createWriteBookStory: (body: any): Promise<any> => requests.post('/api/book-story/write', body),
+  // 글 좋아요
+  createLikeBookStory: (body: {postId:TDocumentId}): Promise<any> => requests.post('/api/book-story/like', body),
   // 북스토리 댓글 생성
   createCommentBookStory: (body: IBookStoryCommentRequest): Promise<{status:number}> => requests.post('/api/book-story/comment', body),
 };

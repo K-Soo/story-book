@@ -29,7 +29,6 @@ export const options: Options<NextApiRequest, NextApiResponse> = {
 
 export const authentication = nextConnect<NextApiRequest, NextApiResponse>().use(async (req, res, next) => {
   const session: TSessionTypes | null = await unstable_getServerSession(req, res, authOptions);
-  console.log('session: ', session);
   if (!session) {
     throwError({ status: 401 });
   }

@@ -47,7 +47,6 @@ export default function BookStoryDetailCommentContainer({ postId }: IBookStoryDe
         refetch();
       }
     } catch (error) {
-      console.log('error: ', error);
       toast.error('잠시 후 다시시도해주세요');
     } finally {
       setLoading(false);
@@ -56,7 +55,7 @@ export default function BookStoryDetailCommentContainer({ postId }: IBookStoryDe
 
   return (
     <>
-      <BookStoryDetailComment>
+      <BookStoryDetailComment totalDoc={data?.pages[0].pageInfo.totalDoc}>
         <CommentWrite fetchCreateComment={fetchCreateComment}>
           {loading && <Spinners position='absolute' size={8} />}
           <TextArea readOnly={false} onChange={e => setText(e.target.value)} value={text} />
@@ -79,9 +78,3 @@ export default function BookStoryDetailCommentContainer({ postId }: IBookStoryDe
     </>
   );
 }
-
-const Test = styled.div`
-  background-color: red;
-  width: 200px;
-  height: 200px;
-`;
