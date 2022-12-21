@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/K-Soo/story-book/compare/v0.1.11...v0.1.12) (2022-12-21)
+
+
+### Features
+
+* **comment:** 상세페이지 코멘트 로직 ([8bf9444](https://github.com/K-Soo/story-book/commit/8bf94445eaea6f87e27d599b03a44697b1112159))
+
+
+### Bug Fixes
+
+* 북스토리 댓글 퍼블리싱 영역수정 ([c29614b](https://github.com/K-Soo/story-book/commit/c29614b8bf4ebaff02666f1183ec8db52421f5f9))
+* **bokcomment.tsx:** 무한스크롤 로직수정 ([729059d](https://github.com/K-Soo/story-book/commit/729059d20bfb8455d31fcc42f6138fa4f41c4218))
+* **comment:** 댓글 등록 API 파라미터값 변경 ([d0641ee](https://github.com/K-Soo/story-book/commit/d0641ee1fb07d287f6092a58adc93c94cfe16266))
+
 ### [0.1.11](https://github.com/K-Soo/story-book/compare/v0.1.10...v0.1.11) (2022-12-11)
 
 
