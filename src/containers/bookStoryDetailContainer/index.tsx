@@ -54,7 +54,6 @@ export default function BookStoryDetailContainer() {
     OPTION,
     { id: router.query.idx as string }
   );
-
   console.log('북스토리 상세 API : ', data);
 
   // React.useEffect(() => {
@@ -69,7 +68,7 @@ export default function BookStoryDetailContainer() {
   React.useEffect(() => {
     if (isSuccess && data) {
       methods.reset({
-        title: '@@@@@@@@@@@',
+        title: data.result.title,
         content: data.result.content,
       });
     }

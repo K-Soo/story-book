@@ -21,12 +21,12 @@ export default function PostCard({ item }: IPostCard) {
           {item.bookInfo?.image && <Image src={item.bookInfo.image} alt='' objectFit='cover' layout='fill' />}
         </div>
         <div className='top-wrapper__desc'>
-          <div className='top-wrapper__date-box'>
+          <div className='top-wrapper__desc--date-box'>
             <h2 className=''>{moment(item.createdAt).format('YYYY.MM.DD')}</h2>
             {/* <h2 className=''>{item.rate}</h2> */}
           </div>
           <h2 className='top-wrapper__desc--title'>{item.title}</h2>
-          <p>{item.content}</p>
+          <p className='top-wrapper__desc--content'>{item.content}</p>
         </div>
       </div>
 
@@ -56,24 +56,38 @@ const S = {
       flex-basis: 80%;
       display: flex;
       justify-content: space-between;
-      &__date-box {
-        display: flex;
-        justify-content: end;
-        margin-bottom: 15px;
-      }
       &__image {
         position: relative;
         flex: 1 1 25%;
+        min-width: 100px;
       }
       &__desc {
         flex: 1 1 75%;
         padding: 15px;
+        display: flex;
+        flex-direction: column;
+        &--date-box {
+          display: flex;
+          justify-content: end;
+          margin-bottom: 15px;
+        }
         &--title {
           font-size: 20px;
           font-weight: 600;
+          margin-bottom: 10px;
+        }
+        &--content {
+          max-width: 300px;
+          word-break: break-all;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
         }
       }
     }
+
     .info-wrapper {
       flex-basis: 20%;
       display: flex;
