@@ -33,7 +33,6 @@ const schema = Joi.object({
 export default privateHandler.post(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { error } = schema.validate(req.body);
-    console.log('@@: ', error);
     if (error) {
       throwError({ status: 422, message: error.message });
     }

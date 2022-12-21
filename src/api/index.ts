@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { IBookStoryPostDetailResponse, INaverBookSearchResponse } from '@types';
+import { IBookStoryPostDetailResponse, INaverBookSearchResponse, IBookStoryCommentRequest,TDocumentId } from '@types';
 
 const config: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -36,15 +36,14 @@ const requests = {
 };
 
 export const Get = {
-  getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<INaverBookSearchResponse> => {
-    return requests.get(`/api/search?keyword=${keyword}&page=${page}`);
-  },
+  getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<INaverBookSearchResponse> => requests.get(`/api/search?keyword=${keyword}&page=${page}`),
   getBookDetail: (isbn: string): Promise<any> => requests.get(`/api/books?isbn=${isbn}`),
   // 북스토리 리스트
   getBookStoryList: ({ page }: { page: number }): Promise<any> => requests.get(`/api/book-story?page=${page}`),
   // 북스토리 상세 글
-  // prettier-ignore
   getBookStoryPostDetail: ({ id }: { id: string }): Promise<IBookStoryPostDetailResponse> => requests.get(`/api/book-story/posts/${id}`),
+  // 북스토리 댓글 리스트
+  getBookStoryCommentList: ({ postId, page }: { postId:TDocumentId, page:string }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}&page=${page}`),
 };
 
 export const Post = {
@@ -52,6 +51,8 @@ export const Post = {
   createUser: (body: any): Promise<any> => requests.post('/api/auth/sign-up', body),
   // 북스토리 글 쓰기
   createWriteBookStory: (body: any): Promise<any> => requests.post('/api/book-story/write', body),
+  // 북스토리 댓글 생성
+  createCommentBookStory: (body: IBookStoryCommentRequest): Promise<{status:number}> => requests.post('/api/book-story/comment', body),
 };
 
 export const Put = {
@@ -59,5 +60,5 @@ export const Put = {
 };
 
 export const Delete = {
-  // deleteBasket: (user: string, id: string) => requests.delete(`/api/users/basket/${user}/${id}`,),
+  deleteBookStoryCommentItem: ({ postId }: { postId:TDocumentId }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}`),
 };

@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 import CommentCountSection from '@components/bookStoryDetailComment/CommentCountSection';
-import CommentWrite from '@components/bookStoryDetailComment/CommentWrite';
 import HorizontalLine from '@components/common/HorizontalLine';
 
-interface IBookStoryDetailComment {}
+interface IBookStoryDetailComment {
+  children: React.ReactNode;
+}
 
-export default function BookStoryDetailComment({}: IBookStoryDetailComment) {
+export default function BookStoryDetailComment({ children }: IBookStoryDetailComment) {
   return (
     <S.BookStoryDetailComment>
       <CommentCountSection />
       <HorizontalLine height='1px' />
-      <CommentWrite />
+      {children}
     </S.BookStoryDetailComment>
   );
 }

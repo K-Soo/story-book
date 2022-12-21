@@ -9,6 +9,7 @@ interface ITheme {
 const colors = {
   black: '#000000',
   white: '#FFFFFF',
+  blue1: '#D9F0FE',
   green: '#008000',
   red: '#f44336',
   pink: '#ff5277',
@@ -16,6 +17,7 @@ const colors = {
   base: '#D9B9A3',
   disabled: '#aaaaaa',
   text1: '#868E96',
+  gray1: '#888888',
 };
 
 export type ColorsTypes = typeof colors;

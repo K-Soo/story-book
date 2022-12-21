@@ -2,13 +2,17 @@ import styled from 'styled-components';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 
-export default function ProfileImage() {
+interface IProfileImage {
+  image?: string;
+}
+
+export default function ProfileImage({ image }: IProfileImage) {
   const { data: session, status } = useSession();
 
   return (
     <S.ProfileImage>
       <Image
-        src={session ? (session?.user?.image as string) : '/images/logo/main_logo.png'}
+        src={image ? image : session ? (session?.user?.image as string) : '/images/logo/main_logo.png'}
         alt='프로필 이미지'
         width={35}
         height={35}

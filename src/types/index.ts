@@ -43,6 +43,7 @@ export interface IPostCardTypes {
   updateAt: string;
   views: number;
   status: number;
+  bookInfo: BookDetailInfo;
 }
 export interface IBookStoryPostDetailResponse {
   result: IPostCardTypes;
@@ -61,6 +62,18 @@ export interface INaverBookSearchResponse {
   display: number;
   start: number;
   total: number;
+}
+
+export interface IPageInfo {
+  totalPage: number;
+  totalDoc: number;
+  prev: number | null;
+  next: number | null;
+}
+
+export interface IBookStoryCommentRequest {
+  postId: TDocumentId;
+  content: string;
 }
 
 // export interface IPostCardTypes extends Omit<IBookStoryPostDetailResponse, 'status'> {}

@@ -8,7 +8,6 @@ import useLoading from 'src/hooks/useLoading';
 
 const initSubmitForm = {
   email: '',
-  name: '',
   password: '',
 };
 
