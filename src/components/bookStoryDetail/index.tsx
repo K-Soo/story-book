@@ -17,6 +17,7 @@ import AddBook from '@components/bookStoryWrite/AddBook';
 import BookInfoView from '@components/common/BookInfoView';
 import bookStoryDetailComment from '@components/bookStoryDetailComment';
 import BookStoryDetailCommentContainer from '@containers/bookStoryDetailCommentContainer';
+import Icon from 'src/icons/Icon';
 
 interface IResponseData extends IPostCardTypes {
   bookInfo: BookDetailInfo;
@@ -50,6 +51,10 @@ export default function BookStoryDetail({ data }: IBookStoryDetail) {
           <Button label='수정 취소' onClick={() => dispatch(setReadOnly(true))} />
         </BottomFixedBox>
       )}
+      {/* <BottomFixedBox>
+        <Icon name='Heart1' style={{ height: '20px' }} />
+        <Icon name='Heart2' style={{ height: '20px' }} />
+      </BottomFixedBox> */}
     </S.BookStoryDetail>
   );
 }

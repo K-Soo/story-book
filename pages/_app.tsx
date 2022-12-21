@@ -47,7 +47,7 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLa
               {getLayout(<Component {...pageProps} />)}
               <ToastContainer
                 position="top-center"
-                autoClose={1000}
+                autoClose={800}
                 hideProgressBar
                 newestOnTop={false}
                 closeOnClick

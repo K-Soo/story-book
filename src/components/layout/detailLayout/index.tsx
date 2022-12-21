@@ -6,11 +6,12 @@ import HorizontalLine from '@components/common/HorizontalLine';
 
 interface IDetailLayout {
   children: React.ReactNode;
+  marginBottom?: string;
 }
 
-export default function DetailLayout({ children }: IDetailLayout) {
+export default function DetailLayout({ children, marginBottom }: IDetailLayout) {
   return (
-    <S.DetailLayout>
+    <S.DetailLayout marginBottom={marginBottom}>
       <Header>
         <TitleHeader />
       </Header>
@@ -20,10 +21,11 @@ export default function DetailLayout({ children }: IDetailLayout) {
 }
 
 const S = {
-  DetailLayout: styled.div`
+  DetailLayout: styled.div<{ marginBottom?: string }>`
     min-width: 320px;
     max-width: 500px;
     margin: 0 auto;
+    margin-bottom: ${props => props.marginBottom};
     display: flex;
     flex-direction: column;
     main {

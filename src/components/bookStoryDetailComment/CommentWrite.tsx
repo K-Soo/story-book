@@ -20,7 +20,6 @@ export default function CommentWrite({ fetchCreateComment, children }: ICommentW
         <form onSubmit={fetchCreateComment}>
           {children}
           <div className='text-box__button-wrapper'>
-            <Button label='취소' margin='0 15px 0 0' />
             <Button type='submit' label='등록' />
           </div>
         </form>
@@ -34,7 +33,7 @@ const S = {
     position: relative;
     display: flex;
     justify-content: space-between;
-    margin: 30px 0;
+    margin: 50px 0 80px 0;
     width: 100%;
     padding: 0 10px;
     .text-box {
@@ -48,8 +47,9 @@ const S = {
         display: flex;
         justify-content: flex-end;
         button {
-          height: 30px;
-          width: 70px;
+          height: 25px;
+          width: 60px;
+          font-size: 12px;
         }
       }
     }

@@ -104,8 +104,8 @@ const S = {
           padding-left: 6px;
         }
         svg {
-          height: 20px;
-          width: 20px;
+          height: 16px;
+          width: 16px;
         }
       }
     }
