@@ -43,7 +43,7 @@ export const Get = {
   // 북스토리 상세 글
   getBookStoryPostDetail: ({ id }: { id: string }): Promise<IBookStoryPostDetailResponse> => requests.get(`/api/book-story/posts/${id}`),
   // 북스토리 댓글 리스트
-  getBookStoryCommentList: ({postId,page}: {postId:TDocumentId,page:string}): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}&page=${page}`),
+  getBookStoryCommentList: ({ postId, page }: { postId:TDocumentId, page:string }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}&page=${page}`),
 };
 
 export const Post = {
@@ -60,5 +60,5 @@ export const Put = {
 };
 
 export const Delete = {
-  // deleteBasket: (user: string, id: string) => requests.delete(`/api/users/basket/${user}/${id}`,),
+  deleteBookStoryCommentItem: ({ postId }: { postId:TDocumentId }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}`),
 };

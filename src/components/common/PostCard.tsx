@@ -5,6 +5,7 @@ import HorizontalLine from '@components/common/HorizontalLine';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import moment from 'moment';
+import Icon from 'src/icons/Icon';
 export interface IPostCard {
   item: IPostCardTypes;
 }
@@ -34,8 +35,9 @@ export default function PostCard({ item }: IPostCard) {
         <div className='info-wrapper__user'>
           <span>{item.author.name}</span>
         </div>
-        <div>
-          <span>{item.views}</span>
+        <div className='info-wrapper__wish'>
+          <Icon name='Heart1' />
+          <span className='info-wrapper__wish--count'>{0}</span>
         </div>
       </div>
     </S.PostCard>
@@ -72,7 +74,6 @@ const S = {
         }
       }
     }
-
     .info-wrapper {
       flex-basis: 20%;
       display: flex;
@@ -80,6 +81,19 @@ const S = {
       align-items: center;
       /* background-color: #fff; */
       padding: 0 10px;
+      &__user {
+      }
+      &__wish {
+        display: flex;
+        align-items: center;
+        &--count {
+          padding-left: 6px;
+        }
+        svg {
+          height: 20px;
+          width: 20px;
+        }
+      }
     }
   `,
 };

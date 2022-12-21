@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ProfileImage from '@components/common/ProfileImage';
 import TextArea from '@components/common/TextArea';
 import moment from 'moment';
+import Button from '@components/common/Button';
 import { useSession } from 'next-auth/react';
 import { TSessionTypes } from 'pages/api/auth/[...nextauth]';
 
@@ -13,11 +14,16 @@ interface ICommentItem {
 export default function CommentItem({ item }: ICommentItem) {
   const deferredContent = React.useDeferredValue(item.content);
   const [content, setContent] = React.useState(deferredContent);
+  const [isReadOnly, setIsReadOnly] = React.useState(true);
   const { data: session }: { data: TSessionTypes | null } = useSession();
-  const [isOpenModal, setIsOpenModal] = React.useState(false);
 
-  const onChange = e => {
+  const onChange = React.useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
+  }, []);
+
+  const onClickCancelUpdate = () => {
+    setIsReadOnly(true);
+    setContent(deferredContent);
   };
 
   return (
@@ -30,36 +36,25 @@ export default function CommentItem({ item }: ICommentItem) {
             <p className='top__info--date'>{moment(item.createdAt).format('YYYY.MM.DD')}</p>
           </div>
           {session && item.author._id === session?.user?.id && (
-            <span onClick={() => setIsOpenModal(prev => !prev)}>ICON</span>
-          )}
-          {isOpenModal && (
-            <StyledConfigModal>
-              <li>수정</li>
-              <li>삭제</li>
-            </StyledConfigModal>
+            <div className='top__update'>
+              <button onClick={() => setIsReadOnly(prev => !prev)}>수정</button>
+              <button>삭제</button>
+            </div>
           )}
         </div>
         <div className='bottom'>
-          <TextArea readOnly defaultValue={deferredContent} onChange={onChange} value={content} />
-          <div className='bottom__button-box'>
-            <button>모모</button>
-            <button>다이</button>
-          </div>
+          <TextArea readOnly={isReadOnly} defaultValue={deferredContent} onChange={onChange} value={content} />
+          {!isReadOnly && (
+            <div className='bottom__button-box'>
+              <Button label='취소' onClick={() => onClickCancelUpdate()} />
+              <Button label='수정완료' />
+            </div>
+          )}
         </div>
       </div>
     </S.CommentItem>
   );
 }
-
-const StyledConfigModal = styled.div`
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  background-color: #fff;
-  border: 1px solid #888;
-  top: 15px;
-  right: 0;
-`;
 
 const S = {
   CommentItem: styled.article`
@@ -80,6 +75,19 @@ const S = {
             margin-right: 10px;
           }
         }
+        &__update {
+          button {
+            color: ${props => props.theme.colors.gray1};
+            cursor: pointer;
+            font-size: 12px;
+            :hover {
+              text-decoration: underline;
+            }
+          }
+          button:first-child {
+            margin-right: 8px;
+          }
+        }
       }
       .bottom {
         &__content {
@@ -87,8 +95,15 @@ const S = {
           width: 100%;
         }
         &__button-box {
+          margin-top: 5px;
           display: flex;
-          justify-content: flex-end;
+          justify-content: space-between;
+          button {
+            width: 60px;
+            height: 25px;
+            font-weight: 400;
+            font-size: 13px;
+          }
         }
       }
     }

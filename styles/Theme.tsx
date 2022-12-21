@@ -17,6 +17,7 @@ const colors = {
   base: '#D9B9A3',
   disabled: '#aaaaaa',
   text1: '#868E96',
+  gray1: '#888888',
 };
 
 export type ColorsTypes = typeof colors;

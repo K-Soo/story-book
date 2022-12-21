@@ -16,7 +16,6 @@ export default function CommentWrite({ fetchCreateComment, children }: ICommentW
   return (
     <S.CommentWrite>
       {!session && <LoginOnlyCover />}
-      <ProfileImage />
       <div className='text-box'>
         <form onSubmit={fetchCreateComment}>
           {children}

@@ -52,7 +52,7 @@ export default function BookStoryDetailCommentContainer({ postId }: IBookStoryDe
     <>
       <BookStoryDetailComment>
         <CommentWrite fetchCreateComment={fetchCreateComment}>
-          <TextArea onChange={e => setText(e.target.value)} value={text} />
+          <TextArea readOnly={false} onChange={e => setText(e.target.value)} value={text} />
         </CommentWrite>
         {isError && <div>error</div>}
         {isLoading && <div>loading</div>}

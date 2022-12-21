@@ -13,11 +13,7 @@ import FilterBox from '@components/common/FilterBox';
 import Skeleton from '@components/common/Skeleton';
 import { queryKeys } from '@constants';
 
-interface IBookStoryContainer {}
-
-export default function BookStoryContainer({}: IBookStoryContainer) {
-  const router = useRouter();
-
+export default function BookStoryContainer() {
   const requestData = {
     url: Get.getBookStoryList,
     queryKey: [queryKeys.BOOK_STORY_LIST],

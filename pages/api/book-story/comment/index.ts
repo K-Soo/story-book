@@ -9,13 +9,13 @@ import Joi from 'joi';
 import mongoose from 'mongoose';
 import { IPageInfo } from '@types';
 
-const postSchema = {
+const getListSchema = {
   postId: Joi.string().required(),
   page: Joi.string().required(),
 };
 
-const schema = Joi.object({
-  ...postSchema,
+const postSchema = Joi.object({
+  postId: Joi.string().required(),
   _id: Joi.string().required(),
   content: Joi.string().required(),
 });
@@ -23,7 +23,7 @@ const schema = Joi.object({
 const handler = nextConnect(middleware.options);
 
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { error } = Joi.object(postSchema).validate(req.query);
+  const { error } = Joi.object(getListSchema).validate(req.query);
   if (error) {
     throwError({ status: 422, message: error.message });
   }
@@ -77,7 +77,7 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
 
 handler.use(middleware.authentication).post(async (req: NextApiRequest, res: NextApiResponse) => {
   await db.connect();
-  const { error } = schema.validate(req.body);
+  const { error } = postSchema.validate(req.body);
   if (error) {
     throwError({ status: 422, message: error.message });
   }

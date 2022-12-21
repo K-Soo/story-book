@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import HorizontalLine from '@components/common/HorizontalLine';
+import HorizontalBar from '@components/common/HorizontalBar';
 import WriteTitleBox from '@components/bookStoryWrite/WriteTitleBox';
 import WriteBody from '@components/bookStoryWrite/WriteBody';
 import BookDetailView from '@components/bookStoryDetail/BookDetailView';
@@ -40,7 +40,7 @@ export default function BookStoryDetail({ data }: IBookStoryDetail) {
       <WriteBody />
       {isReadOnly && (
         <>
-          <HorizontalLine />
+          <HorizontalBar />
           <BookStoryDetailCommentContainer postId={data._id} />
         </>
       )}
