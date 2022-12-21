@@ -51,10 +51,10 @@ export default function BookStoryDetail({ data }: IBookStoryDetail) {
           <Button label='수정 취소' onClick={() => dispatch(setReadOnly(true))} />
         </BottomFixedBox>
       )}
-      {/* <BottomFixedBox>
+      <BottomFixedBox>
         <Icon name='Heart1' style={{ height: '20px' }} />
         <Icon name='Heart2' style={{ height: '20px' }} />
-      </BottomFixedBox> */}
+      </BottomFixedBox>
     </S.BookStoryDetail>
   );
 }

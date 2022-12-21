@@ -21,7 +21,7 @@ interface IBookStoryDetailCommentContainer {
 
 export default function BookStoryDetailCommentContainer({ postId }: IBookStoryDetailCommentContainer) {
   const [text, setText] = React.useState('');
-  const [loading, setLoading] = useLoading(true);
+  const [loading, setLoading] = useLoading();
 
   const requestData = {
     url: Get.getBookStoryCommentList,
