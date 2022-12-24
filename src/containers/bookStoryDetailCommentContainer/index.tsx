@@ -7,7 +7,7 @@ import { TDocumentId } from '@types';
 import useInfiniteScroll from '@hooks/useInfiniteScroll';
 import { queryKeys } from '@constants';
 import InfiniteScroll from 'react-infinite-scroller';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TextArea from '@components/common/TextArea';
 import styled from 'styled-components';

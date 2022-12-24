@@ -13,6 +13,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { queryKeys } from '@constants';
 import usePublicQuery from '@hooks/usePublicQuery';
 import { UseQueryOptions } from 'react-query';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const schema = yup
   .object({
@@ -48,7 +50,7 @@ export default function BookStoryDetailContainer() {
     cacheTime: 0,
   };
 
-  const { data, isSuccess, isLoading, isError } = usePublicQuery(
+  const { data, isSuccess, isLoading, isError, refetch } = usePublicQuery(
     [queryKeys.BOOK_STORY_DETAIL_POST, router.query.idx as string],
     Get.getBookStoryPostDetail,
     OPTION,
@@ -69,8 +71,14 @@ export default function BookStoryDetailContainer() {
     try {
       const response = await Post.createLikeBookStory({ postId });
       console.log('좋아요 API : ', response);
+      if (response.status !== 200) {
+        throw new Error('잠시 후 다시시도해주세요');
+      }
+      refetch();
     } catch (error) {
-      console.log('error: ', error);
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
     } finally {
       console.log();
     }

@@ -28,7 +28,6 @@ interface IBookStoryDetail {
 }
 
 export default function BookStoryDetail({ data, fetchPostLike }: IBookStoryDetail) {
-  console.log('data: ', data);
   const { data: session }: { data: TSessionTypes | null } = useSession();
   const getSession = session?.user?.id as unknown as TDocumentId;
   const dispatch = useAppDispatch();

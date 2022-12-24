@@ -4,17 +4,30 @@ import styled from 'styled-components';
 // import { LayoutTable, LayoutHorizontal } from 'src/icons/svg';
 import LayoutTable from 'src/icons/svg/layoutTable.svg';
 import Icon from 'src/icons/Icon';
+import { TDisplayTypes } from '@containers/bookStoryContainer';
 
-export default function FilterBox() {
+interface IFilterBox {
+  displayType: TDisplayTypes;
+  handleChangeSort: (e) => void;
+  handleChangeDisplay: (e) => void;
+}
+
+export default function FilterBox({ handleChangeSort, handleChangeDisplay, displayType }: IFilterBox) {
   return (
     <S.FilterBox>
       {/* <LayoutTable /> */}
       {/* <img src='/src/icons/svg/arrow-left.svg' alt='asd' /> */}
-      tttt
       {/* <LayoutHorizontal /> */}
-      <Icon name='LayoutHorizontal' />
+      {displayType === 'VERTICAL' ? (
+        <Icon name='LayoutHorizontal' onClick={handleChangeDisplay} />
+      ) : (
+        <Icon name='LayoutTable' onClick={handleChangeDisplay} />
+      )}
       {/* <LayoutTable /> */}
-      <div></div>
+      <select onChange={handleChangeSort}>
+        <option value='DESC'>최신순</option>
+        <option value='ASC'>오래된순</option>
+      </select>
     </S.FilterBox>
   );
 }
@@ -25,6 +38,8 @@ const S = {
     display: flex;
     align-items: center;
     background-color: #fff;
+    display: flex;
+    justify-content: space-between;
     img {
       width: 50px;
       height: 50px;

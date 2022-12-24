@@ -39,7 +39,7 @@ export const Get = {
   getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<INaverBookSearchResponse> => requests.get(`/api/search?keyword=${keyword}&page=${page}`),
   getBookDetail: (isbn: string): Promise<any> => requests.get(`/api/books?isbn=${isbn}`),
   // 북스토리 리스트
-  getBookStoryList: ({ page }: { page: number }): Promise<any> => requests.get(`/api/book-story?page=${page}`),
+  getBookStoryList: ({ page ,sort}: { page: number, sort:string }): Promise<any> => requests.get(`/api/book-story?page=${page}&sort=${sort}`),
   // 북스토리 상세 글
   getBookStoryPostDetail: ({ id }: { id: string }): Promise<IBookStoryPostDetailResponse> => requests.get(`/api/book-story/posts/${id}`),
   // 북스토리 댓글 리스트
@@ -52,7 +52,7 @@ export const Post = {
   // 북스토리 글 쓰기
   createWriteBookStory: (body: any): Promise<any> => requests.post('/api/book-story/write', body),
   // 글 좋아요
-  createLikeBookStory: (body: {postId:TDocumentId}): Promise<any> => requests.post('/api/book-story/like', body),
+  createLikeBookStory: (body: {postId:TDocumentId}): Promise<{status:number}> => requests.post('/api/book-story/like', body),
   // 북스토리 댓글 생성
   createCommentBookStory: (body: IBookStoryCommentRequest): Promise<{status:number}> => requests.post('/api/book-story/comment', body),
 };
