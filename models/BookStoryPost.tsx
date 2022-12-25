@@ -6,6 +6,7 @@ export interface IBookStoryPostDocument extends Document {
   title: string;
   content: string;
   author: Types.ObjectId;
+  likes: Types.ObjectId;
   views: number;
   rate: number;
   comments: [];
@@ -49,6 +50,10 @@ const BookStoryPostSchema: Schema<IBookStoryPostDocument> = new Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
+    },
+    likes: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'BookStoryLike',
     },
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'BookStoryComment' }],
   },

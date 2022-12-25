@@ -10,6 +10,7 @@ export interface IBookStoryLike extends Document {
 const BookStoryLikeSchema: Schema<IBookStoryLike> = new Schema(
   {
     postId: {
+      index: true,
       type: mongoose.Schema.Types.ObjectId,
       ref: 'BookStoryPost',
     },

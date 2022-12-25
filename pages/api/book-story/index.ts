@@ -7,6 +7,7 @@ import Joi from 'joi';
 import nextConnect from 'next-connect';
 import { middleware } from 'lib/nextConnect';
 import { throwError } from 'lib';
+import BookStoryLike from 'models/BookStoryLike';
 
 const bookStoryQuerySchema = Joi.object({
   page: Joi.string().required(),
@@ -24,20 +25,26 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   await db.connect();
+
   const totalDoc = await BookStoryPost.countDocuments({});
 
   const items = await BookStoryPost.find()
     .sort({ createdAt: req.query.sort === 'DESC' ? -1 : 1 })
     .skip(limit * (page - 1))
     .limit(limit)
-    .populate('author');
+    .populate('author')
+    .lean()
+    .then(async docs => {
+      let values = [];
+
+      for (const doc of docs) {
+        const counted = await BookStoryLike.countDocuments({ postId: doc._id });
+        values.push({ ...doc, likeCount: counted });
+      }
+      return values;
+    });
 
   const totalPage = Math.ceil(totalDoc / limit);
-
-  const options = {
-    page: 1,
-    limit: 10,
-  };
 
   const pageInfo: IPageInfo = {
     totalPage,
@@ -69,7 +76,9 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
     },
     status: 200,
   };
+
   await db.disconnect();
+
   res.status(200).json(responseData);
 });
 

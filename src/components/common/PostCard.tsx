@@ -40,7 +40,7 @@ export default function PostCard({ item, displayType }: IPostCard) {
         </div>
         <div className='info-wrapper__wish'>
           <Icon name='Heart1' />
-          <span className='info-wrapper__wish--count'>{0}</span>
+          <span className='info-wrapper__wish--count'>{item.likeCount}</span>
         </div>
       </div>
     </S.PostCard>
@@ -56,14 +56,12 @@ const S = {
     flex-direction: column;
     background-color: #fff;
     cursor: pointer;
-
     ${props =>
       props.displayType === 'FLEX' &&
       css`
         margin: 5px;
         border-radius: 10px;
       `}
-
     .top-wrapper {
       flex-basis: 80%;
       ${props =>
@@ -92,7 +90,6 @@ const S = {
           css`
             flex: 1 1 25%;
             min-width: 100px;
-            border: 1px solid red;
           `}
       }
       &__desc {

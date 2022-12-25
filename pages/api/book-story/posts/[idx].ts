@@ -21,7 +21,6 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   const _id = mongoose.Types.ObjectId.createFromHexString(query.idx);
 
   const session: TSessionTypes | null = await unstable_getServerSession(req, res, authOptions);
-  console.log('session: ', session);
 
   const bookStoryPost = await BookStoryPost.findById(_id).populate('author').lean();
   const bookStoryLikeCount = await BookStoryLike.find({ postId: _id }).then(docs => {
