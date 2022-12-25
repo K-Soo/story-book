@@ -2,12 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IHorizontalLine {
+  className?: string;
   height?: string;
   margin?: string;
 }
 
-export default React.memo(function HorizontalLine({ height, margin }: IHorizontalLine) {
-  return <S.HorizontalLine height={height} margin={margin} />;
+export default React.memo(function HorizontalLine({ className, height, margin }: IHorizontalLine) {
+  return <S.HorizontalLine className={className} height={height} margin={margin} />;
 });
 
 const S = {

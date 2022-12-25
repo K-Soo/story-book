@@ -40,9 +40,9 @@ export default React.memo(function MenuList({ className }: IMenuList) {
         </li>
 
         <li className='list__item'>
-          <Link href='/user' passHref replace>
+          <Link href='/member' passHref replace>
             <a>
-              {/* <User /> */}
+              <User />
               <span className='list__item--label'>프로필</span>
             </a>
           </Link>

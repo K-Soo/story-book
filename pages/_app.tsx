@@ -6,6 +6,7 @@ import wrapper from '@store';
 import GlobalStyle from 'styles/GlobalStyle';
 import { NextPage } from 'next';
 import { SessionProvider } from 'next-auth/react';
+import { useAppSelector } from '@store';
 import { Session } from 'next-auth';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from 'src/reactQuery/queryClient';

@@ -24,7 +24,7 @@ interface IResponseData extends IPostCardTypes {
 }
 interface IBookStoryDetail {
   data: IResponseData;
-  fetchPostLike: (postId: TDocumentId) => Promise<void>;
+  fetchPostLike: (postId: TDocumentId) => Promise<{ payload: any; type: 'modal/setIsOpenModal' } | undefined>;
 }
 
 export default function BookStoryDetail({ data, fetchPostLike }: IBookStoryDetail) {
@@ -57,18 +57,29 @@ export default function BookStoryDetail({ data, fetchPostLike }: IBookStoryDetai
       )}
       {isReadOnly && (
         <BottomFixedBox>
-          {data.isLike === 'YES' && (
-            <Icon name='Heart1' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
-          )}
-          {data.isLike === 'NO' && (
-            <Icon name='Heart2' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
-          )}
-          <span>{data.likeCount}</span>
+          <StyledCountBox>
+            {data.isLike === 'YES' && (
+              <Icon name='Heart1' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
+            )}
+            {data.isLike === 'NO' && (
+              <Icon name='Heart2' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
+            )}
+            <span className='count-text'>{data.likeCount}</span>
+          </StyledCountBox>
         </BottomFixedBox>
       )}
     </S.BookStoryDetail>
   );
 }
+
+const StyledCountBox = styled.div`
+  display: flex;
+  align-items: center;
+  .count-text {
+    padding-top: 2px;
+    font-weight: 500;
+  }
+`;
 
 const S = {
   BookStoryDetail: styled.section`

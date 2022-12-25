@@ -25,6 +25,7 @@ const S = {
     z-index: 1;
     margin: 0 auto;
     text-align: center;
+    background-color: red;
     ${props =>
       props.position === 'absolute' &&
       css`

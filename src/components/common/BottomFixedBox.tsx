@@ -11,6 +11,7 @@ export default function BottomFixedBox({ children }: IBottomFixedBox) {
 const S = {
   BottomFixedBox: styled.div`
     box-shadow: 0 -5px 20px 1px #f5f5f5;
+    z-index: 10;
     background-color: #fff;
     padding: 15px;
     position: fixed;

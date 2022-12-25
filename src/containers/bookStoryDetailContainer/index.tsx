@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import BookStoryDetail from '@components/bookStoryDetail';
 import { useAppDispatch, useAppSelector } from '@store';
 import { asyncGetFetchPost, setInitialState } from '@slice/bookStoryPostSlice';
+import { setIsOpenModal } from '@slice/modalSlice';
 import { useForm, FormProvider } from 'react-hook-form';
 import Skeleton from '@components/common/Skeleton';
 import { BookStoryFormValue, TDocumentId } from '@types';
@@ -14,6 +15,8 @@ import { queryKeys } from '@constants';
 import usePublicQuery from '@hooks/usePublicQuery';
 import { UseQueryOptions } from 'react-query';
 import { toast } from 'react-toastify';
+import CustomModal from '@components/common/CustomModal';
+import { useSession } from 'next-auth/react';
 import 'react-toastify/dist/ReactToastify.css';
 
 const schema = yup
@@ -24,8 +27,10 @@ const schema = yup
   .required();
 
 export default function BookStoryDetailContainer() {
+  const { data: session } = useSession();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { isOpen } = useAppSelector(state => state.modal);
   const methods = useForm<BookStoryFormValue>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -68,6 +73,9 @@ export default function BookStoryDetailContainer() {
   // }, [dispatch, router.query.idx]);
 
   const fetchPostLike = async (postId: TDocumentId) => {
+    if (!session) {
+      return dispatch(setIsOpenModal({ isOpen: true }));
+    }
     try {
       const response = await Post.createLikeBookStory({ postId });
       console.log('좋아요 API : ', response);
@@ -106,6 +114,7 @@ export default function BookStoryDetailContainer() {
       {isSuccess && data && data.status === 200 && (
         <>
           <FormProvider {...methods}>
+            {isOpen && <CustomModal />}
             <BookStoryDetail data={data.result} fetchPostLike={fetchPostLike} />
           </FormProvider>
         </>
