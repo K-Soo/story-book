@@ -9,6 +9,11 @@ import HorizontalBar from '@components/common/HorizontalBar';
 import MemberTap from '@components/member/MemberTap';
 import Profile from '@components/member/Profile';
 import Spinners from '@components/common/Spinners';
+import dynamic from 'next/dynamic';
+
+// const PostPreviewContainer = dynamic(() => import('@containers/memberContainer/postPreviewContainer'), { ssr: false });
+
+// const PostPreviewContainer = React.lazy(() => import('@containers/memberContainer/postPreviewContainer'));
 
 type TSectionTypes = 'PROFILE' | 'LIBRARY';
 
@@ -45,7 +50,6 @@ export default function MemberContainer() {
           <PostPreviewContainer />
         </React.Suspense>
       )}
-      console.log('session: ', session);
       {section === 'LIBRARY' && <LibraryContainer />}
       <HorizontalBar />
       <Button label='로그아웃' onClick={onClickLogOut} />

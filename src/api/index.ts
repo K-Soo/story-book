@@ -36,6 +36,7 @@ const requests = {
 };
 
 export const Get = {
+  // 네이버 도서 검색
   getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<INaverBookSearchResponse> => requests.get(`/api/search?keyword=${keyword}&page=${page}`),
   getBookDetail: (isbn: string): Promise<any> => requests.get(`/api/books?isbn=${isbn}`),
   // 북스토리 리스트
@@ -44,6 +45,8 @@ export const Get = {
   getBookStoryPostDetail: ({ id }: { id: string }): Promise<IBookStoryPostDetailResponse> => requests.get(`/api/book-story/posts/${id}`),
   // 북스토리 댓글 리스트
   getBookStoryCommentList: ({ postId, page }: { postId:TDocumentId, page:string }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}&page=${page}`),
+  // 유저 like 4
+  getMemberPreviewLikes: ({ page ,sort}: { page: number, sort:string }): Promise<any> => requests.get(`/api/members/preview/like`),
 };
 
 export const Post = {

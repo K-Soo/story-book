@@ -11,7 +11,7 @@ export default function Profile({}: IProfile) {
   return (
     <S.Profile>
       <div className='image-box'>
-        <Image src={session?.user?.image} objectFit='contain' width='60' height='60' alt='프로필 이미지' />
+        {/* <Image src={session?.user?.image as string} objectFit='contain' width='60' height='60' alt='프로필 이미지' /> */}
       </div>
       <div className='content-box'>
         <strong>{session?.user?.name}</strong>

@@ -2,11 +2,11 @@ import { useInfiniteQuery } from 'react-query';
 import axios from 'axios';
 
 interface TUseInfiniteScroll {
-  url: (...args: any[]) => Promise<any>;
+  url: (...args: any) => Promise<any>;
   requestBody?: object;
   queryKey: string[];
   option?: object;
-  type: string;
+  type?: string;
 }
 
 export default function useInfiniteScroll({ url, requestBody, queryKey, option, type }: TUseInfiniteScroll) {

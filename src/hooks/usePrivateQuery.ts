@@ -1,9 +1,14 @@
-import { useQuery } from "react-query";
+import { useQuery } from 'react-query';
 
-export default function usePrivateQuery(key: string[], urlFc: any, options: object, requestData: any) {
+interface IUsePrivateQuery {
+  queryKey: string[];
+  requestAPI: any;
+  options?: object;
+  requestData: any;
+}
 
+export default function usePrivateQuery({ queryKey, requestAPI, options, requestData }: IUsePrivateQuery) {
   const OPTION = {
-    // enabled: !!user,
     suspense: false,
     keepPreviousData: true,
     retry: 0,
@@ -11,15 +16,11 @@ export default function usePrivateQuery(key: string[], urlFc: any, options: obje
   };
 
   const fetcher = async () => {
-    const data = await urlFc(requestData);
+    const data = await requestAPI(requestData);
     return data;
   };
 
-  const { data, isLoading, isSuccess, isError, isFetching, refetch } = useQuery(
-    key,
-    fetcher,
-    OPTION
-  );
+  const { data, isLoading, isSuccess, isError, isFetching, refetch } = useQuery(queryKey, fetcher, OPTION);
 
   return {
     data,
@@ -27,6 +28,6 @@ export default function usePrivateQuery(key: string[], urlFc: any, options: obje
     isSuccess,
     isError,
     isFetching,
-    refetch
-  }
-};
+    refetch,
+  };
+}

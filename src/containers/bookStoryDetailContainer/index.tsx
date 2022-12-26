@@ -41,6 +41,7 @@ export default function BookStoryDetailContainer() {
 
   React.useEffect(() => {
     dispatch(setInitialState());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // console.log('getValues: ', methods.getValues());

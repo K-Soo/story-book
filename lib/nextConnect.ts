@@ -33,6 +33,7 @@ export const authentication = nextConnect<NextApiRequest, NextApiResponse>().use
     throwError({ status: 401 });
   }
   if (session) {
+    console.log('session: ', session);
     req.body._id = session.user?.id;
   }
   next();
