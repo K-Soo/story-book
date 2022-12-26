@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.13](https://github.com/K-Soo/story-book/compare/v0.1.12...v0.1.13) (2022-12-26)
+
+
+### Features
+
+* 프로필 게시글 API ([82adf28](https://github.com/K-Soo/story-book/commit/82adf28935f9d9bb1bd21a050e757093404ebf96))
+* **api/book-story/like:** 좋아요 기능 API 및 프론트 로직 ([ac27c6d](https://github.com/K-Soo/story-book/commit/ac27c6da514efb8dd2f519e9e5b9a3b8456a47fa))
+* **pages/api/book-story:** 리스트 좋아요 개수 가져오기 ([767bf18](https://github.com/K-Soo/story-book/commit/767bf18423b64ef8ace0955eff312d5aa6b2dc90))
+* **postcard.tsx:** 북스토리 리스트 필터정렬 ([a34f9a1](https://github.com/K-Soo/story-book/commit/a34f9a1e0d3811c040753638eb9f3e66cc9638f0))
+* **profile.tsx:** 프로필 컴포넌트 퍼블리싱 ([85da0d9](https://github.com/K-Soo/story-book/commit/85da0d96f178feef4c714e8c52d40282ae4c8b2e))
+
+
+### Bug Fixes
+
+* 회원가입 추가정보입력 ([9bf60c2](https://github.com/K-Soo/story-book/commit/9bf60c2d0ad6913f41538f421d769108a42f1436))
+* **postcard.tsx:** 콘텐트 영역 css ([c04daef](https://github.com/K-Soo/story-book/commit/c04daef7776fad2001678ccbf011f5d9fc52a42c))
+* **useloading.ts:** loading hook ([f2ea1e5](https://github.com/K-Soo/story-book/commit/f2ea1e51b687549628e92633dc5b269fbf46be18))
+
 ### [0.1.12](https://github.com/K-Soo/story-book/compare/v0.1.11...v0.1.12) (2022-12-21)
 
 
