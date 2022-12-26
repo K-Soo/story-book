@@ -1,25 +1,41 @@
 import React from 'react';
-import styled from 'styled-components';
-import BookStory from '@components/bookStory';
-import Search from '@components/search';
-import { useRouter } from 'next/router';
-import { Get } from '@api';
-import { useAppDispatch, useAppSelector } from '@store';
 import useInfiniteScroll from '@hooks/useInfiniteScroll';
+import { IPostCardTypes } from '@types';
+import { Get } from '@api';
+import { queryKeys } from '@constants';
+import BookStory from '@components/bookStory';
 import InfiniteScroll from 'react-infinite-scroller';
 import PostCard from '@components/common/PostCard';
-import { IPostCardTypes } from '@types';
 import FilterBox from '@components/common/FilterBox';
 import Skeleton from '@components/common/Skeleton';
-import { queryKeys } from '@constants';
+
+export type TSortTypes = 'DESC' | 'ASC';
+export type TDisplayTypes = 'VERTICAL' | 'FLEX';
 
 export default function BookStoryContainer() {
+  const [sort, setSort] = React.useState<TSortTypes>('DESC');
+  const [displayType, setDisplayType] = React.useState<TDisplayTypes>('VERTICAL');
+
   const requestData = {
     url: Get.getBookStoryList,
-    queryKey: [queryKeys.BOOK_STORY_LIST],
+    queryKey: [queryKeys.BOOK_STORY_LIST, sort],
     option: {},
+    requestBody: { sort },
     type: 'DEFAULT',
   };
+
+  const handleChangeSort = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSort(e.target.value as TSortTypes);
+  }, []);
+
+  const handleChangeDisplay = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDisplayType(prev => {
+      if (prev === 'VERTICAL') {
+        return 'FLEX';
+      }
+      return 'VERTICAL';
+    });
+  }, []);
 
   const { data, isLoading, isFetching, isSuccess, hasNextPage, fetchNextPage, isError } =
     useInfiniteScroll(requestData);
@@ -27,13 +43,18 @@ export default function BookStoryContainer() {
 
   return (
     <>
-      <FilterBox />
+      <FilterBox
+        displayType={displayType}
+        handleChangeSort={handleChangeSort}
+        handleChangeDisplay={handleChangeDisplay}
+      />
       {isLoading && <Skeleton.list />}
       {/* TODO : 에러처리 */}
       {isError && <div>error</div>}
       {isSuccess && data && (
-        <BookStory>
+        <BookStory displayType={displayType}>
           <InfiniteScroll
+            className='scroll-container'
             loadMore={() => {
               fetchNextPage();
             }}
@@ -41,7 +62,9 @@ export default function BookStoryContainer() {
             threshold={250}
           >
             {data.pages.map(pageData => {
-              return pageData.items.map((item: IPostCardTypes) => <PostCard key={item.createdAt} item={item} />);
+              return pageData.items.map((item: IPostCardTypes) => (
+                <PostCard key={item.createdAt} item={item} displayType={displayType} />
+              ));
             })}
           </InfiniteScroll>
         </BookStory>

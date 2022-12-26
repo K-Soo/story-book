@@ -24,7 +24,7 @@ export default function BookCard({ item }: IBookCard) {
   const router = useRouter();
 
   const handleClickBook = (isbn: string) => {
-    router.push(`/book/${isbn}`);
+    router.push(`/books/${isbn}`);
   };
 
   return (

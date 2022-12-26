@@ -1,5 +1,4 @@
-interface Error {
-  name: string;
+interface IError {
   message?: string;
   status?: number;
 }
@@ -16,8 +15,10 @@ const HTTP_STATUS_MESSAGES: { [index: number]: string } = {
   503: 'Temporary Unavailable',
 } as const;
 
-export const throwError = ({ message, status = 500 }: { message?: string; status?: number }) => {
-  const error: Error = new Error(message ?? HTTP_STATUS_MESSAGES[status]);
+export const throwError = ({ message, status = 500 }: IError) => {
+  console.log('status: ', status);
+  console.log('message: ', message);
+  const error: IError = new Error(message ?? HTTP_STATUS_MESSAGES[status]);
   error.status = status;
   throw error;
 };

@@ -81,7 +81,7 @@ const oneLineList = () => {
 
 const Wrapper = styled.ul`
   background-color: #fff;
-  padding: 0 10px;
+  padding: 10px;
 `;
 
 const Card = styled.li`

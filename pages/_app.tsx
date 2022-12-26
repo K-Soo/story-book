@@ -6,6 +6,7 @@ import wrapper from '@store';
 import GlobalStyle from 'styles/GlobalStyle';
 import { NextPage } from 'next';
 import { SessionProvider } from 'next-auth/react';
+import { useAppSelector } from '@store';
 import { Session } from 'next-auth';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from 'src/reactQuery/queryClient';
@@ -47,7 +48,7 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLa
               {getLayout(<Component {...pageProps} />)}
               <ToastContainer
                 position="top-center"
-                autoClose={1000}
+                autoClose={800}
                 hideProgressBar
                 newestOnTop={false}
                 closeOnClick

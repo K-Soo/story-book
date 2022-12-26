@@ -3,16 +3,21 @@ import { useRouter } from 'next/router';
 import BookStoryDetail from '@components/bookStoryDetail';
 import { useAppDispatch, useAppSelector } from '@store';
 import { asyncGetFetchPost, setInitialState } from '@slice/bookStoryPostSlice';
+import { setIsOpenModal } from '@slice/modalSlice';
 import { useForm, FormProvider } from 'react-hook-form';
 import Skeleton from '@components/common/Skeleton';
-import { BookStoryFormValue } from '@types';
-import { Get } from '@api';
+import { BookStoryFormValue, TDocumentId } from '@types';
+import { Get, Post } from '@api';
 import { DevTool } from '@hookform/devtools';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { queryKeys } from '@constants';
 import usePublicQuery from '@hooks/usePublicQuery';
 import { UseQueryOptions } from 'react-query';
+import { toast } from 'react-toastify';
+import CustomModal from '@components/common/CustomModal';
+import { useSession } from 'next-auth/react';
+import 'react-toastify/dist/ReactToastify.css';
 
 const schema = yup
   .object({
@@ -22,8 +27,10 @@ const schema = yup
   .required();
 
 export default function BookStoryDetailContainer() {
+  const { data: session } = useSession();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { isOpen } = useAppSelector(state => state.modal);
   const methods = useForm<BookStoryFormValue>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -34,6 +41,7 @@ export default function BookStoryDetailContainer() {
 
   React.useEffect(() => {
     dispatch(setInitialState());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // console.log('getValues: ', methods.getValues());
@@ -48,13 +56,12 @@ export default function BookStoryDetailContainer() {
     cacheTime: 0,
   };
 
-  const { data, isSuccess, isLoading, isError } = usePublicQuery(
+  const { data, isSuccess, isLoading, isError, refetch } = usePublicQuery(
     [queryKeys.BOOK_STORY_DETAIL_POST, router.query.idx as string],
     Get.getBookStoryPostDetail,
     OPTION,
     { id: router.query.idx as string }
   );
-
   console.log('북스토리 상세 API : ', data);
 
   // React.useEffect(() => {
@@ -66,10 +73,30 @@ export default function BookStoryDetailContainer() {
   //   }
   // }, [dispatch, router.query.idx]);
 
+  const fetchPostLike = async (postId: TDocumentId) => {
+    if (!session) {
+      return dispatch(setIsOpenModal({ isOpen: true }));
+    }
+    try {
+      const response = await Post.createLikeBookStory({ postId });
+      console.log('좋아요 API : ', response);
+      if (response.status !== 200) {
+        throw new Error('잠시 후 다시시도해주세요');
+      }
+      refetch();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    } finally {
+      console.log();
+    }
+  };
+
   React.useEffect(() => {
     if (isSuccess && data) {
       methods.reset({
-        title: '@@@@@@@@@@@',
+        title: data.result.title,
         content: data.result.content,
       });
     }
@@ -88,7 +115,8 @@ export default function BookStoryDetailContainer() {
       {isSuccess && data && data.status === 200 && (
         <>
           <FormProvider {...methods}>
-            <BookStoryDetail data={data.result} />
+            {isOpen && <CustomModal />}
+            <BookStoryDetail data={data.result} fetchPostLike={fetchPostLike} />
           </FormProvider>
         </>
       )}

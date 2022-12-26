@@ -10,5 +10,26 @@ import LayoutTable from './layoutTable.svg';
 import LayoutHorizontal from './layoutHorizontal.svg';
 import Check from './check.svg';
 import Heart1 from './heart1.svg';
+import Heart2 from './heart2.svg';
+import BottomArrow1 from './bottomArrow1.svg';
+import Bookmark1 from './bookmark1.svg';
+import Bookmark2 from './bookmark2.svg';
 
-export { Search, User, Book, Home, Close, Pen, ArrowLeft, Kakao, LayoutTable, LayoutHorizontal, Check, Heart1 };
+export {
+  Search,
+  User,
+  Book,
+  Home,
+  Close,
+  Pen,
+  ArrowLeft,
+  Kakao,
+  LayoutTable,
+  LayoutHorizontal,
+  Check,
+  Heart1,
+  Heart2,
+  BottomArrow1,
+  Bookmark1,
+  Bookmark2,
+};

@@ -6,7 +6,7 @@ import useLoading from '@hooks/useLoading';
 
 export default function SignInPage() {
   const router = useRouter();
-  const { loading, setLoading } = useLoading(true);
+  const [loading, setLoading] = useLoading(true);
   console.log('loading: ', loading);
 
   React.useEffect(() => {

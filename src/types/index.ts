@@ -33,6 +33,9 @@ export type TAuthor = {
   email: string | null;
   emailVerified: string | null;
 };
+
+export type TIsLikeTypes = 'YES' | 'NO';
+
 export interface IPostCardTypes {
   _id: TDocumentId;
   author: TAuthor;
@@ -43,6 +46,8 @@ export interface IPostCardTypes {
   updateAt: string;
   views: number;
   status: number;
+  isLike: TIsLikeTypes;
+  likeCount: number;
   bookInfo: BookDetailInfo;
 }
 export interface IBookStoryPostDetailResponse {

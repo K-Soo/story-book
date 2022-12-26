@@ -75,7 +75,7 @@ const Path: IPath = {
     label: '주문상세',
   },
   USER: {
-    path: '/user',
+    path: '/member',
     label: '프로필',
   },
   INTEREST: {

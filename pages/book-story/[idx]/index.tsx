@@ -8,6 +8,6 @@ export default function BookStoryDetailPage() {
   return <BookStoryDetailContainer />;
 }
 
-// BookStoryDetailPage.getLayout = (page: React.ReactElement) => {
-//   return <DetailLayout>{page}</DetailLayout>;
-// };
+BookStoryDetailPage.getLayout = (page: React.ReactElement) => {
+  return <DetailLayout marginBottom='50px'>{page}</DetailLayout>;
+};

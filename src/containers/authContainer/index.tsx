@@ -12,7 +12,7 @@ const initSubmitForm = {
 };
 
 export default function AuthContainer() {
-  const { loading, setLoading } = useLoading();
+  const [loading, setLoading] = useLoading();
   const router = useRouter();
   const [submitForm, setSubmitForm] = React.useState(initSubmitForm);
 

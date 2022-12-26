@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-interface ICommentCountSection {}
+interface ICommentCountSection {
+  totalDoc: number;
+}
 
-export default function CommentCountSection({}: ICommentCountSection) {
+export default function CommentCountSection({ totalDoc }: ICommentCountSection) {
   return (
     <S.CommentCountSection>
-      <p>댓글 30</p>
-      <button>댓글 모두보기</button>
+      <p>댓글 {totalDoc}</p>
     </S.CommentCountSection>
   );
 }

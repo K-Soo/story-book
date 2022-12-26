@@ -40,7 +40,7 @@ export default function BookStoryWriteSearchContainer() {
     dispatch(setBookDetailInfo(data));
     router.back();
     // dispatch(setOpenBookSearchForm(false));
-  },[dispatch]);
+  },[dispatch, router]);
 
   console.log('검색결과 API : ', data);
 

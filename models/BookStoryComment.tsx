@@ -1,6 +1,7 @@
 import { Schema, model, models, Types, Model, PaginateModel } from 'mongoose';
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
+import BookStoryPost from 'models/BookStoryPost';
 
 export interface IBookStoryComment extends Document {
   content: string;
@@ -15,7 +16,7 @@ const BookStoryCommentSchema: Schema<IBookStoryComment> = new Schema(
   {
     post: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'BookStoryPost',
+      ref: BookStoryPost,
     },
     content: {
       type: String,

@@ -44,6 +44,7 @@ export default function BookStoryWriteContainer() {
   React.useEffect(() => {
     // dispatch(setInitialState());
     dispatch(setReadOnly(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // TODO : API 통신 로직 작성
