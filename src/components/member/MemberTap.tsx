@@ -1,12 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { TSectionTypes } from '@containers/memberContainer';
 
 interface IMemberTap {
   handleClickSection: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  section: TSectionTypes;
 }
 
-export default function MemberTap({ handleClickSection }: IMemberTap) {
+export default function MemberTap({ handleClickSection, section }: IMemberTap) {
   return (
-    <S.MemberTap>
+    <S.MemberTap section={section}>
       <ul className='list'>
         <li className='list__item'>
           <button className='list__item--profile' value='PROFILE' onClick={handleClickSection}>
@@ -14,7 +16,7 @@ export default function MemberTap({ handleClickSection }: IMemberTap) {
           </button>
         </li>
         <li className='list__item'>
-          <button className='list__item-library' value='LIBRARY' onClick={handleClickSection}>
+          <button className='list__item--library' value='LIBRARY' onClick={handleClickSection}>
             서재
           </button>
         </li>
@@ -24,7 +26,7 @@ export default function MemberTap({ handleClickSection }: IMemberTap) {
 }
 
 const S = {
-  MemberTap: styled.div`
+  MemberTap: styled.div<{ section: TSectionTypes }>`
     height: 40px;
     margin-bottom: 10px;
     .list {
@@ -38,14 +40,22 @@ const S = {
         display: flex;
         justify-content: center;
         height: 100%;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #e5e8eb;
         &--profile {
           width: 100%;
-          border-bottom: 1px solid #000;
+          ${props =>
+            props.section === 'PROFILE' &&
+            css`
+              border-bottom: 1px solid #000;
+            `}
         }
         &--library {
           width: 100%;
-          border-bottom: 1px solid #000;
+          ${props =>
+            props.section === 'LIBRARY' &&
+            css`
+              border-bottom: 1px solid #000;
+            `}
         }
       }
     }

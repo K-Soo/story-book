@@ -16,7 +16,11 @@ export default function Footer() {
       <S.Footer>
         <MenuList className='menu-list' />
         <div className='write'>
-          <WriteButton className='write__button' handleClickWriteButton={handleClickWriteButton} />
+          <WriteButton
+            className='write__button'
+            isOpenModal={isOpenModal}
+            handleClickWriteButton={handleClickWriteButton}
+          />
         </div>
       </S.Footer>
     </>

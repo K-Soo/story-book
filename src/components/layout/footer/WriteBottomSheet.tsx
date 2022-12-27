@@ -4,7 +4,6 @@ import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet';
 import Link from 'next/link';
 import HorizontalLine from '@components/common/HorizontalLine';
 import { useRouter } from 'next/router';
-import 'react-spring-bottom-sheet/dist/style.css';
 
 interface IWriteBottomSheet {
   isOpenModal: boolean;

@@ -10,22 +10,20 @@ import MemberTap from '@components/member/MemberTap';
 import Profile from '@components/member/Profile';
 import Spinners from '@components/common/Spinners';
 import dynamic from 'next/dynamic';
+import PreviewListContainer from '@containers/memberContainer/PreviewListContainer';
 
 // const PostPreviewContainer = dynamic(() => import('@containers/memberContainer/postPreviewContainer'), { ssr: false });
 
 // const PostPreviewContainer = React.lazy(() => import('@containers/memberContainer/postPreviewContainer'));
 
-type TSectionTypes = 'PROFILE' | 'LIBRARY';
+export type TSectionTypes = 'PROFILE' | 'LIBRARY';
 
 export default function MemberContainer() {
   const [section, setSection] = React.useState<TSectionTypes>('PROFILE');
   const { data: session, status } = useSession();
-  console.log('status: ', status);
-  console.log('session: ', session);
   const router = useRouter();
-  const loading = status === 'loading';
 
-  if (!loading && !session) {
+  if (status !== 'loading' && !session) {
     router.push('/sign-in');
   }
 
@@ -42,15 +40,16 @@ export default function MemberContainer() {
   return (
     <>
       <Member>
-        <MemberTap handleClickSection={handleClickSection} />
+        <MemberTap handleClickSection={handleClickSection} section={section} />
         <Profile />
       </Member>
-      {section === 'PROFILE' && (
+      {/* {section === 'PROFILE' && (
         <React.Suspense fallback={<Spinners />}>
           <PostPreviewContainer />
         </React.Suspense>
       )}
-      {section === 'LIBRARY' && <LibraryContainer />}
+      {section === 'LIBRARY' && <LibraryContainer />} */}
+      <PreviewListContainer />
       <HorizontalBar />
       <Button label='로그아웃' onClick={onClickLogOut} />
     </>

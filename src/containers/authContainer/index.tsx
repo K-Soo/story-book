@@ -5,7 +5,7 @@ import { Post } from 'src/api';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import useLoading from 'src/hooks/useLoading';
-
+import useReturnTo from '@hooks/useReturnTo';
 const initSubmitForm = {
   email: '',
   password: '',
@@ -15,6 +15,7 @@ export default function AuthContainer() {
   const [loading, setLoading] = useLoading();
   const router = useRouter();
   const [submitForm, setSubmitForm] = React.useState(initSubmitForm);
+  const { prevPath } = useReturnTo();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -42,7 +43,7 @@ export default function AuthContainer() {
         // };
 
         if (!result?.error) {
-          router.replace('/');
+          router.replace(prevPath);
         }
       }
     } catch (error) {

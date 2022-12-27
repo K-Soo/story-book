@@ -15,6 +15,7 @@ export default function PostPreviewContainer({}: IPostPreviewContainer) {
   };
 
   const { data, isError, isLoading } = usePrivateQuery(requestData);
+
   console.log('data: ', data);
 
   return (

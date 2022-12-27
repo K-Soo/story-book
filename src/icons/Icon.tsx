@@ -21,17 +21,9 @@ function Icon({ name, className, style, onClick }: IconProps) {
 }
 
 export default styled(Icon)`
-  /* pointer-events: none; */
-  color: #bdbdbd;
   width: 35px;
   height: 35px;
+  color: #8a8c8f;
   cursor: pointer;
-  ${props =>
-    props.TosIcon &&
-    css`
-      color: #bdbdbd;
-      &:hover {
-        background: #2a2b2d;
-      }
-    `}
+  fill: currentColor;
 `;

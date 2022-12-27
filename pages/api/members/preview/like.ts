@@ -18,7 +18,6 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const findDocs = await BookStoryLike.find({ userId: session?.user?.id }).populate('postId');
-  console.log('findDocs: ', findDocs);
   await db.disconnect();
 
   res.status(200).json({ status: 200 });
