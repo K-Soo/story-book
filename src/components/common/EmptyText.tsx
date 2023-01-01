@@ -17,6 +17,10 @@ export default function EmptyText({ text = DEFAULT_TEXT }: IEmptyText) {
 const S = {
   EmptyText: styled.div`
     text-align: center;
+    width: 100%;
     margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
 };

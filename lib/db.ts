@@ -13,7 +13,6 @@ export async function connect() {
     if (connection.isConnected === 1) {
       console.log('connection: ✅', connection);
       console.log('use previous connection ✅');
-
       return;
     }
     await mongoose.disconnect();

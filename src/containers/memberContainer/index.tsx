@@ -1,20 +1,15 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import LibraryContainer from '@containers/memberContainer/libraryContainer';
-import PostPreviewContainer from '@containers/memberContainer/postPreviewContainer';
 import Member from '@components/member';
 import Button from '@components/common/Button';
 import HorizontalBar from '@components/common/HorizontalBar';
 import MemberTap from '@components/member/MemberTap';
 import Profile from '@components/member/Profile';
 import Spinners from '@components/common/Spinners';
-import dynamic from 'next/dynamic';
 import PreviewListContainer from '@containers/memberContainer/PreviewListContainer';
-
-// const PostPreviewContainer = dynamic(() => import('@containers/memberContainer/postPreviewContainer'), { ssr: false });
-
-// const PostPreviewContainer = React.lazy(() => import('@containers/memberContainer/postPreviewContainer'));
+import LibraryListContainer from '@containers/memberContainer/LibraryListContainer';
+import styled from 'styled-components';
 
 export type TSectionTypes = 'PROFILE' | 'LIBRARY';
 
@@ -29,7 +24,7 @@ export default function MemberContainer() {
 
   function onClickLogOut(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    signOut();
+    signOut({ callbackUrl: '/' });
   }
 
   const handleClickSection = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -38,20 +33,34 @@ export default function MemberContainer() {
   };
 
   return (
-    <>
-      <Member>
-        <MemberTap handleClickSection={handleClickSection} section={section} />
-        <Profile />
-      </Member>
-      {/* {section === 'PROFILE' && (
-        <React.Suspense fallback={<Spinners />}>
-          <PostPreviewContainer />
-        </React.Suspense>
-      )}
-      {section === 'LIBRARY' && <LibraryContainer />} */}
-      <PreviewListContainer />
-      <HorizontalBar />
-      <Button label='로그아웃' onClick={onClickLogOut} />
-    </>
+    <StyledWrapper>
+      <div>
+        <Member>
+          <MemberTap handleClickSection={handleClickSection} section={section} />
+          <Profile />
+        </Member>
+        {section === 'PROFILE' && <PreviewListContainer />}
+        {section === 'LIBRARY' && <LibraryListContainer />}
+      </div>
+      <div className='button-box'>
+        <HorizontalBar margin='0 0 20px 0' />
+        <Button className='button-box__styled-button' label='로그아웃' onClick={onClickLogOut} />
+      </div>
+    </StyledWrapper>
   );
 }
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  .button-box {
+    padding: 20px 10px;
+    &__styled-button {
+      background-color: #fff;
+      color: ${props => props.theme.colors.base};
+      border: 1px solid ${props => props.theme.colors.base};
+    }
+  }
+`;

@@ -88,7 +88,6 @@ export const authOptions: NextAuthOptions = {
 
         const isValid = await user.checkPassword(password, user.password);
         if (!isValid) return null;
-
         return { email: user.email } as any;
       },
     }),
@@ -98,6 +97,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),
+
   pages: {
     signIn: '/sign-in',
   },

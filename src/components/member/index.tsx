@@ -11,5 +11,6 @@ export default function Member({ children }: IMember) {
 const S = {
   Member: styled.div`
     background-color: #fff;
+    margin-bottom: 30px;
   `,
 };

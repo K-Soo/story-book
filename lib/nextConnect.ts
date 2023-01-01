@@ -28,14 +28,14 @@ export const options: Options<NextApiRequest, NextApiResponse> = {
 };
 
 export const authentication = nextConnect<NextApiRequest, NextApiResponse>().use(async (req, res, next) => {
+  if (req.method !== 'POST') {
+    return throwError({ status: 405 });
+  }
   const session: TSessionTypes | null = await unstable_getServerSession(req, res, authOptions);
   if (!session) {
-    throwError({ status: 401 });
+    return throwError({ status: 401 });
   }
-  if (session) {
-    console.log('session: ', session);
-    req.body._id = session.user?.id;
-  }
+  req.body._id = session.user?.id;
   next();
 });
 

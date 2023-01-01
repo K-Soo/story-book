@@ -1,6 +1,6 @@
 import React from 'react';
 import BookDetail from '@components/bookDetail';
-import { Get } from '@api';
+import { Get, Put } from '@api';
 import { useRouter } from 'next/router';
 import usePublicQuery from '@hooks/usePublicQuery';
 import { queryKeys } from '@constants';
@@ -28,14 +28,8 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
   };
 
   const OPTION = {
-    suspense: false,
-    keepPreviousData: true,
-    retry: 0,
     staleTime: 900000,
     cacheTime: 1500000,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
     select: selectFc,
   };
 
@@ -45,6 +39,17 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
     OPTION,
     router.query.id as string
   );
+
+  const fetchUpdateWishBook = async () => {
+    try {
+      const response = await Put.updateWishBook({ form: data.result });
+      console.log('읽고싶은책 API : ', response);
+    } catch (error) {
+      console.log('error: ', error);
+    } finally {
+      console.log();
+    }
+  };
 
   console.log('도서상세 API : ', data);
 
@@ -57,7 +62,7 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
       {isSuccess && (
         <BookDetail data={data.result}>
           <BookInformation data={data.result} />
-          <BookControlBox />
+          <BookControlBox fetchUpdateWishBook={fetchUpdateWishBook} />
         </BookDetail>
       )}
     </>

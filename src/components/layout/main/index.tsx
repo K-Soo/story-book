@@ -14,7 +14,7 @@ export default function Main({ children }: IMain) {
 
   return (
     <S.Main isShowFooter={isShowFooter} pathname={router.pathname}>
-      {children}
+      <div className='page'>{children}</div>
     </S.Main>
   );
 }
@@ -27,13 +27,14 @@ const S = {
         min-height: 100vh;
         padding: 0px;
       `};
-    /* border: 1px solid #000; */
     margin-bottom: ${props => (props.isShowFooter ? '60px' : '0')};
     min-height: ${props => (props.isShowFooter ? 'calc(100vh - 60px - 45px)' : 'calc(100vh - 45px)')};
-    /* min-height: calc(100vh - 45px); */
     overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-color: #eff1f3;
+    display: flex;
+    background-color: #fff;
+    /* background-color: #eff1f3; */
+    .page {
+      width: 100%;
+    }
   `,
 };

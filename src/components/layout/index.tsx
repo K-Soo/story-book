@@ -7,6 +7,7 @@ import path from 'src/constants/path';
 import { useRouter } from 'next/router';
 import { useAppSelector, useAppDispatch } from '@store';
 import Toolbar from '@components/layout/header/Toolbar';
+import WriteBottomSheet from '@components/layout/footer/WriteBottomSheet';
 
 interface ILayout {
   children: React.ReactNode;

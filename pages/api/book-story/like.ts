@@ -21,13 +21,12 @@ handler.use(middleware.authentication).post(async (req: NextApiRequest, res: Nex
     throwError({ status: 422, message: error.message });
   }
 
-  const exist = await BookStoryLike.findOneAndDelete({ userId: req.body._id });
+  const exist = await BookStoryLike.findOneAndDelete({ userId: req.body._id, postId: req.body.postId });
   if (!exist) {
     const bookStoryLike: HydratedDocument<IBookStoryLike> = new BookStoryLike({
       postId: req.body.postId,
       userId: req.body._id,
     });
-
     await bookStoryLike.save();
   }
   await db.disconnect();

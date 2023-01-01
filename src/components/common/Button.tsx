@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface IButton {
+  className?: string;
   margin?: string;
   label: string;
   color?: string;
@@ -20,12 +21,14 @@ export default function Button({
   onClick,
   color,
   width,
+  className,
   backGround,
   fontSize,
   disabled = false,
 }: IButton) {
   return (
     <S.Button
+      className={className}
       type={type}
       margin={margin}
       disabled={disabled}

@@ -40,22 +40,34 @@ const S = {
         display: flex;
         justify-content: center;
         height: 100%;
-        border-bottom: 1px solid #e5e8eb;
         &--profile {
           width: 100%;
+          color: ${props => props.theme.colors.base};
           ${props =>
-            props.section === 'PROFILE' &&
-            css`
-              border-bottom: 1px solid #000;
-            `}
+            props.section === 'PROFILE'
+              ? css`
+                  border-bottom: 2px solid ${props => props.theme.colors.base};
+                  font-weight: 600;
+                `
+              : css`
+                  border-bottom: 1px solid #e5e8eb;
+                  color: #888;
+                `}
         }
+
         &--library {
           width: 100%;
+          color: ${props => props.theme.colors.base};
           ${props =>
-            props.section === 'LIBRARY' &&
-            css`
-              border-bottom: 1px solid #000;
-            `}
+            props.section === 'LIBRARY'
+              ? css`
+                  border-bottom: 2px solid ${props => props.theme.colors.base};
+                  font-weight: 600;
+                `
+              : css`
+                  border-bottom: 1px solid #e5e8eb;
+                  color: #888;
+                `}
         }
       }
     }

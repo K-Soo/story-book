@@ -15,6 +15,7 @@ const BookStoryLikeSchema: Schema<IBookStoryLike> = new Schema(
       ref: 'BookStoryPost',
     },
     userId: {
+      index: true,
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },

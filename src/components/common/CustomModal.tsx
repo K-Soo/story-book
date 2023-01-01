@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import DarkBackground from '@components/common/DarkBackground';
 import { useAppDispatch, useAppSelector } from '@store';
 import { setInitModal } from '@slice/modalSlice';
@@ -7,14 +7,14 @@ import Icon from 'src/icons/Icon';
 import Button from '@components/common/Button';
 import { useRouter } from 'next/router';
 
-export default function CustomModal() {
+export default function CustomModal({ isOpen }: { isOpen: boolean }) {
   const { text } = useAppSelector(state => state.modal);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   return (
     <DarkBackground>
-      <S.CustomModal>
+      <S.CustomModal isOpen={isOpen}>
         <div className='close-box'>
           <Icon name='Close' onClick={() => dispatch(setInitModal())} style={{ width: '24px', height: '24px' }} />
         </div>
@@ -33,7 +33,7 @@ export default function CustomModal() {
 }
 
 const S = {
-  CustomModal: styled.div`
+  CustomModal: styled.div<{ isOpen: boolean }>`
     width: 300px;
     background-color: #fff;
     border-radius: 5px;
@@ -44,6 +44,16 @@ const S = {
     justify-content: center;
     align-items: center;
     text-align: center;
+    animation: changed 0.3s linear;
+    will-change: animation;
+    @keyframes changed {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
     .close-box {
       width: 100%;
       font-size: 0;
@@ -72,7 +82,7 @@ const S = {
         height: 30px;
         width: 80px;
         font-size: 13px;
-        border: 2px solid ${props => props.theme.colors.base};
+        border: 1px solid ${props => props.theme.colors.base};
         color: ${props => props.theme.colors.base};
         font-weight: 600;
       }
