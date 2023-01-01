@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Toolbar from '@components/layout/header/Toolbar';
 
 interface IHeader {
   children?: React.ReactNode;
@@ -17,6 +16,9 @@ const S = {
     position: sticky;
     top: 0;
     background-color: #fff;
-    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
   `,
 };

@@ -11,7 +11,6 @@ export default function PreviewList({ children }: IPreviewList) {
 
 const S = {
   PreviewList: styled.div`
-    border: 1px solid #000;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

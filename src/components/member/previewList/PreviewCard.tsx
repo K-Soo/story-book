@@ -11,7 +11,6 @@ interface IPreviewCard {
 }
 
 export default function PreviewCard({ item }: IPreviewCard) {
-  console.log('item: ', item);
   const router = useRouter();
   return (
     <S.PreviewCard onClick={() => router.push(`/book-story/${item.postId._id}`)}>
@@ -37,6 +36,10 @@ const S = {
     border-radius: 10px;
     display: flex;
     cursor: pointer;
+    box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
+    &:hover {
+      transform: scale(1.01);
+    }
     .image {
       position: relative;
       flex: 1 1 35%;

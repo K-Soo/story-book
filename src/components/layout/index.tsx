@@ -6,8 +6,11 @@ import Main from '@components/layout/main';
 import path from 'src/constants/path';
 import { useRouter } from 'next/router';
 import { useAppSelector, useAppDispatch } from '@store';
-import Toolbar from '@components/layout/header/Toolbar';
 import WriteBottomSheet from '@components/layout/footer/WriteBottomSheet';
+import Logo from '@components/layout/header/Logo';
+import UserConfig from '@components/layout/header/UserConfig';
+import GoBack from '@components/layout/header/GoBack';
+import HorizontalLine from '@components/common/HorizontalLine';
 
 interface ILayout {
   children: React.ReactNode;
@@ -21,7 +24,9 @@ export default function Layout({ children }: ILayout) {
     <>
       <S.Layout pathname={router.pathname}>
         <Header>
-          <Toolbar />
+          <GoBack />
+          <Logo />
+          <UserConfig />
         </Header>
         <Main>{children}</Main>
         {isShowFooter && <Footer />}
@@ -36,9 +41,7 @@ const S = {
     max-width: 500px;
     width: 100%;
     margin: 0 auto;
-    /* border: 1px solid green; */
     /* min-height: calc(100vh - 60px); */
     /* min-height: calc(100vh); */
-    /* border: 1px solid red; */
   `,
 };
