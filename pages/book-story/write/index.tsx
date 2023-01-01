@@ -8,5 +8,5 @@ export default function WritePage() {
 }
 
 WritePage.getLayout = (page: React.ReactElement) => {
-  return <DetailLayout>{page}</DetailLayout>;
+  return <DetailLayout title='글쓰기'>{page}</DetailLayout>;
 };
