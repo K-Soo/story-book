@@ -35,7 +35,7 @@ export default function PreviewListContainer() {
         {isError && <div>error</div>}
         {isSuccess && data && (
           <>
-            {data.result.length === 0 && <EmptyText text='데이터가 없어요!' />}
+            {data.result.length === 0 && <EmptyText text='해당 게시글이 없어요' />}
             {data.result.map((postData: TPostData) => (
               <PreviewCard key={postData.createdAt} item={postData} />
             ))}

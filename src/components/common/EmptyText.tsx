@@ -22,5 +22,7 @@ const S = {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #888;
+    font-weight: 600;
   `,
 };

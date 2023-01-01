@@ -21,9 +21,7 @@ function Icon({ name, className, style, onClick }: IconProps) {
 }
 
 export default styled(Icon)`
-  width: 35px;
-  height: 35px;
-  /* color: #000; */
+  width: 30px;
   color: ${props => props.theme.colors.base};
   cursor: pointer;
   fill: currentColor;
