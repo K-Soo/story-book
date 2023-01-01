@@ -9,5 +9,9 @@ export default function BookStoryDetailPage() {
 }
 
 BookStoryDetailPage.getLayout = (page: React.ReactElement) => {
-  return <DetailLayout marginBottom='50px'>{page}</DetailLayout>;
+  return (
+    <DetailLayout title='' marginBottom='50px'>
+      {page}
+    </DetailLayout>
+  );
 };

@@ -11,5 +11,5 @@ export default function BookStoryWriteSearchPage() {
 }
 
 BookStoryWriteSearchPage.getLayout = (page: React.ReactElement) => {
-  return <DetailLayout>{page}</DetailLayout>;
+  return <DetailLayout title='검색'>{page}</DetailLayout>;
 };
