@@ -4,8 +4,6 @@ import MenuList from '@components/layout/footer/MenuList';
 import WriteButton from '@components/layout/footer/WriteButton';
 import WriteBottomSheet from '@components/layout/footer/WriteBottomSheet';
 
-interface IFooter {}
-
 export default function Footer() {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const handleClickWriteButton = React.useCallback(() => setIsOpenModal(prev => !prev), []);
@@ -16,7 +14,11 @@ export default function Footer() {
       <S.Footer>
         <MenuList className='menu-list' />
         <div className='write'>
-          <WriteButton className='write__button' handleClickWriteButton={handleClickWriteButton} />
+          <WriteButton
+            className='write__button'
+            isOpenModal={isOpenModal}
+            handleClickWriteButton={handleClickWriteButton}
+          />
         </div>
       </S.Footer>
     </>

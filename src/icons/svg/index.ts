@@ -14,6 +14,8 @@ import Heart2 from './heart2.svg';
 import BottomArrow1 from './bottomArrow1.svg';
 import Bookmark1 from './bookmark1.svg';
 import Bookmark2 from './bookmark2.svg';
+import Trash from './trash.svg';
+import Share from './share.svg';
 
 export {
   Search,
@@ -32,4 +34,6 @@ export {
   BottomArrow1,
   Bookmark1,
   Bookmark2,
+  Trash,
+  Share,
 };

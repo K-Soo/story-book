@@ -7,6 +7,7 @@ import Image from 'next/image';
 import moment from 'moment';
 import Icon from 'src/icons/Icon';
 import { TDisplayTypes } from '@containers/bookStoryContainer';
+import ProfileImage from '@components/common/ProfileImage';
 
 export interface IPostCard {
   item: IPostCardTypes;
@@ -14,13 +15,14 @@ export interface IPostCard {
 }
 
 export default function PostCard({ item, displayType }: IPostCard) {
+  console.log('item: ', item);
   const router = useRouter();
 
   return (
     <S.PostCard onClick={() => router.push(`/book-story/${item._id}`)} displayType={displayType}>
       <div className='top-wrapper'>
         <div className='top-wrapper__image'>
-          {item.bookInfo?.image && <Image src={item.bookInfo.image} alt='' objectFit='cover' layout='fill' />}
+          {item.bookInfo?.image && <Image src={item.bookInfo.image} alt='책' objectFit='cover' layout='fill' />}
         </div>
         {displayType === 'VERTICAL' && (
           <div className='top-wrapper__desc'>
@@ -36,11 +38,16 @@ export default function PostCard({ item, displayType }: IPostCard) {
       <HorizontalLine height='1px' />
       <div className='info-wrapper'>
         <div className='info-wrapper__user'>
-          <span>{item.author.name}</span>
+          <ProfileImage image={item.author.image} height={24} width={24} margin='0 10px 0 0' />
+          <span className='info-wrapper__user--name'>{item.author.name}</span>
         </div>
         <div className='info-wrapper__wish'>
-          <Icon name='Heart1' />
-          <span className='info-wrapper__wish--count'>{item.likeCount}</span>
+          {item.likeCount !== 0 && (
+            <>
+              <Icon name='Heart1' />
+              <span className='info-wrapper__wish--count'>{item.likeCount}</span>
+            </>
+          )}
         </div>
       </div>
     </S.PostCard>
@@ -56,6 +63,7 @@ const S = {
     flex-direction: column;
     background-color: #fff;
     cursor: pointer;
+    padding: 0 10px;
     ${props =>
       props.displayType === 'FLEX' &&
       css`
@@ -94,7 +102,8 @@ const S = {
       }
       &__desc {
         flex: 1 1 75%;
-        padding: 15px;
+        padding: 10px 0;
+        margin-left: 10px;
         display: flex;
         flex-direction: column;
         &--date-box {
@@ -103,16 +112,19 @@ const S = {
           margin-bottom: 15px;
         }
         &--title {
-          font-size: 20px;
-          font-weight: 600;
+          font-size: 16px;
+          font-weight: 500;
           margin-bottom: 10px;
+          color: #222;
         }
         &--content {
           max-width: 300px;
           word-break: break-all;
           overflow: hidden;
           text-overflow: ellipsis;
+          font-size: 12px;
           display: -webkit-box;
+          color: #888;
           -webkit-line-clamp: 5;
           -webkit-box-orient: vertical;
         }
@@ -124,17 +136,28 @@ const S = {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      /* background-color: #fff; */
       padding: 0 10px;
       &__user {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        &--name {
+          font-weight: 500;
+          &::before {
+            content: 'by';
+            margin-right: 3px;
+            color: #888;
+          }
+        }
       }
       &__wish {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         &--count {
           padding-left: 6px;
         }
         svg {
+          font-size: 0;
           height: 16px;
           width: 16px;
         }

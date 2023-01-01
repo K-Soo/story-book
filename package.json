@@ -3,7 +3,7 @@
   "version": "0.1.14",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "release": "standard-version",
@@ -35,6 +35,7 @@
     "next-react-svg": "1.1.3",
     "next-redux-wrapper": "^8.0.0",
     "npm": "^9.1.3",
+    "query-string": "^8.1.0",
     "rc-rate": "^2.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

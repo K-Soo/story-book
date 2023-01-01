@@ -16,8 +16,6 @@ const HTTP_STATUS_MESSAGES: { [index: number]: string } = {
 } as const;
 
 export const throwError = ({ message, status = 500 }: IError) => {
-  console.log('status: ', status);
-  console.log('message: ', message);
   const error: IError = new Error(message ?? HTTP_STATUS_MESSAGES[status]);
   error.status = status;
   throw error;

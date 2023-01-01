@@ -12,6 +12,7 @@ const S = {
   LoginOnlyCover: styled.div`
     z-index: 1;
     position: absolute;
+    visibility: hidden;
     top: 0;
     left: 0;
     right: 0;

@@ -26,7 +26,7 @@ export default function MainSlider({}: IMainSlider) {
               src='/images/main/ivana-cajina-asuyh-_ZX54-unsplash.jpg'
               alt='best_pick4'
               layout='fill'
-              objectFit='cover' // Scale your image down to fit into the container
+              objectFit='cover'
             />
           </div>
           <div className='item-card'>

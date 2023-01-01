@@ -5,6 +5,7 @@ import Input from '@components/common/Input';
 import Button from '@components/common/Button';
 // import { Search,Kakao } from "src/icons/svg";
 import { signIn } from 'next-auth/react';
+import Icon from 'src/icons/Icon';
 
 interface IAuth {
   onSubmitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -21,7 +22,7 @@ export default function Auth({ onSubmitHandler, onChange, children, submitForm }
     <S.Auth>
       <div className='wrapper'>
         <div className='close-box'>
-          <i onClick={() => router.push('/')}>X</i>
+          <Icon name='Close' onClick={() => router.push('/')} />
         </div>
         <div className='banner-box'>
           <h1>배너</h1>
@@ -29,18 +30,17 @@ export default function Auth({ onSubmitHandler, onChange, children, submitForm }
         <form className='form-box' onSubmit={onSubmitHandler}>
           {pathname === '/sign-up' && <Input name='name' label='닉네임' onChange={onChange} />}
           <Input name='email' onChange={onChange} label='이메일' value={submitForm.email} />
-          {/* <Input
+          <Input
             name='password'
-            type="password"
+            type='password'
             label='비밀번호'
             onChange={onChange}
             value={submitForm.password}
-            icon={<Search />}
-          /> */}
-          {router.pathname === '/sign-in' && <div>아이디 저장</div>}
-          <Button type='submit' label={pathname === '/sign-up' ? '가입' : '로그인'} />
+            // icon={<Icon name='Close' />}
+          />
+          <Button disabled={false} type='submit' label={pathname === '/sign-up' ? '가입' : '로그인'} />
+
           <KakaoButton onClick={() => signIn('kakao')}>
-            {/* <Kakao /> */}
             <span className='kakao-text'>카카오로 시작하기</span>
           </KakaoButton>
         </form>
@@ -58,9 +58,11 @@ const KakaoButton = styled.button`
   align-items: center;
   border-radius: 5px;
   margin-top: 15px;
+  font-size: 16px;
   &:hover {
     transition: all 0.3s;
-    box-shadow: 0 2px 2px 0 rgb(156 39 176 / 14%), 0 3px 1px -2px rgb(156 39 176 / 20%), 0 1px 5px 0 rgb(156 39 176 / 12%);
+    box-shadow: 0 2px 2px 0 rgb(156 39 176 / 14%), 0 3px 1px -2px rgb(156 39 176 / 20%),
+      0 1px 5px 0 rgb(156 39 176 / 12%);
   }
   .kakao-text {
     padding-left: 10px;

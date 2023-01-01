@@ -52,8 +52,6 @@ export default function BookStoryDetailContainer() {
   const OPTION: UseQueryOptions = {
     enabled: router.query.idx ? true : false,
     retry: 0,
-    staleTime: 0,
-    cacheTime: 0,
   };
 
   const { data, isSuccess, isLoading, isError, refetch } = usePublicQuery(
@@ -115,7 +113,7 @@ export default function BookStoryDetailContainer() {
       {isSuccess && data && data.status === 200 && (
         <>
           <FormProvider {...methods}>
-            {isOpen && <CustomModal />}
+            {isOpen && <CustomModal isOpen={isOpen} />}
             <BookStoryDetail data={data.result} fetchPostLike={fetchPostLike} />
           </FormProvider>
         </>

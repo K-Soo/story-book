@@ -46,7 +46,7 @@ export const Get = {
   // 북스토리 댓글 리스트
   getBookStoryCommentList: ({ postId, page }: { postId:TDocumentId, page:string }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}&page=${page}`),
   // 유저 like 4
-  getMemberPreviewLikes: ({ page ,sort}: { page: number, sort:string }): Promise<any> => requests.get(`/api/members/preview/like`),
+  getMemberPreviewLikes: ({ type }: { type: string }): Promise<any> => requests.get(`/api/members/preview?type=${type}`),
 };
 
 export const Post = {
@@ -62,6 +62,8 @@ export const Post = {
 
 export const Put = {
   // updateBasket: (body: any) => requests.put('/api/users/basket', body),
+  // 읽고싶은책
+  updateWishBook: (body: any): Promise<{status:number}> => requests.put('/api/members/library/wish', body),
 };
 
 export const Delete = {

@@ -1,5 +1,5 @@
+import { useSession } from 'next-auth/react';
 import { useQuery } from 'react-query';
-
 interface IUsePrivateQuery {
   queryKey: string[];
   requestAPI: any;
@@ -8,10 +8,10 @@ interface IUsePrivateQuery {
 }
 
 export default function usePrivateQuery({ queryKey, requestAPI, options, requestData }: IUsePrivateQuery) {
+  const { data: session } = useSession();
+
   const OPTION = {
-    suspense: false,
-    keepPreviousData: true,
-    retry: 0,
+    enabled: !!session,
     ...options,
   };
 

@@ -22,13 +22,13 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
   logger: {
     error(code, metadata) {
-      // console.log('auth error: ', code, metadata);
+      console.log('auth error: ', code, metadata);
     },
     warn(code) {
-      // console.log('auth warn : ', code);
+      console.log('auth warn : ', code);
     },
     debug(code, metadata) {
-      // console.log('auth debug : ', code, metadata);
+      console.log('auth debug : ', code, metadata);
     },
   },
   callbacks: {
@@ -88,7 +88,6 @@ export const authOptions: NextAuthOptions = {
 
         const isValid = await user.checkPassword(password, user.password);
         if (!isValid) return null;
-
         return { email: user.email } as any;
       },
     }),
@@ -98,6 +97,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),
+
   pages: {
     signIn: '/sign-in',
   },

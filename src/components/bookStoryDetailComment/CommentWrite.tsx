@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProfileImage from '@components/common/ProfileImage';
 import Button from '@components/common/Button';
 import LoginOnlyCover from '@components/common/LoginOnlyCover';
 import { useSession } from 'next-auth/react';

@@ -29,6 +29,6 @@
       "@slices": ["src/store/rootReducer/searchSlice.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../../PREF/b-s-we-ding/src/components/common/LoadingSpinners.tsx"],
   "exclude": ["node_modules"]
 }
