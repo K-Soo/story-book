@@ -28,7 +28,7 @@ export default function AddBook() {
 const S = {
   AddBook: styled.div`
     background-color: #f9f9f9;
-    height: 400px;
+    min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;

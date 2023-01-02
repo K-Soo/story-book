@@ -3,7 +3,9 @@ import { useAppSelector, useAppDispatch } from '@store';
 import Image from 'next/image';
 import { setRemoveBookDetail } from '@slice/bookStoryPostSlice';
 import { IPostCardTypes, BookDetailInfo } from '@types';
+import BookDetailPanel from '@components/bookDetail/BookDetailPanel';
 import Icon from 'src/icons/Icon';
+import HorizontalLine from '@components/common/HorizontalLine';
 
 interface IBookInfoView {
   bookInfo: BookDetailInfo;
@@ -22,8 +24,13 @@ export default function BookInfoView({ bookInfo }: IBookInfoView) {
         <Image width='150' height='200' src={bookInfo?.image as string} alt='책 이미지' />
       </div>
       <div className='info'>
-        <h6 className='info__title'>{bookInfo?.title}</h6>
-        <p className='info__desc'>{bookInfo?.description}</p>
+        <BookDetailPanel title='책 제목' desc={bookInfo.title} />
+        <HorizontalLine height='1px' />
+        <BookDetailPanel title='책 소개' desc={bookInfo.description} />
+        <HorizontalLine height='1px' />
+        <BookDetailPanel title='책 저자' desc={bookInfo.author} />
+        <HorizontalLine height='1px' />
+        <BookDetailPanel title='출판사' desc={bookInfo.publisher} />
       </div>
     </S.BookInfoView>
   );
@@ -39,9 +46,9 @@ const S = {
     .img-box {
       display: flex;
       justify-content: center;
+      padding: 10px 0;
     }
     .info {
-      margin-top: 20px;
       padding: 0 10px;
       &__title {
         font-size: 16px;

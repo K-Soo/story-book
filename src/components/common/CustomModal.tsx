@@ -4,17 +4,16 @@ import DarkBackground from '@components/common/DarkBackground';
 import { useAppDispatch, useAppSelector } from '@store';
 import { setInitModal } from '@slice/modalSlice';
 import Icon from 'src/icons/Icon';
-import Button from '@components/common/Button';
 import { useRouter } from 'next/router';
 
-export default function CustomModal({ isOpen }: { isOpen: boolean }) {
+export default function CustomModal() {
   const { text } = useAppSelector(state => state.modal);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   return (
     <DarkBackground>
-      <S.CustomModal isOpen={isOpen}>
+      <S.CustomModal>
         <div className='close-box'>
           <Icon name='Close' onClick={() => dispatch(setInitModal())} style={{ width: '24px', height: '24px' }} />
         </div>
@@ -33,7 +32,7 @@ export default function CustomModal({ isOpen }: { isOpen: boolean }) {
 }
 
 const S = {
-  CustomModal: styled.div<{ isOpen: boolean }>`
+  CustomModal: styled.div`
     width: 300px;
     background-color: #fff;
     border-radius: 5px;

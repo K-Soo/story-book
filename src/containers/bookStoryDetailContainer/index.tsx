@@ -113,7 +113,7 @@ export default function BookStoryDetailContainer() {
       {isSuccess && data && data.status === 200 && (
         <>
           <FormProvider {...methods}>
-            {isOpen && <CustomModal isOpen={isOpen} />}
+            {isOpen && <CustomModal />}
             <BookStoryDetail data={data.result} fetchPostLike={fetchPostLike} />
           </FormProvider>
         </>
