@@ -14,10 +14,15 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
   const router = useRouter();
 
   const selectFc = (value: any) => {
-    console.log('value: ', value);
     const element = value.result.elements[0].elements[0];
     const findItem = element.elements.find((el: any) => el.name === 'item');
-    const result = findItem.elements.map((el: any) => ({ [el.name]: el.elements[0] }));
+
+    const result = findItem.elements.map((el: any) => {
+      if (el.elements) {
+        return { [el.name]: el.elements[0] };
+      }
+      return { [el.name]: { type: 'element', text: 'unknown' } };
+    });
     const data: any = {};
 
     for (const item of result) {
@@ -26,6 +31,7 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
       data[obj[0]] = value;
     }
     data.wishBook = value.wishBook;
+
     return { result: data };
   };
 
