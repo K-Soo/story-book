@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import Library from 'models/Library';
 import { xml2json } from 'xml-js';
 
 const configurations = {
@@ -12,6 +13,7 @@ const configurations = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     const { isbn } = req.query;
+    console.log('isbn: ', isbn);
 
     if (!isbn) {
       throw new Error('keyword is required');
@@ -25,7 +27,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         throw new Error('');
       }
       const xmTojson = xml2json(response.data);
-      res.status(200).json({ code: 200, result: JSON.parse(xmTojson) });
+
+      const parseJson = JSON.parse(xmTojson);
+
+      const existElem = await Library.findOne({
+        user: req.body._id,
+        wishBooks: {
+          $elemMatch: { isbn: isbn },
+        },
+      });
+
+      if (existElem) {
+        return res.status(200).json({ code: 200, result: parseJson, wishBook: 1 });
+      } else {
+        return res.status(200).json({ code: 200, result: parseJson, wishBook: 0 });
+      }
     } catch (error) {
       // TODO :: 에러 처리
       console.log('error: ', error);

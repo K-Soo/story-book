@@ -16,6 +16,7 @@ handler.use(middleware.authentication).put(async (req: NextApiRequest, res: Next
     throwError({ status: 404 });
   }
   await db.connect();
+
   const findDocs = await Library.findOne({ user: req.body._id });
   if (!findDocs) {
     const library = new Library({
@@ -24,12 +25,42 @@ handler.use(middleware.authentication).put(async (req: NextApiRequest, res: Next
     });
 
     library.save();
-
-    // library.wishBooks.create(req.body.form);
-    res.status(200).json({ status: 200, result: library });
+    return res.status(200).json({ status: 200, result: library });
   }
 
-  res.status(200).json({ status: 200, result: findDocs });
+  const existElem = await Library.findOne({
+    user: req.body._id,
+    wishBooks: {
+      $elemMatch: { isbn: req.body.form.isbn },
+    },
+  });
+
+  if (existElem) {
+    throwError({ status: 404 });
+  } else {
+    const resultUpdate = await Library.findOneAndUpdate(
+      { user: req.body._id },
+      {
+        $push: {
+          wishBooks: req.body.form,
+        },
+      },
+      { new: true }
+    );
+  }
+
+  // console.log('resultUpdate: ', resultUpdate);
+
+  // await Library.update(
+  //     { _id: person._id },
+  //     { $push: { friends: friend } },
+  //     done
+  // );
+
+  // var newdoc = findDocs.wishBooks.push(req.body.form);
+  // console.log('newdoc: ', newdoc);
+
+  res.status(200).json({ status: 200, result: 200 });
 
   await db.disconnect();
 });

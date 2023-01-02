@@ -1,8 +1,5 @@
 import React from 'react';
-// import { ReactComponent as LayoutTable } from 'src/icons/svg/layoutTable.svg';
 import styled from 'styled-components';
-// import { LayoutTable, LayoutHorizontal } from 'src/icons/svg';
-import LayoutTable from 'src/icons/svg/layoutTable.svg';
 import Icon from 'src/icons/Icon';
 import { TDisplayTypes } from '@containers/bookStoryContainer';
 
@@ -27,10 +24,6 @@ export default function FilterBox({ handleChangeSort, handleChangeDisplay, displ
         </select>
         <Icon name='BottomArrow1' style={{ height: '24px', width: '24px' }} />
       </div>
-      {/* <LayoutTable /> */}
-      {/* <img src='/src/icons/svg/arrow-left.svg' alt='asd' /> */}
-      {/* <LayoutHorizontal /> */}
-      {/* <LayoutTable /> */}
     </S.FilterBox>
   );
 }
@@ -43,6 +36,7 @@ const S = {
     background-color: #fff;
     display: flex;
     justify-content: space-between;
+    padding: 0 10px;
     .wrapper {
       display: flex;
       justify-content: space-between;

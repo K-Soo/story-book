@@ -44,7 +44,6 @@ export default function MainSlider({}: IMainSlider) {
 
 const S = {
   MainSlider: styled.article`
-    border: 3px solid green;
     width: 100%;
     /* height: 300px; */
     font-size: 0;
