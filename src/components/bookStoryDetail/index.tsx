@@ -40,12 +40,22 @@ export default function BookStoryDetail({ data, fetchPostLike }: IBookStoryDetai
       <ProfileSummary summaryInfo={{ createdAt: data.createdAt, name: data.author.name }} />
       <WriteBody />
       <HorizontalBar margin='0 0 20px 0' />
-      {isReadOnly && <BookDetailView bookInfo={data.bookInfo} />}
-
       {isReadOnly && (
         <>
+          <BookDetailView bookInfo={data.bookInfo} />
           <HorizontalBar />
           <BookStoryDetailCommentContainer postId={data._id} />
+          <BottomFixedBox>
+            <StyledCountBox>
+              {data.isLike === 'YES' && (
+                <Icon name='Heart1' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
+              )}
+              {data.isLike === 'NO' && (
+                <Icon name='Heart2' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
+              )}
+              <span className='count-text'>{data.likeCount}</span>
+            </StyledCountBox>
+          </BottomFixedBox>
         </>
       )}
 
@@ -53,19 +63,6 @@ export default function BookStoryDetail({ data, fetchPostLike }: IBookStoryDetai
         <BottomFixedBox>
           <Button label='수정 완료' margin='0 0 10px 0' />
           <Button label='수정 취소' onClick={() => dispatch(setReadOnly(true))} />
-        </BottomFixedBox>
-      )}
-      {isReadOnly && (
-        <BottomFixedBox>
-          <StyledCountBox>
-            {data.isLike === 'YES' && (
-              <Icon name='Heart1' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
-            )}
-            {data.isLike === 'NO' && (
-              <Icon name='Heart2' style={{ height: '20px' }} onClick={() => fetchPostLike(data._id)} />
-            )}
-            <span className='count-text'>{data.likeCount}</span>
-          </StyledCountBox>
         </BottomFixedBox>
       )}
     </S.BookStoryDetail>

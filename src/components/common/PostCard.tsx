@@ -64,6 +64,7 @@ const S = {
     background-color: #fff;
     cursor: pointer;
     padding: 0 10px;
+    box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
     ${props =>
       props.displayType === 'FLEX' &&
       css`
@@ -72,6 +73,7 @@ const S = {
       `}
     .top-wrapper {
       flex-basis: 80%;
+      margin-bottom: 15px;
       ${props =>
         props.displayType === 'FLEX' &&
         css`
@@ -130,7 +132,6 @@ const S = {
         }
       }
     }
-
     .info-wrapper {
       flex-basis: 20%;
       display: flex;

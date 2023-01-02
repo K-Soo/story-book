@@ -18,7 +18,6 @@ export default function AddBook() {
       {!bookInfo && (
         <div className='wrapper'>
           <p className='wrapper--text'>도서 정보를 추가해주세요.</p>
-          {/* <Button label='도서 정보 추가하기' onClick={() => dispatch(setOpenBookSearchForm(true))} /> */}
           <Button label='도서 정보 추가하기' onClick={() => router.push('/book-story/write/search')} />
         </div>
       )}

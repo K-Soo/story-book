@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import type { AppProps } from 'next/app';
 import { ToastContainer, toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import 'react-toastify/dist/ReactToastify.css';
 
 type NextPageWithLayout = NextPage & {
@@ -26,8 +27,20 @@ type AppPropsWithLayout<T> = AppProps<T> & {
 
 // prettier-ignore
 function App({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout<{ session: Session }>) {
+  const router = useRouter();
   const { store, props } = wrapper.useWrappedStore(pageProps);
   
+  React.useEffect(() => storePathValues, [router.asPath]);
+    
+
+  function storePathValues() {
+    const storage = globalThis?.sessionStorage;
+    if (!storage) return;
+    const prevPath = storage.getItem("currentPath");
+    storage.setItem("prevPath", prevPath as string);
+    storage.setItem("currentPath", globalThis.location.pathname);
+  }
+
   function commonLayout(page:React.ReactElement) {
     return <Layout>{page}</Layout>}
 

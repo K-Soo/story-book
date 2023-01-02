@@ -15,6 +15,8 @@ import BottomArrow1 from './bottomArrow1.svg';
 import Bookmark1 from './bookmark1.svg';
 import Bookmark2 from './bookmark2.svg';
 import Trash from './trash.svg';
+import Trash1 from './trash1.svg';
+import Trash2 from './trash2.svg';
 import Share from './share.svg';
 
 export {
@@ -35,5 +37,7 @@ export {
   Bookmark1,
   Bookmark2,
   Trash,
+  Trash1,
+  Trash2,
   Share,
 };
