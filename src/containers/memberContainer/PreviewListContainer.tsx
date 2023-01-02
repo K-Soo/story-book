@@ -8,7 +8,7 @@ import PreviewCard from '@components/member/previewList/PreviewCard';
 import Spinners from '@components/common/Spinners';
 import EmptyText from '@components/common/EmptyText';
 import { IPostCardTypes } from '@types';
-import Continue from '@components/member/previewList/Continue';
+import Continue from '@components/common/Continue';
 
 export type TTapTypes = 'LIKE' | 'SCRAP';
 type TPostData = { postId: IPostCardTypes; createdAt: string };
@@ -29,7 +29,7 @@ export default function PreviewListContainer() {
   return (
     <>
       <PreviewTap selectTap={selectTap} setSelectTap={setSelectTap} />
-      <Continue />
+      <Continue href='/member/previews' />
       <PreviewList>
         {isLoading && <Spinners position='absolute' />}
         {isError && <div>error</div>}
