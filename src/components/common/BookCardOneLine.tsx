@@ -16,9 +16,13 @@ const S = {
     height: 40px;
     display: flex;
     align-items: center;
-    border: 1px solid #aaa;
     padding-left: 15px;
     margin: 10px 0;
     cursor: pointer;
+    color: #888;
+    box-shadow: rgb(0 0 0 / 7%) 0px 4px 16px 0px;
+    :hover {
+      color: #222;
+    }
   `,
 };

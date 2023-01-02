@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import Icon from 'src/icons/Icon';
 // TODO : refactor
 interface ISearchInput {
   value: string;
@@ -20,6 +20,7 @@ export default function SearchInput({ value, onChange, maxLength, disabled }: IS
 
   return (
     <S.SearchInput>
+      <Icon name='Search' className='search-icon' />
       <input
         className='search-input'
         placeholder='검색어를 입력해주세요'
@@ -29,7 +30,7 @@ export default function SearchInput({ value, onChange, maxLength, disabled }: IS
         maxLength={maxLength}
         disabled={disabled}
       />
-      <span>X</span>
+      {value.length !== 0 && <Icon name='Close2' />}
     </S.SearchInput>
   );
 }
@@ -42,17 +43,17 @@ const S = {
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    border: 1px solid rgb(208, 208, 208);
     position: relative;
+    background-color: #eff1f3;
+    border-radius: 10px;
+    padding: 0 10px;
+    .search-icon {
+      pointer-events: none;
+    }
     .search-input {
       height: 100%;
       width: 100%;
-      padding: 0 50px 0 15px;
-    }
-    // TODO :: ICON 변경
-    span {
-      position: absolute;
-      right: 15px;
+      padding: 0 50px 0 5px;
     }
   `,
 };

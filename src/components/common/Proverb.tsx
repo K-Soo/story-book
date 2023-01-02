@@ -18,6 +18,7 @@ export default function Proverb({}: IProverb) {
 
 const S = {
   Proverb: styled.div`
+    font-size: 12px;
     .top-line {
       border-top: 1px solid #000;
     }

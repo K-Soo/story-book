@@ -9,7 +9,7 @@ export default React.memo(function WriteGuide() {
     <S.WriteGuide>
       <div className='wrapper'>
         <p className='wrapper__title'>작성 가이드</p>
-        <Icon name='ArrowLeft' onClick={() => setIsOpenText(prev => !prev)} />
+        <Icon name={isOpenText ? 'BottomArrow1' : 'TopArrow1'} onClick={() => setIsOpenText(prev => !prev)} />
       </div>
       {isOpenText && (
         <ul className='list'>

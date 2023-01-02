@@ -15,7 +15,6 @@ export interface IPostCard {
 }
 
 export default function PostCard({ item, displayType }: IPostCard) {
-  console.log('item: ', item);
   const router = useRouter();
 
   return (

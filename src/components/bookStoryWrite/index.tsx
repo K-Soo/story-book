@@ -59,6 +59,7 @@ export default function BookStoryWrite({ onSubmit, step, setStep }: IBookStoryWr
 const S = {
   BookStoryWrite: styled.section`
     height: 100%;
+    margin-bottom: 125px;
     position: relative;
     .form-container {
       height: 100%;
