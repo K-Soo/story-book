@@ -20,6 +20,7 @@ import Trash1 from './trash1.svg';
 import Trash2 from './trash2.svg';
 import Share from './share.svg';
 import Close2 from './close2.svg';
+import Check1 from './check1.svg';
 
 export {
   Search,
@@ -44,4 +45,5 @@ export {
   Share,
   TopArrow1,
   Close2,
+  Check1,
 };

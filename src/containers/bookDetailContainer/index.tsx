@@ -8,7 +8,7 @@ import BookInformation from '@components/bookDetail/BookInformation';
 import BookControlBox from '@components/common/BookControlBox';
 import { toast } from 'react-toastify';
 import useLoading from '@hooks/useLoading';
-import Spinners from '@components/common/Spinners';
+import Skeleton from '@components/common/Skeleton';
 
 export default function BookDetailContainer() {
   const router = useRouter();
@@ -17,7 +17,6 @@ export default function BookDetailContainer() {
   const selectFc = (value: any) => {
     const element = value.result.elements[0].elements[0];
     const findItem = element.elements.find((el: any) => el.name === 'item');
-
     const result = findItem.elements.map((el: any) => {
       if (el.elements) {
         return { [el.name]: el.elements[0] };
@@ -46,6 +45,7 @@ export default function BookDetailContainer() {
     OPTION,
     router.query.id as string
   );
+  console.log('도서상세 API : ', data);
 
   const fetchUpdateWishBook = async () => {
     setLoading(true);
@@ -55,7 +55,7 @@ export default function BookDetailContainer() {
       if (response.status !== 200) {
         throw new Error();
       }
-      toast.success('나의 서적에 저장되었어요!마이 페이지에서 확인가능합니다!');
+      toast.success('나의 서적에 저장되었어요!');
       refetch();
     } catch (error) {
       toast.error('잠시 후 다시시도해주세요');
@@ -64,14 +64,9 @@ export default function BookDetailContainer() {
     }
   };
 
-  console.log('도서상세 API : ', data);
-
   return (
     <>
-      {isLoading && <div>...loading</div>}
-      {/* <DarkBackground>
-        <CustomModal />
-      </DarkBackground> */}
+      {isLoading && <Skeleton.detail />}
       {isSuccess && (
         <BookDetail data={data.result}>
           <BookInformation data={data.result} />

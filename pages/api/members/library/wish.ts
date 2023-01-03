@@ -24,17 +24,22 @@ handler.use(middleware.authentication).put(async (req: NextApiRequest, res: Next
     return res.status(200).json({ status: 200, result: library });
   }
 
-  console.log('req.body.form.isbn: ', req.body.form.isbn);
   const existElem = await Library.findOne({
     user: req.body._id,
     wishBooks: {
       $elemMatch: { isbn: req.body.form.isbn },
     },
   });
-
-  // console.log('@@: ', existElem);
   if (existElem) {
-    // throwError({ status: 404 });
+    await Library.findOneAndUpdate(
+      { user: req.body._id },
+      {
+        $pull: {
+          wishBooks: { isbn: req.body.form.isbn },
+        },
+      },
+      { new: true }
+    );
     return res.status(200).json({ status: 200 });
   } else {
     await Library.findOneAndUpdate(
@@ -46,20 +51,8 @@ handler.use(middleware.authentication).put(async (req: NextApiRequest, res: Next
       },
       { new: true }
     );
+    res.status(200).json({ status: 200 });
   }
-
-  // console.log('resultUpdate: ', resultUpdate);
-
-  // await Library.update(
-  //     { _id: person._id },
-  //     { $push: { friends: friend } },
-  //     done
-  // );
-
-  // var newdoc = findDocs.wishBooks.push(req.body.form);
-  // console.log('newdoc: ', newdoc);
-
-  res.status(200).json({ status: 200, result: 200 });
 
   await db.disconnect();
 });

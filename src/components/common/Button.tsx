@@ -63,6 +63,9 @@ const S = {
     height: 40px;
     border-radius: 5px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:disabled {
       background-color: ${({ theme }) => theme.colors.disabled};
     }
