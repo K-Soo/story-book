@@ -12,9 +12,6 @@ import { Schema } from 'mongoose';
 const handler = nextConnect(middleware.options);
 
 handler.use(middleware.authentication).put(async (req: NextApiRequest, res: NextApiResponse) => {
-  if (!req.query) {
-    throwError({ status: 404 });
-  }
   await db.connect();
 
   const findDocs = await Library.findOne({ user: req.body._id });
@@ -23,11 +20,11 @@ handler.use(middleware.authentication).put(async (req: NextApiRequest, res: Next
       user: req.body._id,
       wishBooks: [req.body.form],
     });
-
     library.save();
     return res.status(200).json({ status: 200, result: library });
   }
 
+  console.log('req.body.form.isbn: ', req.body.form.isbn);
   const existElem = await Library.findOne({
     user: req.body._id,
     wishBooks: {
@@ -35,10 +32,12 @@ handler.use(middleware.authentication).put(async (req: NextApiRequest, res: Next
     },
   });
 
+  // console.log('@@: ', existElem);
   if (existElem) {
-    throwError({ status: 404 });
+    // throwError({ status: 404 });
+    return res.status(200).json({ status: 200 });
   } else {
-    const resultUpdate = await Library.findOneAndUpdate(
+    await Library.findOneAndUpdate(
       { user: req.body._id },
       {
         $push: {

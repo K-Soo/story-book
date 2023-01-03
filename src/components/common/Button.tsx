@@ -11,6 +11,7 @@ interface IButton {
   disabled?: boolean;
   fontSize?: string;
   type?: 'button' | 'submit' | 'reset';
+  children?: React.ReactNode;
   onClick?(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -24,6 +25,7 @@ export default function Button({
   className,
   backGround,
   fontSize,
+  children,
   disabled = false,
 }: IButton) {
   return (
@@ -38,6 +40,7 @@ export default function Button({
       backGround={backGround}
       onClick={onClick}
     >
+      {children}
       {label}
     </S.Button>
   );

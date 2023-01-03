@@ -6,12 +6,13 @@ import usePublicQuery from '@hooks/usePublicQuery';
 import { queryKeys } from '@constants';
 import BookInformation from '@components/bookDetail/BookInformation';
 import BookControlBox from '@components/common/BookControlBox';
-import CustomModal from '@components/common/CustomModal';
-import DarkBackground from '@components/common/DarkBackground';
-interface IBookDetailContainer {}
+import { toast } from 'react-toastify';
+import useLoading from '@hooks/useLoading';
+import Spinners from '@components/common/Spinners';
 
-export default function BookDetailContainer({}: IBookDetailContainer) {
+export default function BookDetailContainer() {
   const router = useRouter();
+  const [loading, setLoading] = useLoading();
 
   const selectFc = (value: any) => {
     const element = value.result.elements[0].elements[0];
@@ -36,12 +37,10 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
   };
 
   const OPTION = {
-    staleTime: 900000,
-    cacheTime: 1500000,
     select: selectFc,
   };
 
-  const { data, isSuccess, isLoading } = usePublicQuery(
+  const { data, isSuccess, isLoading, isError, refetch } = usePublicQuery(
     [queryKeys.BOOK_DETAIL, router.query.id as string],
     Get.getBookDetail,
     OPTION,
@@ -49,13 +48,19 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
   );
 
   const fetchUpdateWishBook = async () => {
+    setLoading(true);
     try {
       const response = await Put.updateWishBook({ form: data.result });
       console.log('읽고싶은책 API : ', response);
+      if (response.status !== 200) {
+        throw new Error();
+      }
+      toast.success('나의 서적에 저장되었어요!마이 페이지에서 확인가능합니다!');
+      refetch();
     } catch (error) {
-      console.log('error: ', error);
+      toast.error('잠시 후 다시시도해주세요');
     } finally {
-      console.log();
+      setLoading(false);
     }
   };
 
@@ -70,7 +75,7 @@ export default function BookDetailContainer({}: IBookDetailContainer) {
       {isSuccess && (
         <BookDetail data={data.result}>
           <BookInformation data={data.result} />
-          <BookControlBox fetchUpdateWishBook={fetchUpdateWishBook} />
+          <BookControlBox loading={loading} fetchUpdateWishBook={fetchUpdateWishBook} wishBook={data.result.wishBook} />
         </BookDetail>
       )}
     </>

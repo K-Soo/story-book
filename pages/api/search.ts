@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     };
     const response = await axios.get('https://openapi.naver.com/v1/search/book.json', configurations);
-    console.log('SERVER 도서검색결과 API : ', response);
+    console.info('NAVER 도서검색결과 리스트 API : ', response);
     res.status(200).json({ result: response.data });
   } catch (error) {
     if (error instanceof Error) {
