@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-export default function Continue() {
+export default function Continue({ href }: { href: string }) {
   const router = useRouter();
   return (
     <S.Continue>
-      <Link href='/member/previews'>
+      <Link href={href}>
         <a>더보기 {'>'}</a>
       </Link>
     </S.Continue>

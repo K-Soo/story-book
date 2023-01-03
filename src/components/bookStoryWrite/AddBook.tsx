@@ -17,9 +17,11 @@ export default function AddBook() {
       {bookInfo && <BookInfoView bookInfo={bookInfo} />}
       {!bookInfo && (
         <div className='wrapper'>
-          <p className='wrapper--text'>도서 정보를 추가해주세요.</p>
-          {/* <Button label='도서 정보 추가하기' onClick={() => dispatch(setOpenBookSearchForm(true))} /> */}
-          <Button label='도서 정보 추가하기' onClick={() => router.push('/book-story/write/search')} />
+          <Button
+            className='wrapper--button'
+            label='도서정보 추가하기'
+            onClick={() => router.push('/book-story/write/search')}
+          />
         </div>
       )}
     </S.AddBook>
@@ -29,14 +31,15 @@ export default function AddBook() {
 const S = {
   AddBook: styled.div`
     background-color: #f9f9f9;
-    height: 400px;
+    min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     .wrapper {
-      &--text {
-        color: ${props => props.theme.colors.black};
-        margin-bottom: 15px;
+      &--button {
+        font-size: 14px;
+        width: 130px;
+        height: 35px;
       }
     }
   `,

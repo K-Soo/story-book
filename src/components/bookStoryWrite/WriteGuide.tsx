@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Icon from 'src/icons/Icon';
 
 export default React.memo(function WriteGuide() {
   const [isOpenText, setIsOpenText] = React.useState(true);
@@ -8,7 +9,7 @@ export default React.memo(function WriteGuide() {
     <S.WriteGuide>
       <div className='wrapper'>
         <p className='wrapper__title'>작성 가이드</p>
-        <p onClick={() => setIsOpenText(prev => !prev)}>^</p>
+        <Icon name={isOpenText ? 'BottomArrow1' : 'TopArrow1'} onClick={() => setIsOpenText(prev => !prev)} />
       </div>
       {isOpenText && (
         <ul className='list'>
@@ -23,6 +24,7 @@ export default React.memo(function WriteGuide() {
 const S = {
   WriteGuide: styled.div`
     background-color: ${props => props.theme.colors.white};
+    padding: 0 10px;
     .wrapper {
       display: flex;
       align-items: center;

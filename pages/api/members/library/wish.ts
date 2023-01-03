@@ -12,24 +12,47 @@ import { Schema } from 'mongoose';
 const handler = nextConnect(middleware.options);
 
 handler.use(middleware.authentication).put(async (req: NextApiRequest, res: NextApiResponse) => {
-  if (!req.query) {
-    throwError({ status: 404 });
-  }
   await db.connect();
+
   const findDocs = await Library.findOne({ user: req.body._id });
   if (!findDocs) {
     const library = new Library({
       user: req.body._id,
       wishBooks: [req.body.form],
     });
-
     library.save();
-
-    // library.wishBooks.create(req.body.form);
-    res.status(200).json({ status: 200, result: library });
+    return res.status(200).json({ status: 200, result: library });
   }
 
-  res.status(200).json({ status: 200, result: findDocs });
+  const existElem = await Library.findOne({
+    user: req.body._id,
+    wishBooks: {
+      $elemMatch: { isbn: req.body.form.isbn },
+    },
+  });
+  if (existElem) {
+    await Library.findOneAndUpdate(
+      { user: req.body._id },
+      {
+        $pull: {
+          wishBooks: { isbn: req.body.form.isbn },
+        },
+      },
+      { new: true }
+    );
+    return res.status(200).json({ status: 200 });
+  } else {
+    await Library.findOneAndUpdate(
+      { user: req.body._id },
+      {
+        $push: {
+          wishBooks: req.body.form,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json({ status: 200 });
+  }
 
   await db.disconnect();
 });

@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
+import Library from 'models/Library';
 import { xml2json } from 'xml-js';
+import { unstable_getServerSession } from 'next-auth/next';
+import { authOptions, TSessionTypes } from 'pages/api/auth/[...nextauth]';
+import { throwError } from 'lib';
 
 const configurations = {
   headers: {
@@ -10,25 +14,41 @@ const configurations = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
-    const { isbn } = req.query;
+  if (req.method !== 'GET') return;
+  const { isbn } = req.query;
+  if (!isbn) {
+    throw new Error('keyword is required');
+  }
+  try {
+    const response = await axios.get(
+      `https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${isbn}&display=1&start=1`,
+      configurations
+    );
+    if (response.status !== 200) {
+      throw new Error('');
+    }
+    const xmTojson = xml2json(response.data);
+    const parseJson = JSON.parse(xmTojson);
 
-    if (!isbn) {
-      throw new Error('keyword is required');
+    const session: TSessionTypes | null = await unstable_getServerSession(req, res, authOptions);
+
+    if (!session) {
+      return res.status(200).json({ code: 200, result: parseJson });
     }
-    try {
-      const response = await axios.get(
-        `https://openapi.naver.com/v1/search/book_adv.xml?d_isbn=${isbn}&display=1&start=1`,
-        configurations
-      );
-      if (response.status !== 200) {
-        throw new Error('');
-      }
-      const xmTojson = xml2json(response.data);
-      res.status(200).json({ code: 200, result: JSON.parse(xmTojson) });
-    } catch (error) {
-      // TODO :: 에러 처리
-      console.log('error: ', error);
+
+    const existElem = await Library.findOne({
+      user: session.user?.id,
+      wishBooks: {
+        $elemMatch: { isbn: isbn },
+      },
+    });
+
+    if (existElem) {
+      return res.status(200).json({ code: 200, result: parseJson, wishBook: 1 });
+    } else {
+      return res.status(200).json({ code: 200, result: parseJson, wishBook: 0 });
     }
+  } catch (error) {
+    throwError({ status: 404 });
   }
 }

@@ -32,7 +32,7 @@ export default function TextArea({ readOnly, defaultValue, onChange, value }: IT
       defaultValue={defaultValue}
       value={value}
       ref={textareaInput}
-      placeholder='댓글 작성'
+      placeholder='이 책은 어떤 책인가요?'
     />
   );
 }

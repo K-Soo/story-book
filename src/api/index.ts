@@ -61,9 +61,10 @@ export const Post = {
 };
 
 export const Put = {
-  // updateBasket: (body: any) => requests.put('/api/users/basket', body),
   // 읽고싶은책
   updateWishBook: (body: any): Promise<{status:number}> => requests.put('/api/members/library/wish', body),
+  // 읽고있는 책
+  updateReadBook: (body: any): Promise<{status:number}> => requests.put('/api/members/library/read', body),
 };
 
 export const Delete = {

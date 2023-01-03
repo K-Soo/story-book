@@ -21,7 +21,6 @@ const S = {
     padding: ${props => (props.padding ? props.padding : '40px 0')};
     margin: ${props => (props.margin ? props.margin : '0')};
     white-space: pre-wrap;
-    background-color: #fff;
     line-height: 1.2;
     .title {
       font-size: 16px;

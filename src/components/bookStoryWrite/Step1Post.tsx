@@ -17,7 +17,5 @@ export default function Step1Post({ className, children }: IStep1Post) {
 }
 
 const S = {
-  Step1Post: styled.div`
-    border: 1px solid red;
-  `,
+  Step1Post: styled.div``,
 };

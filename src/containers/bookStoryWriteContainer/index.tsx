@@ -42,7 +42,14 @@ export default function BookStoryWriteContainer() {
   });
 
   React.useEffect(() => {
-    // dispatch(setInitialState());
+    const storage = globalThis?.sessionStorage;
+    if (!storage) {
+      return;
+    }
+    const prevPath = storage.getItem('prevPath');
+    if (prevPath !== '/book-story/write/search') {
+      dispatch(setInitialState());
+    }
     dispatch(setReadOnly(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -76,7 +83,7 @@ export default function BookStoryWriteContainer() {
       <FormProvider {...methods}>
         <BookStoryWrite onSubmit={onSubmit} step={step} setStep={setStep} />
       </FormProvider>
-      <DevTool control={methods.control} />
+      {/* <DevTool control={methods.control} /> */}
     </>
   );
 }

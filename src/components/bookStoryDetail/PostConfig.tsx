@@ -9,7 +9,7 @@ export default function PostConfig() {
   return (
     <S.PostConfig>
       <button className='modify' onClick={() => dispatch(setReadOnly(false))}>
-        수정
+        글수정
       </button>
       <button className='remove'>삭제</button>
     </S.PostConfig>

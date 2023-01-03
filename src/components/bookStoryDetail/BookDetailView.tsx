@@ -24,7 +24,7 @@ export default function BookDetailView({ bookInfo }: IBookDetailView) {
 
 const S = {
   BookDetailView: styled.div`
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     .image-box {
       display: flex;
     }
