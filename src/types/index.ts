@@ -13,6 +13,7 @@ export interface IBookDetailInfo {
   title: string;
   discount: string;
   wishBook?: number;
+  readBook?: number;
 }
 
 export type BookDetailInfo = {

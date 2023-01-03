@@ -10,6 +10,7 @@ import Spinners from '@components/common/Spinners';
 import PreviewListContainer from '@containers/memberContainer/PreviewListContainer';
 import LibraryListContainer from '@containers/memberContainer/LibraryListContainer';
 import styled from 'styled-components';
+import AnimatePage from '@components/common/AnimatePage';
 
 export type TSectionTypes = 'PROFILE' | 'LIBRARY';
 
@@ -39,8 +40,16 @@ export default function MemberContainer() {
           <MemberTap handleClickSection={handleClickSection} section={section} />
           <Profile />
         </Member>
-        {section === 'PROFILE' && <PreviewListContainer />}
-        {section === 'LIBRARY' && <LibraryListContainer />}
+        {section === 'PROFILE' && (
+          <AnimatePage>
+            <PreviewListContainer />
+          </AnimatePage>
+        )}
+        {section === 'LIBRARY' && (
+          <AnimatePage>
+            <LibraryListContainer />
+          </AnimatePage>
+        )}
       </div>
       <div className='button-box'>
         <HorizontalBar margin='0 0 20px 0' />

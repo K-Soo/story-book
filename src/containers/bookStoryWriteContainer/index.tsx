@@ -64,7 +64,6 @@ export default function BookStoryWriteContainer() {
       bookInfo: bookInfo,
     };
     try {
-      console.log('data: ', data);
       const response = await Post.createWriteBookStory(requestData);
       console.log('북스토리 글쓰기 API : ', response);
       if (response.status !== 200) {

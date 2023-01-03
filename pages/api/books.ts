@@ -36,18 +36,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json({ code: 200, result: parseJson });
     }
 
-    const existElem = await Library.findOne({
+    const existElemWish = await Library.findOne({
       user: session.user?.id,
       wishBooks: {
         $elemMatch: { isbn: isbn },
       },
     });
 
-    if (existElem) {
-      return res.status(200).json({ code: 200, result: parseJson, wishBook: 1 });
-    } else {
-      return res.status(200).json({ code: 200, result: parseJson, wishBook: 0 });
-    }
+    const existElemRead = await Library.findOne({
+      user: session.user?.id,
+      readBooks: {
+        $elemMatch: { isbn: isbn },
+      },
+    });
+
+    return res
+      .status(200)
+      .json({ code: 200, result: parseJson, wishBook: existElemWish ? 1 : 0, readBook: existElemRead ? 1 : 0 });
   } catch (error) {
     throwError({ status: 404 });
   }

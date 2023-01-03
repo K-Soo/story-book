@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { IBookStoryPostDetailResponse, INaverBookSearchResponse, IBookStoryCommentRequest,TDocumentId } from '@types';
+import { IBookStoryPostDetailResponse, INaverBookSearchResponse,IBookDetailInfo, IBookStoryCommentRequest,TDocumentId } from '@types';
 
 const config: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -38,7 +38,8 @@ const requests = {
 export const Get = {
   // 네이버 도서 검색
   getSearchKeyword: ({ keyword, page }: { keyword: string; page: number }): Promise<INaverBookSearchResponse> => requests.get(`/api/search?keyword=${keyword}&page=${page}`),
-  getBookDetail: (isbn: string): Promise<any> => requests.get(`/api/books?isbn=${isbn}`),
+  // 네이버 도서 상세
+  getBookDetail: (isbn: string): Promise<object> => requests.get(`/api/books?isbn=${isbn}`),
   // 북스토리 리스트
   getBookStoryList: ({ page ,sort}: { page: number, sort:string }): Promise<any> => requests.get(`/api/book-story?page=${page}&sort=${sort}`),
   // 북스토리 상세 글
@@ -53,7 +54,7 @@ export const Post = {
   // 회원가입 하기
   createUser: (body: any): Promise<any> => requests.post('/api/auth/sign-up', body),
   // 북스토리 글 쓰기
-  createWriteBookStory: (body: any): Promise<any> => requests.post('/api/book-story/write', body),
+  createWriteBookStory: (body: any): Promise<{status:number,result:string}> => requests.post('/api/book-story/write', body),
   // 글 좋아요
   createLikeBookStory: (body: {postId:TDocumentId}): Promise<{status:number}> => requests.post('/api/book-story/like', body),
   // 북스토리 댓글 생성
@@ -62,11 +63,11 @@ export const Post = {
 
 export const Put = {
   // 읽고싶은책
-  updateWishBook: (body: any): Promise<{status:number}> => requests.put('/api/members/library/wish', body),
+  updateWishBook: (body: {form:IBookDetailInfo}): Promise<{status:number}> => requests.put('/api/members/library/wish', body),
   // 읽고있는 책
-  updateReadBook: (body: any): Promise<{status:number}> => requests.put('/api/members/library/read', body),
+  updateReadBook: (body: {form:IBookDetailInfo}): Promise<{status:number}> => requests.put('/api/members/library/read', body),
 };
 
 export const Delete = {
-  deleteBookStoryCommentItem: ({ postId }: { postId:TDocumentId }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}`),
+  deleteBookStoryCommentItem: ({ postId }: { postId:TDocumentId }): Promise<{status:number}> => requests.get(`/api/book-story/comment?postId=${postId}`),
 };

@@ -1,5 +1,10 @@
 import MemberContainer from '@containers/memberContainer';
+import AnimatePage from '@components/common/AnimatePage';
 
 export default function MemberPage() {
-  return <MemberContainer />;
+  return (
+    <AnimatePage>
+      <MemberContainer />
+    </AnimatePage>
+  );
 }
