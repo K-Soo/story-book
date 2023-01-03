@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/K-Soo/story-book/compare/v0.1.15...v0.1.16) (2023-01-03)
+
+
+### Features
+
+* **_app.tsx:** create prevPath ([c3f9101](https://github.com/K-Soo/story-book/commit/c3f91017a47373a06d9e85f803004d000a572d42))
+* 도서 상세 API wishBook 상태값 추가 ([f3ffcfe](https://github.com/K-Soo/story-book/commit/f3ffcfef753d521608920c6001b525de80fbd402))
+* **bookdetailcontainer.tsx:** 도서 상세결과 스켈레톤UI ([6dce195](https://github.com/K-Soo/story-book/commit/6dce1956de668e7d329e52a7939476d8f4b7f51c))
+* **home/bookcard.tsx:** 메인 북스토리 슬라이더 ([18ae496](https://github.com/K-Soo/story-book/commit/18ae49629604dc97403dec9b5c356557a693a0ac))
+* **layout/header:** 디자인 수정 ([3a74ed3](https://github.com/K-Soo/story-book/commit/3a74ed3445dfcc3cc4d5b27ea6c1ffe89bb42252))
+* **searchinput.tsx:** add Icon ([b3d4ea1](https://github.com/K-Soo/story-book/commit/b3d4ea1d3138a72f13df710be2d0eddd044bc026))
+* **writebottomsheet.tsx:** 글작성 로그인 분기처리 ([66a122d](https://github.com/K-Soo/story-book/commit/66a122d2f96c9abcb4c85111c586f98c5177c1ff))
+
+
+### Bug Fixes
+
+* 타이틀 props ([1673ae6](https://github.com/K-Soo/story-book/commit/1673ae6cda2a434eb70ee84da7da9691218fdf25))
+* add  loading props ([0c76ddc](https://github.com/K-Soo/story-book/commit/0c76ddcd4b4bf312e6960ac33ab7735b86cc09d8))
+* **bookdetailcontainer:** react-query 도서 책저자 누락분 예외처리 ([999cc68](https://github.com/K-Soo/story-book/commit/999cc686b648ed97d9d838302bb3562605aedf90))
+
 ### [0.1.15](https://github.com/K-Soo/story-book/compare/v0.1.14...v0.1.15) (2023-01-01)
 
 
