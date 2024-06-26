@@ -15,7 +15,9 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import type { AppProps } from 'next/app';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+import { ErrorBoundary } from 'react-error-boundary';
 import 'react-toastify/dist/ReactToastify.css';
+import Error from 'src/error';
 
 type NextPageWithLayout = NextPage & {
   getLayout: (page: React.ReactElement) => React.ReactNode;

@@ -17,7 +17,7 @@ export default function PreviewListContainer() {
   const [selectTap, setSelectTap] = React.useState<TTapTypes>('LIKE');
 
   const requestData = {
-    queryKey: [queryKeys.BOOK_DETAIL],
+    queryKey: [queryKeys.MEMBER_PREVIEW],
     requestAPI: Get.getMemberPreviewLikes,
     options: {},
     requestData: { type: selectTap },

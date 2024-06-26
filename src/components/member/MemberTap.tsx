@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { TSectionTypes } from '@containers/memberContainer';
-
+import Link from 'next/link';
 interface IMemberTap {
   handleClickSection: React.MouseEventHandler<HTMLButtonElement> | undefined;
   section: TSectionTypes;
@@ -16,8 +16,10 @@ export default function MemberTap({ handleClickSection, section }: IMemberTap) {
           </button>
         </li>
         <li className='list__item'>
-          <button className='list__item--library' value='LIBRARY' onClick={handleClickSection}>
-            서재
+          <button className='list__item--library' onClick={handleClickSection}>
+            <Link href='/member/library'>
+              <a>서재</a>
+            </Link>
           </button>
         </li>
       </ul>
@@ -58,16 +60,14 @@ const S = {
         &--library {
           width: 100%;
           color: ${props => props.theme.colors.base};
-          ${props =>
-            props.section === 'LIBRARY'
-              ? css`
-                  border-bottom: 2px solid ${props => props.theme.colors.base};
-                  font-weight: 600;
-                `
-              : css`
-                  border-bottom: 1px solid #e5e8eb;
-                  color: #888;
-                `}
+          a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
       }
     }

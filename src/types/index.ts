@@ -83,4 +83,18 @@ export interface IBookStoryCommentRequest {
   content: string;
 }
 
+export interface ILibraryTypes {
+  readBooks: IBookDetailInfo[];
+  wishBooks: IBookDetailInfo[];
+}
+export interface ILibraryResponseTypes {
+  result: {
+    readBooks: IBookDetailInfo[];
+    wishBooks: IBookDetailInfo[];
+    wishBooksCount?: number;
+    readBooksCount?: number;
+  };
+  status: number;
+}
+
 // export interface IPostCardTypes extends Omit<IBookStoryPostDetailResponse, 'status'> {}

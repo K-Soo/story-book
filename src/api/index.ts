@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { IBookStoryPostDetailResponse, INaverBookSearchResponse,IBookDetailInfo, IBookStoryCommentRequest,TDocumentId } from '@types';
+import { IBookStoryPostDetailResponse, INaverBookSearchResponse,IBookDetailInfo, IBookStoryCommentRequest,TDocumentId,ILibraryResponseTypes } from '@types';
 
 const config: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_SERVER_URL,
@@ -46,8 +46,10 @@ export const Get = {
   getBookStoryPostDetail: ({ id }: { id: string }): Promise<IBookStoryPostDetailResponse> => requests.get(`/api/book-story/posts/${id}`),
   // 북스토리 댓글 리스트
   getBookStoryCommentList: ({ postId, page }: { postId:TDocumentId, page:string }): Promise<any> => requests.get(`/api/book-story/comment?postId=${postId}&page=${page}`),
-  // 유저 like 4
+  // 유저 like or scrap
   getMemberPreviewLikes: ({ type }: { type: string }): Promise<any> => requests.get(`/api/members/preview?type=${type}`),
+  // 유저 library 리스트
+  getMemberLibrary: ({ type }: { type: 'READ' | 'WISH' }): Promise<ILibraryResponseTypes> => requests.get(`/api/members/library?type=${type}`),
 };
 
 export const Post = {
