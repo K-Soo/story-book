@@ -28,7 +28,6 @@ export const options: Options<NextApiRequest, NextApiResponse> = {
 };
 
 export const authentication = nextConnect<NextApiRequest, NextApiResponse>().use(async (req, res, next) => {
-  console.log('req.method: ', req.method);
   if (req.method === 'GET') {
     throwError({ status: 405 });
   }

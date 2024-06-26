@@ -31,6 +31,7 @@ export default function BookDetailContainer() {
       data[obj[0]] = value;
     }
     data.wishBook = value.wishBook;
+    data.readBook = value.readBook;
 
     return { result: data };
   };
@@ -51,11 +52,29 @@ export default function BookDetailContainer() {
     setLoading(true);
     try {
       const response = await Put.updateWishBook({ form: data.result });
+      console.log('data.resul: ', data.result);
       console.log('읽고싶은책 API : ', response);
       if (response.status !== 200) {
         throw new Error();
       }
-      toast.success('나의 서적에 저장되었어요!');
+      toast.success(data.result.wishBook === 1 ? '나의 서적에 저장되었어요!' : '나의서적에서 삭제됬어요!');
+      refetch();
+    } catch (error) {
+      toast.error('잠시 후 다시시도해주세요');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchUpdateReadBook = async () => {
+    setLoading(true);
+    try {
+      const response = await Put.updateReadBook({ form: data.result });
+      console.log('읽고있는 책 API : ', response);
+      if (response.status !== 200) {
+        throw new Error();
+      }
+      toast.success(data.result.wishBook === 1 ? '나의 서적에 저장되었어요!' : '나의서적에서 삭제됬어요!');
       refetch();
     } catch (error) {
       toast.error('잠시 후 다시시도해주세요');
@@ -70,7 +89,13 @@ export default function BookDetailContainer() {
       {isSuccess && (
         <BookDetail data={data.result}>
           <BookInformation data={data.result} />
-          <BookControlBox loading={loading} fetchUpdateWishBook={fetchUpdateWishBook} wishBook={data.result.wishBook} />
+          <BookControlBox
+            loading={loading}
+            fetchUpdateWishBook={fetchUpdateWishBook}
+            fetchUpdateReadBook={fetchUpdateReadBook}
+            wishBook={data.result.wishBook}
+            readBook={data.result.readBook}
+          />
         </BookDetail>
       )}
     </>

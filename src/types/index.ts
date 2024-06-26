@@ -13,6 +13,7 @@ export interface IBookDetailInfo {
   title: string;
   discount: string;
   wishBook?: number;
+  readBook?: number;
 }
 
 export type BookDetailInfo = {
@@ -80,6 +81,20 @@ export interface IPageInfo {
 export interface IBookStoryCommentRequest {
   postId: TDocumentId;
   content: string;
+}
+
+export interface ILibraryTypes {
+  readBooks: IBookDetailInfo[];
+  wishBooks: IBookDetailInfo[];
+}
+export interface ILibraryResponseTypes {
+  result: {
+    readBooks: IBookDetailInfo[];
+    wishBooks: IBookDetailInfo[];
+    wishBooksCount?: number;
+    readBooksCount?: number;
+  };
+  status: number;
 }
 
 // export interface IPostCardTypes extends Omit<IBookStoryPostDetailResponse, 'status'> {}

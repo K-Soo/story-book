@@ -8,10 +8,10 @@ import MemberTap from '@components/member/MemberTap';
 import Profile from '@components/member/Profile';
 import Spinners from '@components/common/Spinners';
 import PreviewListContainer from '@containers/memberContainer/PreviewListContainer';
-import LibraryListContainer from '@containers/memberContainer/LibraryListContainer';
 import styled from 'styled-components';
+import AnimatePage from '@components/common/AnimatePage';
 
-export type TSectionTypes = 'PROFILE' | 'LIBRARY';
+export type TSectionTypes = 'PROFILE';
 
 export default function MemberContainer() {
   const [section, setSection] = React.useState<TSectionTypes>('PROFILE');
@@ -27,10 +27,11 @@ export default function MemberContainer() {
     signOut({ callbackUrl: '/' });
   }
 
-  const handleClickSection = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClickSection = React.useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;
     setSection(value as TSectionTypes);
-  };
+    router.push('asd');
+  }, []);
 
   return (
     <StyledWrapper>
@@ -39,8 +40,11 @@ export default function MemberContainer() {
           <MemberTap handleClickSection={handleClickSection} section={section} />
           <Profile />
         </Member>
-        {section === 'PROFILE' && <PreviewListContainer />}
-        {section === 'LIBRARY' && <LibraryListContainer />}
+        {section === 'PROFILE' && (
+          <AnimatePage>
+            <PreviewListContainer />
+          </AnimatePage>
+        )}
       </div>
       <div className='button-box'>
         <HorizontalBar margin='0 0 20px 0' />

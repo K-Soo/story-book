@@ -2,9 +2,7 @@ import { QueryClient } from 'react-query';
 
 export const defaultQueryClientOptions = {
   queries: {
-    // onError: queryErrorHandler,
-    // staleTime: 600000, // 10 minutes
-    // cacheTime: 900000, // default cacheTime is 5 minutes; doesn't make sense for staleTime to exceed cacheTime
+    onError: () => console.log('ㅁㄴㅇㄴㅁ'),
     retry: 0,
     keepPreviousData: true,
     suspense: false,

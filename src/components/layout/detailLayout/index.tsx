@@ -38,7 +38,7 @@ const S = {
     flex-direction: column;
     main {
       height: 100%;
-      /* border: 1px solid red; */
+      min-height: calc(100vh - 46px);
     }
   `,
 };

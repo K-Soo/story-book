@@ -26,7 +26,9 @@
       "@utils": ["src/utils/index.ts"],
       "@store": ["src/store"],
       "@slice/*": ["src/store/rootReducer/*"],
-      "@slices": ["src/store/rootReducer/searchSlice.ts"]
+      "@slices": ["src/store/rootReducer/searchSlice.ts"],
+      "@reactQuery/*": ["src/reactQuery/*"],
+      "@error/*": ["src/error/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../../PREF/b-s-we-ding/src/components/common/LoadingSpinners.tsx"],
